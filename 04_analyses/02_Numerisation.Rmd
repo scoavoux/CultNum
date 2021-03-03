@@ -1,0 +1,426 @@
+---
+title: "Tris à plat numérisation"
+author: "Samuel Coavoux"
+date: "01/03/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo    = FALSE, 
+               error   = FALSE, 
+               message = FALSE, 
+               warning = FALSE)
+```
+
+```{r}
+library(here)
+library(tidyverse)
+library(janitor)
+library(skimr)
+library(srvyr)
+options("digits" = 2)
+```
+
+```{r}
+load(here("01_data", "pc2018.RData"))
+load(here("01_data", "dictionary.RData"))
+d <- rename(d, pds = POND_INIT)
+```
+
+```{r}
+filter(labs, str_detect(variable, "I1"))
+```
+
+
+# Equipement
+
+```{r, fig.cap = "Taux d'équipement en terminaux (pondéré)"}
+select(d, I101:I112, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+I1: équipements, dont numérique
+I3: connexion internet
+
+```{r, fig.cap = "Connexion internet au domicile (pond)"}
+group_by(d, I3) %>% 
+  summarize(n = sum(pds)) %>% 
+  mutate(f = n /sum(n)) %>% 
+  ggplot(aes(I3, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+
+# Pratiques Amateurs:
+
+
+A23, A24: variables manquantes
+
+A23;: prends des cours?
+A24: sur Internet?
+
+```{r}
+filter(labs, str_detect(variable, "A31\\d"))
+```
+
+```{r, fig.cap = "utilise les outils numériques pour activités amateurs (pond)"}
+select(d, A311:A314, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == 1) %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+
+```
+
+A31: utilise les outils numériques pour activités amateurs
+
+
+A32: valorisation par Internet (dép$ot des productions sur blog, réseau social, plateforme...)
+```{r, fig.cap = "Valorisation des activités amateurs sur Internet (pond)"}
+mutate(d, A32 = factor(A32, levels = c(1, 2),
+                       labels = c("Oui", "Non")) %>% 
+         fct_explicit_na(na_level = "Non concerné")) %>% 
+  group_by(A32) %>% 
+  summarize(n = sum(pds)) %>% 
+  mutate(f = n / sum(n)) %>% 
+  ggplot(aes(A32, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+# Jeux vidéo
+B1:B7
+```{r}
+count(d, B1, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "joue à des jeux vidéo (pond)")
+```
+
+```{r}
+count(d, B2, wt = pds) %>%
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Fréquence des jeux vidéo (pond)")
+```
+
+
+```{r}
+count(d, B3, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Fréquence des jeux vidéo sur Internet (pond)")
+```
+
+
+# Télévision
+
+```{r}
+count(d, C1, wt = pds) %>% 
+  mutate(f = n/sum(n)) %>% 
+  kable(caption = "Fréquence d'écoute de la télévision (pond)") 
+```
+
+
+```{r, fig.cap = "Supports d'écoute de la télévision (pond)"}
+select(d, C61:C67, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+
+```
+
+```{r}
+count(d, C15, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Regarder des vidéos sur Internet")
+```
+
+```{r, fig.cap = "Supports d'écoute de vidéo sur Internet (pond)"}
+select(d, C161:C167, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+
+```
+
+```{r, fig.cap = "Genre de vidéo regardées sur Internet (pond)"}
+select(d, C1701:C1713, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+
+```
+
+
+C6*: supports pour l'écoute de télévision
+  C1: écoute de la télévision
+
+C15: regarder des vidéos sur Internet
+C16: supports pour vidéos sur Internet
+C17; quels genres de vidéo sur Internet?
+
+# Films
+
+```{r}
+count(d, C19, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Fréquence visionnage films (pond)")
+```
+
+
+```{r, fig.cap = "Support visionnage de films (pond)"}
+select(d, C211:C215, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+```{r, fig.cap = "Mode d'accès aux films (pond)"}
+select(d, C221:C226, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+C19: fréquence écoute de films
+C21: support écoute de films
+C22: inclut streaming
+
+# Séries
+
+```{r}
+count(d, C31, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Fréquence de visionnage de séries (pond)")
+```
+
+```{r, fig.cap = "Termminal de visionnage de séries (pond)"}
+select(d, C331:C335, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+```{r, fig.cap = "Termminal de visionnage de séries (pond)"}
+select(d, C341:C346, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+```{r}
+count(d, C35, wt = pds) %>% 
+  mutate(f = n/ sum(n)) %>% 
+  kable(caption = "Visionnage mobile de séries (pond)")
+```
+
+
+C31: regarder des séries, fréquence
+C33: écran
+C34: streaming
+C35: séries sur équipement mobile
+
+# Information
+
+```{r, fig.cap = "Mode d'accès à l'information (pond)"}
+select(d, D31:D37, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+```{r, fig.cap = "Mode d'accès à l'information (pond)"}
+select(d, D41:D42, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+```{r}
+count(d, D5, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Accède à l'information sur équipement mobile")
+```
+
+D3: moyens d'information
+D4: presse numérique gratuite ou payante
+D5: information sur équipement mobile
+
+# Musique
+
+```{r}
+count(d, E6, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Écoute des podcasts, la radio en streaming (pond)")
+```
+
+```{r}
+count(d, E7, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Fréquence écoute de musique (pond)")
+```
+
+```{r, fig.cap = "Support écoute de musique (pond)"}
+select(d, E81:E87, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+
+```{r}
+count(d, E8BIS, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Écoute de musique mobile (pond)")
+```
+
+E6: podcast, radio en streaming
+E7: écoute de musique
+E8: support musique
+E8bis: écoute de musique mobile
+
+# Livre
+
+```{r, fig.cap = "Mode d'accès aux livres (pond)"}
+select(d, F121:F124, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+```{r}
+count(d, F12BIS, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Livres la plupart du temps au format papier (pond)")
+```
+
+F12 liseuse/support de livre
+F12bis: souvent au format papier ou électronique?
+
+# Internet
+
+```{r}
+count(d, I4, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Fréquence usage Internet (pond)")
+```
+
+```{r}
+count(d, I5, wt = pds) %>% 
+  mutate(f = n / sum(n)) %>% 
+  kable(caption = "Usage réseaux sociaux (pond)")
+
+```
+
+```{r, fig.cap = "Mode d'accès aux livres (pond)"}
+select(d, I71:I77, pds) %>% 
+  pivot_longer(-pds) %>% 
+  count(name, value, wt = pds) %>% 
+  arrange(desc(n)) %>% 
+  filter(value == "'Yes'") %>% 
+  left_join(select(labs, name = "variable", lab = "varlabel_frombase")) %>% 
+  mutate(f = n / nrow(d),
+         lab = factor(lab, levels = unique(lab))) %>% 
+  ggplot(aes(lab, f)) +
+    geom_col() +
+    coord_flip()
+```
+
+I4: fréquence usage internet
+I5: usage réseaux sociaux
+  I fréquence d'ausage des réseaux sociaux
+I7: activités sur internet
+
+# Variables indépendantes

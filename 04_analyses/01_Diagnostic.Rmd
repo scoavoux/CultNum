@@ -1,0 +1,65 @@
+---
+title: ""
+author: "Samuel Coavoux"
+date: "22/02/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo    = FALSE, 
+               error   = FALSE, 
+               message = FALSE, 
+               warning = FALSE)
+```
+
+```{r}
+library(here)
+library(tidyverse)
+library(janitor)
+library(skimr)
+library(srvyr)
+```
+
+```{r}
+load(here("01_data", "pc2018.RData"))
+dp <- as_survey(d, weigths = POND)
+```
+
+# Variables socio-démographiques
+
+```{r}
+tabyl(d, SEXE) %>% kable()
+
+survey_count(dp, SEXE) %>% kable()
+```
+
+```{r}
+ggplot(d, aes(AGE)) + 
+  geom_histogram()
+```
+
+```{r}
+tabyl(d, DIPLOME) %>% kable()
+```
+
+```{r}
+tabyl(d, CS) %>% kable()
+```
+
+```{r}
+tabyl(d, CSTOT) %>% kable()
+```
+
+```{r}
+tabyl(d, REVENU)
+```
+
+```{r}
+tabyl(d, TRANREV)
+```
+
+```{r}
+tabyl(d, TRANREV, REVENU)
+```
+
