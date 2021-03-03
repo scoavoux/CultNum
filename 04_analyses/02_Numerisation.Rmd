@@ -424,3 +424,8 @@ I5: usage réseaux sociaux
 I7: activités sur internet
 
 # Variables indépendantes
+
+```{r}
+tabyl(d, SEXE, A1)
+```
+
