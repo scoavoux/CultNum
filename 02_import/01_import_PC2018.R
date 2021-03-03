@@ -9,7 +9,7 @@ d <- read_sas(here("01_data", "pc18_12fev2021.sas7bdat"))
 # Agréger tous les dictionnaires des codes: 
 # répertorier les variables dans la base
 # et repérer les levels/labels pour chacune
-
+# Test
 dic <- map(2:14, ~read_excel(here("01_data", "Dictionnaire des codes EPC 2018 (22 janvier 2021).xlsx"), sheet = .x))
 cat <- map(dic, ~names(.x)[1]) %>% unlist()
 for(i in 1:length(dic)){
