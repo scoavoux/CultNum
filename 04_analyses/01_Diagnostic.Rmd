@@ -7,18 +7,16 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(echo    = FALSE, 
-               error   = FALSE, 
-               message = FALSE, 
-               warning = FALSE)
-```
-
-```{r}
 library(here)
 library(tidyverse)
 library(janitor)
 library(skimr)
 library(srvyr)
+
+opts_chunk$set(echo    = FALSE, 
+               error   = FALSE, 
+               message = FALSE, 
+               warning = FALSE)
 ```
 
 ```{r}
