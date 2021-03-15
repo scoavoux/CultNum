@@ -41,7 +41,7 @@ graph_qcm_all(I101:I112)
 ```
 
 ```{r}
-graph_univar_all(I3, "Connexion internet au domicile (pond)")
+graph_univar_all(I3)
 ```
 
 
@@ -78,7 +78,7 @@ mutate(d, A32 = factor(A32, levels = c(1, 2),
 
 
 ```{r}
-graph_univar_all(B1, "Joue à des jeux vidéo (pond)") 
+graph_univar_all(B1) 
 ```
 
 ```{r}
