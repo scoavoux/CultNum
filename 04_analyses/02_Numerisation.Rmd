@@ -1,8 +1,10 @@
 ---
-title: "Axe 1. Numérisation"
+title: "Axe 1. Numérisation 2018"
 author: "Samuel Coavoux"
 date: "01/03/2021"
-output: html_document
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
@@ -18,7 +20,7 @@ options("digits" = 2)
 conflict_prefer("here", "here")
 conflict_prefer("filter", "dplyr")
 
-theme_set(theme_bw())
+theme_set(theme_bw(base_size = 9))
 
 opts_chunk$set(echo    = FALSE, 
                error   = FALSE, 
@@ -27,14 +29,341 @@ opts_chunk$set(echo    = FALSE,
 ```
 
 ```{r}
+# data
 load(here("01_data", "pc2018.RData"))
 load(here("01_data", "dictionary.RData"))
+load(here("01_data", "pc97-08-panel.RData"))
 
-source(here("02_import", "02_recodages.R"), encoding = "utf8")
+# Recodages
+source(here("02_import", "02_recodages_pc18.R"), encoding = "utf8")
+source(here("02_import", "04_recodages_autres.R"), encoding = "utf8")
+
+# Fonctions d'analyse
 source(here("03_scripts", "functions_description.R"), encoding = "utf8")
 ```
 
-# Equipement
+# Données de panel
+
+Dans le pseudo-panel, trois domaines numériques seulement sont couverts: pratique d'internet, pratique du jeu vidéo, pratique des résaux sociaux.
+
+## Internet
+
+```{r}
+count(panel, prat_internet, annee, sexn, wt = poids) %>% 
+  filter(!is.na(prat_internet)) %>% 
+  group_by(annee, sexn) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_internet == 1) %>% 
+  select(-n, -prat_internet) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage d'internet par sexe (pondéré)")
+
+```
+
+```{r}
+count(panel, prat_internet, annee, agen, wt = poids) %>% 
+  filter(!is.na(prat_internet)) %>% 
+  group_by(annee, agen) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_internet == 1) %>% 
+  select(-n, -prat_internet) %>% 
+  ungroup() %>% 
+  ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
+    geom_line() +
+    labs(x = "Âge", y = "Fréquence", title = "Usage d'Internet par âge")
+
+```
+
+```{r}
+count(panel, prat_internet, annee, cs_regroupee, wt = poids) %>% 
+  filter(!is.na(prat_internet)) %>% 
+  group_by(annee, cs_regroupee) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_internet == 1) %>% 
+  select(-n, -prat_internet) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage d'internet par CS (pondéré)")
+
+```
+
+```{r}
+count(panel, prat_internet, annee, dipp, wt = poids) %>% 
+  filter(!is.na(prat_internet)) %>% 
+  group_by(annee, dipp) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_internet == 1) %>% 
+  select(-n, -prat_internet) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage d'internet par diplôme (pondéré)")
+```
+
+
+## Internet tous les jours
+
+
+```{r}
+count(panel, tljp_internet, annee, sexn, wt = poids) %>% 
+  filter(!is.na(tljp_internet)) %>% 
+  group_by(annee, sexn) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_internet == 1) %>% 
+  select(-n, -tljp_internet) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage quotidien d'internet par sexe (pondéré)")
+
+```
+
+```{r}
+count(panel, tljp_internet, annee, agen, wt = poids) %>% 
+  filter(!is.na(tljp_internet)) %>% 
+  group_by(annee, agen) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_internet == 1) %>% 
+  select(-n, -tljp_internet) %>% 
+  ungroup() %>% 
+  ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
+    geom_line() +
+    labs(x = "Âge", y = "Fréquence", title = "Usage quotidien d'Internet par âge")
+
+```
+
+```{r}
+count(panel, tljp_internet, annee, cs_regroupee, wt = poids) %>% 
+  filter(!is.na(tljp_internet)) %>% 
+  group_by(annee, cs_regroupee) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_internet == 1) %>% 
+  select(-n, -tljp_internet) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage quotidien d'internet par CS (pondéré)")
+
+```
+
+```{r}
+count(panel, tljp_internet, annee, dipp, wt = poids) %>% 
+  filter(!is.na(tljp_internet)) %>% 
+  group_by(annee, dipp) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_internet == 1) %>% 
+  select(-n, -tljp_internet) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage quotidien d'internet par diplôme (pondéré)")
+```
+
+## Jeux vidéo
+
+```{r}
+count(panel, prat_jv, annee, sexn, wt = poids) %>% 
+  filter(!is.na(prat_jv)) %>% 
+  group_by(annee, sexn) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_jv == 1) %>% 
+  select(-n, -prat_jv) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage de jeux vidéo par sexe (pondéré)")
+
+```
+
+```{r}
+count(panel, prat_jv, annee, agen, wt = poids) %>% 
+  filter(!is.na(prat_jv)) %>% 
+  group_by(annee, agen) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_jv == 1) %>% 
+  select(-n, -prat_jv) %>% 
+  ungroup() %>% 
+  ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
+    geom_line() +
+    labs(x = "Âge", y = "Fréquence", title = "Usage de jeux vidéo par âge")
+
+```
+
+```{r}
+count(panel, prat_jv, annee, cs_regroupee, wt = poids) %>% 
+  filter(!is.na(prat_jv)) %>% 
+  group_by(annee, cs_regroupee) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_jv == 1) %>% 
+  select(-n, -prat_jv) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage de jeux vidéo par CS (pondéré)")
+
+```
+
+```{r}
+count(panel, prat_jv, annee, dipp, wt = poids) %>% 
+  filter(!is.na(prat_jv)) %>% 
+  group_by(annee, dipp) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_jv == 1) %>% 
+  select(-n, -prat_jv) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage de jeux vidéo par diplôme (pondéré)")
+```
+
+
+
+## Jeux vidéo tous les jours
+
+
+```{r}
+count(panel, tljp_jv, annee, sexn, wt = poids) %>% 
+  filter(!is.na(tljp_jv)) %>% 
+  group_by(annee, sexn) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_jv == 1) %>% 
+  select(-n, -tljp_jv) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage quotidien de jeux vidéo par sexe (pondéré)")
+
+```
+
+```{r}
+count(panel, tljp_jv, annee, agen, wt = poids) %>% 
+  filter(!is.na(tljp_jv)) %>% 
+  group_by(annee, agen) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_jv == 1) %>% 
+  select(-n, -tljp_jv) %>% 
+  ungroup() %>% 
+  ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
+    geom_line() +
+    labs(x = "Âge", y = "Fréquence", title = "Usage quotidien de jeux vidéo par âge")
+
+```
+
+```{r}
+count(panel, tljp_jv, annee, cs_regroupee, wt = poids) %>% 
+  filter(!is.na(tljp_jv)) %>% 
+  group_by(annee, cs_regroupee) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_jv == 1) %>% 
+  select(-n, -tljp_jv) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage quotidien de jeux vidéo par CS (pondéré)")
+
+```
+
+```{r}
+count(panel, tljp_jv, annee, dipp, wt = poids) %>% 
+  filter(!is.na(tljp_jv)) %>% 
+  group_by(annee, dipp) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_jv == 1) %>% 
+  select(-n, -tljp_jv) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage quotidien de jeux vidéo par diplôme (pondéré)")
+```
+
+## Réseaux sociaux
+
+```{r}
+count(panel, prat_reseaux, annee, sexn, wt = poids) %>% 
+  filter(!is.na(prat_reseaux)) %>% 
+  group_by(annee, sexn) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_reseaux == 1) %>% 
+  select(-n, -prat_reseaux) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage de réseaux sociaux par sexe (pondéré)")
+
+```
+
+```{r}
+count(panel, prat_reseaux, annee, agen, wt = poids) %>% 
+  filter(!is.na(prat_reseaux)) %>% 
+  group_by(annee, agen) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_reseaux == 1) %>% 
+  select(-n, -prat_reseaux) %>% 
+  ungroup() %>% 
+  ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
+    geom_line() +
+    labs(x = "Âge", y = "Fréquence", title = "Usage de réseaux sociaux par âge")
+
+```
+
+```{r}
+count(panel, prat_reseaux, annee, cs_regroupee, wt = poids) %>% 
+  filter(!is.na(prat_reseaux)) %>% 
+  group_by(annee, cs_regroupee) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_reseaux == 1) %>% 
+  select(-n, -prat_reseaux) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage de réseaux sociaux par CS (pondéré)")
+
+```
+
+```{r}
+count(panel, prat_reseaux, annee, dipp, wt = poids) %>% 
+  filter(!is.na(prat_reseaux)) %>% 
+  group_by(annee, dipp) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(prat_reseaux == 1) %>% 
+  select(-n, -prat_reseaux) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = annee, values_from = f) %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Usage de réseaux sociaux par diplôme (pondéré)")
+```
+
+# Enquête pratiques culturelles 2008
+
+Q51 équipements en terminaux
+
+Inutiles à mon avis:
+Q59 combien d'ordinateurs
+XQ59R idem
+Q60 équipements/accessoires informatiques
+EQMICRO2 "Equipement micro-informatique"
+Q61 Mode d'accès Internet
+
+## Jeux vidéo
+Q64 S(1-2) "J12.- Au cours des 12 derniers mois, avez-vous joué, chez vo us ou ailleurs, à des jeux vidéos, que ce soit sur une conso le de jeux, un téléphone portable, un écran de TV ou un ordi nateur ? "
+V = Q65 S(1-5) "J13.- En général, à quelle fréquence jouez-vous à des jeux v idéos ? ENQ : MONTRER LISTE 9 "
+V = J14BC M(1-14) "J14.- Sur quel appareil jouez-vous le plus souvent ? ENQUETEUR : une seule réponse On parle des appareils appartenant au foyer"
+V = J15C M(1-99) "J15.- Au cours des 12 derniers mois, avez-vous joué à... ENQUETEUR : MONTRER LISTE 10 - on parle toujours des jeux vi déos"
+V = TPJVH Q "Durée hebdomadaire en heures devant Jeux Vidéo"
+V = RJV S(1-6) "Durée de jeux vidéo par semaine"
+V = Q89 M(1-23) "O25.- Parmi les usages suivants d'internet, quels sont ceux que vous avez fait ? ENQUETEUR : MONTRER LISTE 15 - 
+V = Q91 S(1-2) "O26a.- Quand vous lisez des journaux ou magazines en ligne, s'agit-il de journaux ou de magazines que vous lisez réguliè rement sous forme papier ? "
+V = Q92[8] S(1-2) "O26b.- Avez-vous déjà téléchargé %S ? "
+V = EM56C S(1-98) "EM56.- Quand vous écoutez à votre domicile de la musique san s rien faire d'autre, est-ce le plus souvent à partir de... ENQUETEUR : MONTRER LISTE 27"
+
+
+# Enquête pratiques culturelles 2018
+
+
+## Equipement
 
 ```{r, fig.cap = "Taux d'équipement en terminaux (pondéré)"}
 graph_qcm_all(I101:I112)
@@ -45,8 +374,7 @@ graph_univar_all(I3)
 ```
 
 
-# Pratiques Amateurs:
-
+## Pratiques Amateurs
 
 A23, A24: variables manquantes
 
@@ -74,7 +402,7 @@ mutate(d, A32 = factor(A32, levels = c(1, 2),
     coord_flip()
 ```
 
-# Jeux vidéo
+## Jeux vidéo
 
 
 ```{r}
@@ -91,7 +419,7 @@ graph_univar_all(B3)
 ```
 
 
-# Télévision
+## Télévision
 
 ```{r}
 graph_univar_all(C1) 
@@ -123,7 +451,7 @@ C15: regarder des vidéos sur Internet
 C16: supports pour vidéos sur Internet
 C17; quels genres de vidéo sur Internet?
 
-# Films
+## Films
 
 ```{r}
 graph_univar_all(C19)
@@ -144,7 +472,7 @@ C19: fréquence écoute de films
 C21: support écoute de films
 C22: inclut streaming
 
-# Séries
+## Séries
 
 ```{r}
 graph_univar_all(C31)
@@ -168,7 +496,7 @@ C33: écran
 C34: streaming
 C35: séries sur équipement mobile
 
-# Information
+## Information
 
 ```{r, fig.cap = "Mode d'accès à l'information (pond)"}
 graph_qcm_all(D31:D37)
@@ -186,7 +514,7 @@ D3: moyens d'information
 D4: presse numérique gratuite ou payante
 D5: information sur équipement mobile
 
-# Musique
+## Musique
 
 ```{r}
 graph_univar_all(E6)
@@ -210,7 +538,7 @@ E7: écoute de musique
 E8: support musique
 E8bis: écoute de musique mobile
 
-# Livre
+## Livre
 
 ```{r, fig.cap = "Mode d'accès aux livres (pond)"}
 graph_qcm_all(F121:F124)
@@ -223,7 +551,7 @@ graph_univar_all(F12BIS)
 F12 liseuse/support de livre
 F12bis: souvent au format papier ou électronique?
 
-# Internet
+## Internet
 
 ```{r}
 graph_univar_all(I4)
