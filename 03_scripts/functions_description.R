@@ -6,7 +6,7 @@ graph_qcm <- function(.vars, .value = "'Yes'", .data=d, .labs=labs){
     count(name, value, wt = POND_INIT) %>% 
     arrange(desc(n)) %>% 
     filter(value == .value) %>% 
-    left_join(select(labs, name = "variable", lab = "varlabel")) %>% 
+    left_join(select(.labs, name = "variable", lab = "varlabel")) %>% 
     mutate(f = n / nrow(d),
            lab = factor(lab, levels = unique(lab))) %>% 
     ggplot(aes(lab, f, label = paste0(round(f, 2)*100, "%"))) +
@@ -26,7 +26,7 @@ graph_qcm_indep <- function(.dep, .indep, .value = "'Yes'", .data=d, .labs=labs)
     ungroup() %>% 
     arrange(desc(n)) %>%
     filter(value == .value) %>%
-    left_join(select(labs, name = "variable", lab = "varlabel"))
+    left_join(select(.labs, name = "variable", lab = "varlabel"))
     
   if(!is.numeric(pull(.data,{{ .indep }}))){
     ggplot(x, aes(!! enquo(.indep), f, label = paste0(round(f, 2)*100, "%"))) +
@@ -50,13 +50,13 @@ graph_qcm_indep <- function(.dep, .indep, .value = "'Yes'", .data=d, .labs=labs)
 graph_qcm_all <- function(.dep, .value = "'Yes'", .data=d, .labs=labs){
   graph_qcm(.vars = {{ .dep }}, .value = .value, .data = .data, .labs = .labs) %>% print()
   
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = SEXE, .value = .value, .data=d, .labs=labs) %>% print()
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = SEXE, .value = .value, .data=d, .labs=.labs) %>% print()
   
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = dipl, .value = .value, .data=d, .labs=labs) %>% print()
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = dipl, .value = .value, .data=d, .labs=.labs) %>% print()
 
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = pcs1, .value = .value, .data=d, .labs=labs) %>% print()
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = pcs1, .value = .value, .data=d, .labs=.labs) %>% print()
   
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = AGE, .value = .value, .data=d, .labs=labs) %>% print()
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = AGE, .value = .value, .data=d, .labs=.labs) %>% print()
 }
 
 table_univar <- function(.var, .labs = labs){
