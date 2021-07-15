@@ -9,6 +9,7 @@ editor_options:
   chunk_output_type: inline
 ---
 
+
 ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
@@ -47,7 +48,7 @@ source(here("03_scripts", "functions_description.R"), encoding = "utf8")
 
 # Données de panel
 
-Dans le pseudo-panel, trois domaines numériques seulement sont couverts: pratique d'internet, pratique du jeu vidéo, pratique des résaux sociaux.
+Dans le pseudo-panel, trois domaines numériques seulement sont couverts: pratique d'internet, pratique du jeu vidéo, pratique des réseaux sociaux.
 
 ## Internet
 
@@ -404,7 +405,8 @@ graph_qcm_all(A311:A314, 1)
 A31: utilise les outils numériques pour activités amateurs
 
 
-A32: valorisation par Internet (dép$ot des productions sur blog, réseau social, plateforme...)
+A32: valorisation par Internet (dépot des productions sur blog, réseau social, plateforme...)
+
 ```{r, fig.cap = "Valorisation des activités amateurs sur Internet (pond)"}
 mutate(d, A32 = factor(A32, levels = c(1, 2),
                        labels = c("Oui", "Non")) %>% 

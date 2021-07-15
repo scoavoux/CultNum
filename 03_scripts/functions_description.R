@@ -57,6 +57,9 @@ graph_qcm_all <- function(.dep, .value = "'Yes'", .data=d, .labs=labs){
   graph_qcm_indep(.dep = {{ .dep }}, .indep = pcs1, .value = .value, .data=d, .labs=.labs) %>% print()
   
   graph_qcm_indep(.dep = {{ .dep }}, .indep = AGE, .value = .value, .data=d, .labs=.labs) %>% print()
+  
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = TYPMEN, .value = .value, .data=d, .labs=.labs) %>% print()
+  
 }
 
 table_univar <- function(.var, .labs = labs){
