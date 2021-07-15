@@ -2,9 +2,24 @@ library(tidyverse)
 library(readxl)
 library(haven)
 library(here)
+library(remotes)
+library(kwb.nextcloud)
+
+
+# Credentials: logins and password
+source("credentials.R")
+
+# 
+files_info <- list_files("EnquetesPC", full_info = TRUE) %>% tibble()
+
+# Download pc18
+filter(files_info, file == "pc18.sas7bdat") %>% 
+  pull(href) %>% 
+  download_files(target_dir = "01_data")
 
 # Import SAS database
-d <- read_sas(here("01_data", "pc18_12fev2021.sas7bdat"))
+
+d <- read_sas(here("01_data", "pc18.sas7bdat"))
 
 # Agréger tous les dictionnaires des codes: 
 # répertorier les variables dans la base
@@ -96,7 +111,7 @@ d <- mutate(d, across(.cols = unique(mod$variable), as.character))
 d <- as.data.frame(d)
 
 for(v in unique(mod$variable)){
-  print(v)
+#  print(v)
   m <- filter(mod, variable == v)
   d[,v] <- factor(d[,v], levels = m$level, labels = m$modlabel)
 }
