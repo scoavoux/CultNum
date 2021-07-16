@@ -1,0 +1,73 @@
+---
+title: "Usages d'Internet dans les pratiques amateures"
+author: "Samuel Coavoux et Emmanuelle Guittet"
+date: "15/07/2021"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: inline
+---
+
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+library(here)
+library(conflicted)
+
+library(janitor)
+
+options("digits" = 2)
+
+conflict_prefer("here", "here")
+conflict_prefer("filter", "dplyr")
+
+theme_set(theme_bw(base_size = 9))
+
+opts_chunk$set(echo    = FALSE, 
+               error   = FALSE, 
+               message = FALSE, 
+               warning = FALSE)
+```
+
+```{r}
+# data
+load(here("01_data", "pc2018.RData"))
+load(here("01_data", "dictionary.RData"))
+
+# Recodages
+source(here("02_import", "02_recodages_pc18.R"), encoding = "utf8")
+
+# Fonctions d'analyse
+source(here("03_scripts", "functions_description.R"), encoding = "utf8")
+```
+
+La question A19 porte sur les pratiques amateures. Pour chaque pratique sélectionnée, les questions A20 et plus, noté A20_Loop_X_CODE où X est le numéro de la modalité dans A19, sont posées.
+
++ A20: à quel âge avez vous commencé?
++ A21: l'avez-vous pratiqué au cours des 12 derniers mois
++ A22: à quel âge avez-vous cessé?
++ A23: prenez vous des cours, y compris sur Internet, pour apprendre à pratiquer cette activité?
++ A24: où sont pris les cours:
+  - A241: dans une structure spécialisée
+  - A242: des cours particuliers à domicile ou chez un professeur
+  - A243: des cours sur Internet, tutoriels, mooc, ou autre
+  - A244: autre
+  - A245: NSP
+  - A246: Refus
+  
+```{r}
+filter(labs, str_detect(variable, "A19")) %>% 
+  select(variable, varlabel_frombase) %>% 
+  kable(caption = "Variables pratiques amateures")
+```
+
+# Distribution
+
+Tris à plats systématiques: variable A19 et toutes les variables A20?
+
+```{r}
+graph_qcm_all(A1901:A1914)
+```
+
