@@ -444,8 +444,7 @@ graph_univar_all(C1)
 
 
 ```{r, fig.cap = "Supports d'écoute de la télévision (pond)"}
-graph_qcm_all(C61:C67, "'Yes'")
-
+graph_qcm_all(C61:C65, "'Yes'")
 ```
 
 ```{r}
@@ -453,7 +452,7 @@ graph_univar_all(C15)
 ```
 
 ```{r, fig.cap = "Supports d'écoute de vidéo sur Internet (pond)"}
-graph_qcm_all(C161:C167, "'Yes'")
+graph_qcm_all(C161:C165, "'Yes'")
 ```
 
 ```{r, fig.cap = "Genre de vidéo regardées sur Internet (pond)"}

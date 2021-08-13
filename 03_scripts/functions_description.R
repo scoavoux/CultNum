@@ -66,6 +66,8 @@ table_univar <- function(.var, .labs = labs){
   cpt <- filter(.labs, variable == as_name(enquo(.var))) %>% pull(varlabel)
 
   count(d, !! enquo(.var), wt = POND_INIT) %>%
+    filter(!! enquo(.var) != "'(NSP)'",
+           !! enquo(.var) != "'(REF)'") %>% 
     mutate(f = round(n / sum(n) * 100),
            f = paste0(f, "%")) %>%
     rename(Eff. = "n", Freq. = "f") %>%
@@ -79,6 +81,9 @@ graph_univar_indep <- function(.dep, .indep, .data = d, .labs = labs) {
   
   x <- select(.data, {{ .dep }}, {{ .indep }}, POND_INIT) %>% 
     count(!! enquo(.dep), !! enquo(.indep)) %>% 
+    filter(!is.na(!! enquo(.dep)),
+           !! enquo(.dep) != "'(NSP)'",
+           !! enquo(.dep) != "'(REF)'") %>% 
     group_by(!! enquo(.indep)) %>% 
     mutate(f = n / sum(n))
   
