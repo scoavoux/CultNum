@@ -579,7 +579,7 @@ graph_univar_all(I5)
 
 ```
 
-```{r, fig.cap = "Mode d'accès aux livres (pond)"}
+```{r, fig.cap = "Activités pratiquées sur Internet (I7)"}
 graph_qcm_all(I71:I77)
 ```
 
