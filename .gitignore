@@ -12,4 +12,5 @@
 *.doc
 *.docx
 credentials.R
+.DS_Store
 TODO
