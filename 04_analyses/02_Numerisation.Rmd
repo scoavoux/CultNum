@@ -6,7 +6,7 @@ output:
   html_document:
     df_print: paged
 editor_options:
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 
@@ -43,6 +43,19 @@ source(here("02_import", "04_recodages_autres.R"), encoding = "utf8")
 
 # Fonctions d'analyse
 source(here("03_scripts", "functions_description.R"), encoding = "utf8")
+
+pc08 <- rename(pc08, POND_INIT = "POIDS",
+               SEXE = "Q28",
+               AGE = "Q29", # Q30 pour l'âge en classes
+               dipl = "DIP2",
+               pcs1 = "XCSPC9B")
+
+pc08 <- mutate(pc08, TYPMEN = 
+                 case_when(SITUAF %in% c("Célibataires", "Veufs, divorcés") & Q274 == 0 ~ "'Personne seule'", 
+                           SITUAF %in% c("Célibataires", "Veufs, divorcés") & Q274 > 0 ~ "'Famille monoparentale'", 
+                           SITUAF == "Mariés ou vivant maritalement" & Q274 == 0  ~ "'Couple sans enfant'", 
+                           SITUAF == "Mariés ou vivant maritalement" & Q274 > 0 ~ "'Couple avec enfant'", 
+                           TRUE ~ "'Ménage complexe'"))
 ```
 
 
@@ -344,37 +357,69 @@ count(panel, prat_reseaux, annee, dipp, wt = poids) %>%
 
 L'enquête de 2008 dispose de nombreuses questions sur les équipements numériques (ordinateurs, accessoires, modes d'accès à Internet...) qui ne paraissent pas absolument nécessaires, car ils engagent peu la question de la numérisation des pratiques culturelles.
 
-<!--
-Q51 équipements en terminaux
-Q59 combien d'ordinateurs
-XQ59R idem
-Q60 équipements/accessoires informatiques
-EQMICRO2 "Equipement micro-informatique"
-Q61 Mode d'accès Internet
--->
+PCS=PCS du chef de famille
 
-La seule pratique culturelle numérique véritablement détaillée est le jeu vidéo.
+## Equipements
+
+```{r}
+graph_qcm_all(.dep = Q51_O1:Q51_O18, .value = "OUI", .data = pc08, .labs = labs_pc08)
+```
+
+
+```{r}
+graph_univar_all(.dep = XQ59R, .data = pc08, .labs = labs_pc08)
+```
+
+```{r}
+graph_qcm_all(.dep = Q60_O1:Q60_O8, .value = "OUI", .data = pc08, .labs = labs_pc08)
+```
+
+```{r}
+graph_univar_all(.dep = Q61, .data = pc08, .labs = labs_pc08)
+```
+
 
 ## Jeux vidéo
 
 ```{r}
-count(pc08, Q64, wt=POIDS) %>% 
-  mutate(f = n / sum(n)) %>% 
-  kable(caption = "Joue à des jeux vidéo (2008)")
+graph_univar_all(.dep = Q64, .data = pc08, .labs = labs_pc08)
+```
+
+```{r}
+graph_univar_all(.dep = Q65, .data = pc08, .labs = labs_pc08)
 ```
 
 
-Q64 S(1-2) "J12.- Au cours des 12 derniers mois, avez-vous joué, chez vo us ou ailleurs, à des jeux vidéos, que ce soit sur une conso le de jeux, un téléphone portable, un écran de TV ou un ordi nateur ? "
-V = Q65 S(1-5) "J13.- En général, à quelle fréquence jouez-vous à des jeux v idéos ? ENQ : MONTRER LISTE 9 "
-V = J14BC M(1-14) "J14.- Sur quel appareil jouez-vous le plus souvent ? ENQUETEUR : une seule réponse On parle des appareils appartenant au foyer"
-V = J15C M(1-99) "J15.- Au cours des 12 derniers mois, avez-vous joué à... ENQUETEUR : MONTRER LISTE 10 - on parle toujours des jeux vi déos"
-V = TPJVH Q "Durée hebdomadaire en heures devant Jeux Vidéo"
-V = RJV S(1-6) "Durée de jeux vidéo par semaine"
-V = Q89 M(1-23) "O25.- Parmi les usages suivants d'internet, quels sont ceux que vous avez fait ? ENQUETEUR : MONTRER LISTE 15 - 
-V = Q91 S(1-2) "O26a.- Quand vous lisez des journaux ou magazines en ligne, s'agit-il de journaux ou de magazines que vous lisez réguliè rement sous forme papier ? "
-V = Q92[8] S(1-2) "O26b.- Avez-vous déjà téléchargé %S ? "
-V = EM56C S(1-98) "EM56.- Quand vous écoutez à votre domicile de la musique san s rien faire d'autre, est-ce le plus souvent à partir de... ENQUETEUR : MONTRER LISTE 27"
+```{r}
+graph_qcm_all(.dep = J14BC_M1:J14BC_M14, .value = "OUI", .data = pc08, .labs = labs_pc08)
+```
 
+```{r}
+graph_univar_all(.dep = TPJVH, .data = pc08, .labs = labs_pc08)
+```
+
+```{r}
+graph_univar_all(.dep = RJV, .data = pc08, .labs = labs_pc08)
+```
+
+
+## Internet
+
+```{r}
+graph_qcm_all(.dep = Q89_M1:Q89_M23, .value = "OUI", .data = pc08, .labs = labs_pc08)
+```
+
+```{r}
+graph_univar_all(.dep = Q91, .data = pc08, .labs = labs_pc08)
+```
+
+```{r}
+graph_univar_all(.dep = Q92, .data = pc08, .labs = labs_pc08)
+```
+
+```{r}
+graph_univar_all(.dep = EM56C, .data = pc08, .labs = labs_pc08)
+```
 
 # Enquête pratiques culturelles 2018
 

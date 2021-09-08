@@ -50,22 +50,22 @@ graph_qcm_indep <- function(.dep, .indep, .value = "'Yes'", .data=d, .labs=labs)
 graph_qcm_all <- function(.dep, .value = "'Yes'", .data=d, .labs=labs){
   graph_qcm(.vars = {{ .dep }}, .value = .value, .data = .data, .labs = .labs) %>% print()
   
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = SEXE, .value = .value, .data=d, .labs=.labs) %>% print()
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = SEXE, .value = .value, .data=.data, .labs=.labs) %>% print()
   
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = dipl, .value = .value, .data=d, .labs=.labs) %>% print()
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = dipl, .value = .value, .data=.data, .labs=.labs) %>% print()
 
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = pcs1, .value = .value, .data=d, .labs=.labs) %>% print()
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = pcs1, .value = .value, .data=.data, .labs=.labs) %>% print()
   
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = AGE, .value = .value, .data=d, .labs=.labs) %>% print()
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = AGE, .value = .value, .data=.data, .labs=.labs) %>% print()
   
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = TYPMEN, .value = .value, .data=d, .labs=.labs) %>% print()
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = TYPMEN, .value = .value, .data=.data, .labs=.labs) %>% print()
   
 }
 
-table_univar <- function(.var, .labs = labs){
+table_univar <- function(.var, .labs = labs, .data = d){
   cpt <- filter(.labs, variable == as_name(enquo(.var))) %>% pull(varlabel)
 
-  count(d, !! enquo(.var), wt = POND_INIT) %>%
+  count(.data, !! enquo(.var), wt = POND_INIT) %>%
     filter(!! enquo(.var) != "'(NSP)'",
            !! enquo(.var) != "'(REF)'") %>% 
     mutate(f = round(n / sum(n) * 100),
@@ -102,13 +102,13 @@ graph_univar_indep <- function(.dep, .indep, .data = d, .labs = labs) {
 }
 
 graph_univar_all <- function(.dep, .data = d, .labs = labs){
-  table_univar({{ .dep }})
+  table_univar({{ .dep }}, .data=.data)
   
-  graph_univar_indep({{ .dep }}, SEXE) %>% print()
+  graph_univar_indep({{ .dep }}, SEXE, .data=.data) %>% print()
   
-  graph_univar_indep({{ .dep }}, dipl) %>% print()
+  graph_univar_indep({{ .dep }}, dipl, .data=.data) %>% print()
   
-  graph_univar_indep({{ .dep }}, pcs1) %>% print()
+  graph_univar_indep({{ .dep }}, pcs1, .data=.data) %>% print()
   
-  graph_univar_indep({{ .dep }}, AGE) %>% print()
+  graph_univar_indep({{ .dep }}, AGE, .data=.data) %>% print()
 }
