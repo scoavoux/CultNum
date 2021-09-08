@@ -71,7 +71,7 @@ table_univar <- function(.var, .labs = labs, .data = d){
     mutate(f = round(n / sum(n) * 100),
            f = paste0(f, "%")) %>%
     rename(Eff. = "n", Freq. = "f") %>%
-    kable(caption = ifelse(!is.na(cpt), cpt, " "))
+    kable(caption = ifelse(!is.null(cpt) & !is.na(cpt), cpt, " "))
 }
 
 graph_univar_indep <- function(.dep, .indep, .data = d, .labs = labs) {
@@ -102,13 +102,13 @@ graph_univar_indep <- function(.dep, .indep, .data = d, .labs = labs) {
 }
 
 graph_univar_all <- function(.dep, .data = d, .labs = labs){
-  table_univar({{ .dep }}, .data=.data)
+  table_univar({{ .dep }}, .labs = .labs, .data=.data)
   
-  graph_univar_indep({{ .dep }}, SEXE, .data=.data) %>% print()
-  
-  graph_univar_indep({{ .dep }}, dipl, .data=.data) %>% print()
-  
-  graph_univar_indep({{ .dep }}, pcs1, .data=.data) %>% print()
-  
-  graph_univar_indep({{ .dep }}, AGE, .data=.data) %>% print()
+  graph_univar_indep({{ .dep }}, SEXE, .labs = .labs, .data=.data) %>% print()
+
+  graph_univar_indep({{ .dep }}, dipl, .labs = .labs, .data=.data) %>% print()
+
+  graph_univar_indep({{ .dep }}, pcs1, .labs = .labs, .data=.data) %>% print()
+
+  graph_univar_indep({{ .dep }}, AGE, .labs = .labs, .data=.data) %>% print()
 }

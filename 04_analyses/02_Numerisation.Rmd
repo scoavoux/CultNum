@@ -371,7 +371,7 @@ graph_univar_all(.dep = XQ59R, .data = pc08, .labs = labs_pc08)
 ```
 
 ```{r}
-graph_qcm_all(.dep = Q60_O1:Q60_O8, .value = "OUI", .data = pc08, .labs = labs_pc08)
+graph_qcm_all(.dep = EQMICRO2_M1:EQMICRO2_M9, .value = "OUI", .data = pc08, .labs = labs_pc08)
 ```
 
 ```{r}
@@ -391,6 +391,7 @@ graph_univar_all(.dep = Q65, .data = pc08, .labs = labs_pc08)
 
 
 ```{r}
+pc08 <- select(pc08, -J14BC_M8)
 graph_qcm_all(.dep = J14BC_M1:J14BC_M14, .value = "OUI", .data = pc08, .labs = labs_pc08)
 ```
 
@@ -414,7 +415,7 @@ graph_univar_all(.dep = Q91, .data = pc08, .labs = labs_pc08)
 ```
 
 ```{r}
-graph_univar_all(.dep = Q92, .data = pc08, .labs = labs_pc08)
+graph_qcm_all(.dep = Q92_O1:Q92_O8, .value = "oui", .data = pc08, .labs = labs_pc08)
 ```
 
 ```{r}
@@ -623,7 +624,7 @@ graph_univar_all(I5)
 
 ```
 
-```{r, fig.cap = "Mode d'accès aux livres (pond)"}
+```{r, fig.cap = "Activités pratiquées sur Internet (I7)"}
 graph_qcm_all(I71:I77)
 ```
 

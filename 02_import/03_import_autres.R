@@ -3,7 +3,7 @@ library(readxl)
 library(haven)
 library(here)
 
-panel <- pc97 <- read_sas(here("01_data", "panel7318.sas7bdat"))
+panel <- read_sas(here("01_data", "panel7318.sas7bdat"))
 pc97 <- read_sas(here("01_data", "pc97_15fev2021.sas7bdat"))
 pc08 <- read_sas(here("01_data", "pc08_15fev2021.sas7bdat"))
 
@@ -31,12 +31,16 @@ lvar <- map(labs_pc08, function(x){
 
 lvar <- separate(lvar, col = lab, into = c("var", "type"), sep = "\\s", remove=FALSE) %>% 
   mutate(
+    var = str_remove(var, "\\[.*?\\]"),
     var = ifelse(is.na(O), 
                  var,
                  paste0(var, "_O", O)),
     lab = str_remove(lab, "^.*?\""),
     lab = str_remove_all(lab, "\""),
-    lab = str_remove_all(lab, "-{2,}")) %>% 
+    lab = str_remove_all(lab, "-{2,}"),
+    lab = ifelse(is.na(O), 
+                 lab,
+                 paste0(lab, " : ", qcmlabel))) %>% 
   select(variable = var, varlabel = lab, type)
 
 lmod <- separate(lmod, col = lab, into = c("variable", "type"), sep = "\\s", remove=FALSE) %>% 

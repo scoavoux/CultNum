@@ -22,7 +22,7 @@ pc08$DA225_O7<- factor(pc08$DA225_O7,levels=c(1,2,3),labels=c("1 à 2 fois","3 f
 pc08$DA225_O8<- factor(pc08$DA225_O8,levels=c(1,2,3),labels=c("1 à 2 fois","3 fois et plus","NSP"))
 pc08$DA225_O9<- factor(pc08$DA225_O9,levels=c(1,2,3),labels=c("1 à 2 fois","3 fois et plus","NSP"))
 pc08$DIP2<- factor(pc08$DIP2,levels=c(1,2,3,4,5),labels=c("Aucun diplôme","CEP","BEPC ou CAP ou BEP","Bac et équivalent (et plus)","Refus"))
-pc08$DIPLO<- factor(pc08$DIPLO,levels=c(1,2,3,4,5,6,7,8,9),labels=c("CERTIFICAT D'ETUDES PRIMAIRES (CEP)","BEPC","CAP - BEP","BACCALAUREAT, BP, BT, BREVET SUPERIEUR","DEUG, DUT, BTS, DIP DES PROF SOCIALES OU DE LA SANTE","LICENCE","DIP 2 EME, 3 EME CY U (maitrise, DEA, DESS, master,...)) DIP GDES ECOLES","aucun diplôme","[refus]"))
+#pc08$DIPLO<- factor(pc08$DIPLO,levels=c(1,2,3,4,5,6,7,8,9),labels=c("CERTIFICAT D'ETUDES PRIMAIRES (CEP)","BEPC","CAP - BEP","BACCALAUREAT, BP, BT, BREVET SUPERIEUR","DEUG, DUT, BTS, DIP DES PROF SOCIALES OU DE LA SANTE","LICENCE","DIP 2 EME, 3 EME CY U (maitrise, DEA, DESS, master,...)) DIP GDES ECOLES","aucun diplôme","[refus]"))
 pc08$DIPLOM<- factor(pc08$DIPLOM,levels=c(1,2,3),labels=c("Aucun diplôme, CEP","Diplôme en dessous du bac et Lycéen","Bac, études supérieurs et étudiants"))
 pc08$DURHOB<- factor(pc08$DURHOB,levels=c(1,2,3,4,5),labels=c("Moins de 5 heures","de 5 à moins de 10 heures","de 10 à moins de 14 heures","15 heures et plus","NSP"))
 pc08$DURRA<- factor(pc08$DURRA,levels=c(1,2,3,4,5,6),labels=c("Moins de 5 heures","de 5 à moins de 10 heures","de 10 à moins de 20 heures","de 20 à moins de 30 heures","30 heures et plus","NSP"))
