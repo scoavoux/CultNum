@@ -40,7 +40,7 @@ lvar <- separate(lvar, col = lab, into = c("var", "type"), sep = "\\s", remove=F
     lab = str_remove_all(lab, "-{2,}"),
     lab = ifelse(is.na(O), 
                  lab,
-                 paste0(lab, " : ", qcmlabel))) %>% 
+                 paste0(var, " : ", qcmlabel))) %>% 
   select(variable = var, varlabel = lab, type)
 
 lmod <- separate(lmod, col = lab, into = c("variable", "type"), sep = "\\s", remove=FALSE) %>% 
@@ -49,9 +49,11 @@ lmod <- separate(lmod, col = lab, into = c("variable", "type"), sep = "\\s", rem
 
 lvar <- filter(lmod, str_detect(type, "M")) %>% 
   mutate(variable = paste0(variable, "_M", L),
-         varlabel = paste0(varlabel, " : ", modlabel)) %>% 
+         varlabel = paste0(variable, " : ", modlabel)) %>% 
   select(variable, varlabel, type) %>% 
   bind_rows(lvar, .)
+
+lvar <- mutate(lvar, varlabel = str_wrap(varlabel, width = 50))
 
 labs_pc08 <- lvar
 

@@ -7,7 +7,7 @@ graph_qcm <- function(.vars, .value = "'Yes'", .data=d, .labs=labs){
     arrange(desc(n)) %>% 
     filter(value == .value) %>% 
     left_join(select(.labs, name = "variable", lab = "varlabel")) %>% 
-    mutate(f = n / nrow(d),
+    mutate(f = n / nrow(!! enquo(.data)),
            lab = factor(lab, levels = unique(lab))) %>% 
     ggplot(aes(lab, f, label = paste0(round(f, 2)*100, "%"))) +
       geom_col() +
