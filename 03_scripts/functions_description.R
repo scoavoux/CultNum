@@ -42,7 +42,7 @@ graph_qcm_indep <- function(.dep, .indep, .value = "'Yes'", .data=d, .labs=labs)
       geom_line() +
       geom_smooth() +
       facet_wrap(~lab) +
-      labs(x = cpt, y = "Fréquence", title = )
+      labs(y = "Fréquence", title = cpt)
     
   }
 }
