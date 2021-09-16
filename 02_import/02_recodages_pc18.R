@@ -30,7 +30,7 @@ d <- mutate(d,
             pcs1 = str_trunc(CSTOT, 1, ellipsis = ""),
             pcs1 = factor(pcs1, levels = c(1:6, 9), 
                           labels = c("Agric. expl.", "Art., comm., ce", 
-                                     "PCIS", "Prof. inter.",
+                                     "CPIS", "Prof. inter.",
                                      "Employés", "Ouvriers",
                                      "Inactifs")))
 

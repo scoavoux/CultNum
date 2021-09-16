@@ -725,131 +725,145 @@ Ecoute de vidéo sur internet se fait principalement sur ordinateur et smartphon
 graph_qcm_all(C161:C165, "'Yes'")
 ```
 
+Les vidéos les plus regardés sur Internet sont les vidéo musicales (20%), documentaires, séries, films, informations et youtube (15 à 18%) puis les bandes annonces et le sports. Les vidéos de jeux vidéo sont à 5%.
+Les écarts de genre sont très importants pour le sport (20% des hommes, 3% des femmes) et les vidéos de jeux vidéo (8% contre 2%), un peu importants pour les "reportages, documentaires" (22% hommes 15% femmes), faible pour les autres.
+Dans l'ensemble, la plupart des catégories sont plus populaires chez les jeunes: YouTube, les films, les séries, la musique, les jeux, d'où des surreprésentations chez les étudiants.les écarts de milieux sociaux sont marqués pour les films (21% CPIS 13% ouvriers), reportages (25%/15%), séries (20%/12%), information (22%/11%).
 
-
-```{r, fig.cap = "Genre de vidéo regardées sur Internet (pond)"}
+```{r, fig.cap = "Genre de vidéo regardées sur Internet (pond)", fig.height=8}
 graph_qcm_all(C1701:C1713, "'Yes'")
 ```
 
 ## Films
+
+Les films sont très regardés: 25% en regardent tous les jours, 47% toutes les semaines. Il n'y a pas d'écart de genre, mais la pratique est plus souvent très fréquente dans les milieux plus populaires et les plus faibles niveaux de diplômes, du fait sans doute d'usages plus fréquents de la télé: seulement 17% de CPIS déclarent regarder des films tous les jours contre 31% des employés et ouvriers.
+
 
 ```{r}
 graph_univar_all(C19)
 ```
 
 
+
+L'écran de TV reste de très loin le support privilégié pour les films (87% des répondants), mais 17% en regardent sur ordinateur, une minorité substantielle. Smartphone et tablette sont à 6% chacun. Pas d'écart de sexe, mais l'usage d'un ordinateur est beaucoup plus fréquence chez les cadres (20%) que chez les ouvriers (11%), et celui des smartphone quasi exclusivement jeune/étudiant.
+
 ```{r, fig.cap = "Support visionnage de films (pond)"}
 graph_qcm_all(C211:C215, "'Yes'")
 
 ```
+
+
+Comme pour les supports, mais un peu moins fortement, les modes d'accès sont très concentrés. L'écoute de TV en direct demeure le pricnipal mode d'accès au film, partagé par 79% de l'échantillon. Le replay est très diffusé -- 1/3 -- tout comme la VOD (25%) et le dvd/blueray(24%). Le streaming est à 16%. Cependant, Netflix est inclu dans la vod plutôt que le streaming. Peu d'écart par sexe. La diffusion en direct est moins utilisée par les jeunes, qui sont par contre nombreux à utiliser vod et streaming. En termes de milieux, les CPIS sont plus nombreux à regarder des dvd (1/3 contre 1/5 des ouvriers) et des fichiers numériques, ainsi que de la vod (31% contre 20% des ouvriers).
 
 ```{r, fig.cap = "Mode d'accès aux films (pond)"}
 graph_qcm_all(C221:C226, "'Yes'")
 
 ```
 
-C19: fréquence écoute de films
-C21: support écoute de films
-C22: inclut streaming
 
 ## Séries
 
-```{r}
+Les séries sont moins souvent regardés que les films mais constitue un objet de consommation massif: 30% tlj, 31% toutes les semaines. La consommation fréquente est beaucoup plus féminine: 36% des femmes regardent tlj contre 23% des hommes. Elle est aussi plus populaire: 40% des employés, 33% des ouvriers contre 17% des cadres.
+
+```{r, fig.height = 8}
 graph_univar_all(C31)
 ```
 
+Là aussi, l'écran de télévision domine largement (70% des spectateurs), devant l'ordinateur (14%). La télévision est le seul terminal plus utilisé par les femmes que par les hommes. Son usage se réduit dans les milieux sociaux supérieurs (65% des cadres contre 76% des employés et 72% des ouvriers), à l'inverse de l'ordinateur (18% des cadres, 8% des ouvriers) et chez les étudiants et les jeunes.
 ```{r, fig.cap = "Termminal de visionnage de séries (pond)"}
 graph_qcm_all(C331:C335, "'Yes'")
 ```
 
-```{r, fig.cap = "Termminal de visionnage de séries (pond)"}
+Toujours comme les films, la télévision de flux est le principal canal d'accès (62%) devant le replay, puis la vod, le streaming ne concernant que 12% de l'échantillon. La TV, et dans une moindre mesure le replay, sont plus féminins et plus populaires, la vod un peu plus élitistes et surtout, avec le streaming, plus jeune.
+
+```{r, fig.cap = "Mode d'accès aux séries (pond)"}
 graph_qcm_all(C341:C346, "'Yes'")
 ```
+
+L'usage mobile hors domicile est minoritaire: il concerne seulement 15% des spectateurs de séries, dont 4% seulement fréquemment. La pratique est trop minoritaire pour discerner clairement des tendances, si ce n'est que les spectateurs les plus jeunes semblent les plus susceptibles de l'avoir: elle concerne même 50% des adolescents.
 
 ```{r}
 graph_univar_all(C35)
 ```
 
 
-C31: regarder des séries, fréquence
-C33: écran
-C34: streaming
-C35: séries sur équipement mobile
 
 ## Information
 
-```{r, fig.cap = "Mode d'accès à l'information (pond)"}
+Le numérique est loin derrière la télévision, la radio, et même la presse papier. 29% pour presse numérique, 23% pour réseaux sociaux Pas d'écart de sexe. Croissance linéaire impressionnante de la presse numérique et de la radio avec le niveau de diplôme (et déclin concomittant de la télévision). Ces deux modes correspondent particulièrement bien aux CPIS (47% presse numérique, 64% radio) vs ouvriers (17% et 47% resp.). Les réseaux sociaux sont plutôt pour les jeunes.
+
+```{r, fig.cap = "Mode d'accès à l'information (pond)", fig.height = 8}
 graph_qcm_all(D31:D37)
 ```
+
+En ce qui concerne la presse numérique, la presse payante n'attire que 3% des répondants, contre 27% pour la presse gratuite. Les deux sont plus consommés par les classes supérieures, mais c'est même quasi exclusif pour la presse payante (9% des CPIS contre 1% des ouvriers, 2% employés, 3% PI).
 
 ```{r, fig.cap = "Mode d'accès à l'information (pond)"}
 graph_qcm_all(D41:D42)
 ```
 
+L'uasge mobile est assez répandu et l'est lui aussi plus dansles classes supérieures que dans les classes populaires.
+
 ```{r}
 graph_univar_all(D5)
 ```
 
-D3: moyens d'information
-D4: presse numérique gratuite ou payante
-D5: information sur équipement mobile
 
 ## Musique
+
+Podcasts: 13% de la population, surtout les diplômés (31% des deuxième cycle), les classes supérieures (27% des CPIS contre 7% des ouvriers)
 
 ```{r}
 graph_univar_all(E6)
 ```
 
-```{r}
+Musique au quotidien: 62% de la population, peu d'écarts sociaux mais plutôt jeune.
+
+```{r, fig.height = 7}
 graph_univar_all(E7)
 ```
 
-```{r, fig.cap = "Support écoute de musique (pond)"}
+Premier support est la radio (7/10), suivie de CD et tel (4/10). Streaming = seulement 1/4 de la population, à égalité avec fichiers numériques. Streaming et fichier numérique/DL plus classes sups (33% CPIS pour streaming vs. 17% ouvriers), comme tous les modes d'écoute sauf la télévision. Mais beaucoup plus forts pour les étudiants, les jeunes.
+
+```{r, fig.cap = "Support écoute de musique (pond)", fig.height=6}
 graph_qcm_all(E81:E87)
 ```
 
+Ecoute mobile concerne 6 auditeurs sur 10 et est plus répandue chez les plus diplômés et dans les classes sups (65% des CPIS, 50% des ouvriers)
 
 ```{r}
 graph_univar_all(E8BIS)
 ```
 
-E6: podcast, radio en streaming
-E7: écoute de musique
-E8: support musique
-E8bis: écoute de musique mobile
 
 ## Livre
+
+Livres papiers sont le mode principal d'accès au livre, quasi exclusif (seulement 4% pour liseuse et tablette). Hommes lisent moins. Liseuse plus diplômé et classe sup, voire exclusivement: 9% des CPIS mais seulement 1% des ouvriers.
 
 ```{r, fig.cap = "Mode d'accès aux livres (pond)"}
 graph_qcm_all(F121:F124)
 ```
 
+Pour ceux qui utilisent liseuse/tablette et livre papier, livres papiers dominant 3/4 du temps
+
 ```{r}
 graph_univar_all(F12BIS)
 ```
 
-F12 liseuse/support de livre
-F12bis: souvent au format papier ou électronique?
-
 ## Internet
+
+Internet tlj pour 70% de population, plus encore pour les jeunes, les diplômés, les classes supérieures.
 
 ```{r}
 graph_univar_all(I4)
 ```
+Réseaux sociaux un peu plus féminins, et surtout jeunes, avec quasi-hégémonie chez les jeunes et dominant jusqu'à 50 ans.
 
 ```{r}
 graph_univar_all(I5)
-
 ```
+Activités culturelles sur Internet limitées. principalement la recherche d'information, mais peu de consommation hors musique et vidéo: 16% concert, 10% expo virtuelle. S'accroissent considérablement avec diplôme et milieu social.
 
-```{r, fig.cap = "Activités pratiquées sur Internet (I7)"}
+```{r, fig.cap = "Activités pratiquées sur Internet (I7)", fig.height=7}
 graph_qcm_all(I71:I77)
 ```
-
-I4: fréquence usage internet
-I5: usage réseaux sociaux
-  I fréquence d'ausage des réseaux sociaux
-I7: activités sur internet
-
-
 
