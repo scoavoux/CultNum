@@ -715,7 +715,7 @@ graph_qcm_all(C61:C65, "'Yes'")
 
 Les vidéos sur Internet sont plus consommées par les classes supérieures: seulement 44% des CPIS n'en consommet pas contre 58% des ouvriers.
 
-```{r, fig.cap = regarder des vidéos sur Internet}
+```{r, fig.cap = "regarder des vidéos sur Internet"}
 graph_univar_all(C15)
 ```
 

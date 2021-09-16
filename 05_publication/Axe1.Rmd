@@ -1,0 +1,91 @@
+---
+title: "La numérisation des loisirs et des pratiques culturelles"
+author: "Samuel Coavoux, Fabienne Gire et Emmanuelle Guittet"
+date: "16/09/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Évolution de l’équipement numérique des Français
+
+- Pointer que l’équipement numérique des ménages s’est développé
+- Et qu’à mesure de cette évolution, (1) l’usage d’Internet a augmenté (obviously) et (2) les traditionnels écarts entre les individus quant à l’usage d’Internet ont diminué. Même si en fait on va montrer quand même de gros écarts dans la suite de l’analyse, mais ça peut être un bon point de départ, de pointer cette évolution pour ensuite montrer les écarts.
+ 
+<!--commentaire-->
+
+```{r}
+## commentaire
+```
+
+
+ 
+## Équipement (FG)
+
+*	Questions de PC2008 sur équipement informatique (pas encore traités)
+*	PC2018: équipement informatique 
+* Noter la domination de la TV et du smartphone ; deux logiques opposées : idée que l’équipement mobile est généralisé mais n’est pas venu mettre en péril la domination de la tv
+*	PC2018: mode d’abonnement internet
+*	Tableau qui regroupe les données à ce sujet selon les 4 variables (Sexe, Âge en faisant des tranches ?, Diplôme, CS, + éventuellement type de ménage ?)
+ 
+> Problème des questions sur l’équipement du ménage (finalement ça ne nous dit pas grand-chose, ou alors il faut les mettre en relation avec les questions sur les pratiques numériques en prenant la variable type de ménage et voir quel effet l’équipement (présumé) des autres membres du foyer peut avoir sur les pratiques (je sais pas si je suis très claire). 
+
+## Fréquence des usages d’Internet et des réseaux sociaux (EG)
+
+*	usage d’internet (panel)
+*	usage quotidien d’internet (panel)
+*	usage des réseaux sociaux
+*	Tableau qui regroupe les données à ce sujet selon les 4 variables (Sexe, Âge en faisant des tranches ?, Diplôme, CS, + éventuellement type de ménage ?)
+                                
+
+# La numérisation des loisirs et des pratiques culturelles
+
+## Information (FG)
+
+## Télévision, films et séries (FG)
+
+## Musique (SC)
+
++ Tableau des équipements utilisés pour l’écoute musicale selon les différentes variables
+- Maintien des formes non numériques : radio, cd ou cassettes (40% !), tv. Le numérique n’arrive qu’après.
+- Évoquer des formes numériques concurrentes : par exemple le streaming n’a pas du tout remplacé les fichiers musicaux numériques
+
+## Livre (EG)
+
+## Jeux vidéo (SC)
+
+*	JV
+*	JV tous les jours
+
+## Pratiques amateurs (EG)
+ 
+
+# Conclusions transversales
+ 
+a.     Une tendance générale à la numérisation des pratiques
+- Importance prise par le numérique dans l’ensemble des consommations et usages
+ 
+b.     Des disparités dans l’accès et les usages numériques
+- Idée que, quel que soit le domaine, on observe des disparités dans les pratiques numériques
+*	L’âge, la variable principale qui éclaire les écarts d’équipement et de pratiques 
+- Ici on peut regarder l’ensemble des consos selon l’âge, ce qui permet de montrer peut-être quels domaines sont les plus associés à la jeunesse ou au vieillissement 
+*	Des disparités qui reflètent des inégalités : ce sont toujours les moins diplômés, les catégories les plus populaires et isolées qui en ont les usages les plus faibles et qui sont les moins équipés. Je renote ici mais c’est écrit plus bas : faire un comparatif entre les individus d’une même tranche d’âge selon la classe sociale. Que ce soit les plus vieux ou les plus jeunes ça doit être intéressant. Et à vérifier mais je pense que le comparatif peut être assez parlant et nous dire beaucoup des inégalités sociales face au numérique, puisqu’il y a l’idée forte que tout est lié à l’âge, donc si on entre directement dans la catégorie...
+*	Pas d’écarts marqués entre les hommes et les femmes (contrairement aux débuts du numérique) même si je trouve intéressant, au niveau de la variable de genre, que si les femmes sont généralement les plus grandes consommatrices culturelles et ont des pratiques plus légitimes que les hommes, ça s’inverse si on prend les pratiques numériques les plus légitimes, ce sont souvent elles qui ont gardé les pratiques les plus tradi.
+ 
+c. L’aisance numérique se manifeste également par la diversité des équipements utilisés 
+*	Point sur la diversité des équipements et des usages chez les classes sup / faire le pont avec omnivorisme des goûts / diversité des formes de prescription privilégiées
+*	Faire un point sur l’âge (est-ce que l’âge suffit à déterminer la diversité ? est-ce plus parlant que la position sociale/niveau d’étude ? Pas sûre même si les jeunes utilisent plus les nouveaux outils, et continuent de regarder la télé, etc. donc à vérifier). Serait intéressant ici ou ailleurs de croiser la variable de CS avec la variable d’âge, et comparer les jeunes entre eux ! Peut-être plutôt dans le b juste au-dessus, à l’endroit des disparités selon la position sociale, je le remonte aussi.
+*	C’est ici qu’on voit une différence entre hommes et femmes (peut-être aller jusqu’à parler d’usages routiniers ? à vérifier si on a des données sur la découverte d’outils, sur l’appétence pour le nouveau, même si je pense pas). 
+ 
+d.     Le livre et la lecture, un domaine qui échappe à la numérisation
+*	Attachement au livre papier chez tout le monde
+*	Rappeler que c’est dans les classes sup qu’on lit malgré tout en numérique, et citer le graphique/tableau correspondant (vu qu’on l’aura sans doute évoqué avant) / en soi c’est pas toujours évident de ménager du contenu pour la suite quand on aborde un sujet mais ça va sans doute être plus logique en faisant.
+*	Éventuellement évoquer en contrepoint le vinyle comme autre pratique pour laquelle l’objet physique (re)devient présent dans les pratiques, ce qui met en avant la valeur symbolique de certains objets (mais c’est tellement minoritaire ! cela dit c’est quand même un phénomène dans l’industrie de la musique, notamment en termes de ventes d’albums, ça peut être bien d’évoquer ça quand même).
+ 
+e.   Des pratiques qui malgré une démocratisation numérique restent l’apanage des classes sup (à voir si ça ne fait pas redite avec le b mais je pense que ça peut être axé différemment).
+- Peut-être faire un point qui rappelle que le numérique n’est pas l’outil d’une démocratisation des pratiques culturelles, et que si le numérique en soi se démocratise, les pratiques légitimes, elles, continuent à être inégalement réparties.
+ 
+f.      Des pratiques moyennes
+- Ici, idée de développer les pratiques numériques qui concernent davantage les classes moyennes (diplômes bac et bac+2). Idée en filigrane : maintenant que le numérique est démocratisé, qu’est-ce que celles et ceux qui ne l’utilisaient pas il y a 10 ans font avec ? Est-ce qu’il y a une culture numérique moyenne ? Réseaux sociaux, jeux vidéo, vidéos de youtubeur·ses, etc. 
