@@ -1366,3 +1366,5 @@ pc08$XSPV75_M6<- factor(pc08$XSPV75_M6,levels=c(1),labels=c("OUI"))
 pc08$XSPV75_M7<- factor(pc08$XSPV75_M7,levels=c(1),labels=c("OUI"))
 pc08$XSPV75_M8<- factor(pc08$XSPV75_M8,levels=c(1),labels=c("OUI"))
 pc08$XSPV75_M9<- factor(pc08$XSPV75_M9,levels=c(1),labels=c("OUI"))
+
+pc08 <- select(pc08, -J15C_M7)
