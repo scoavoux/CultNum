@@ -6,20 +6,60 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(tidyverse)
+library(here)
+library(conflicted)
+
+library(janitor)
+
+options("digits" = 2)
+
+conflict_prefer("here", "here")
+conflict_prefer("filter", "dplyr")
+
+theme_set(theme_bw(base_size = 9))
+
+opts_chunk$set(echo    = FALSE, 
+               error   = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.height="50%")
 ```
+
+```{r}
+# data
+load(here("01_data", "pc2018.RData"))
+load(here("01_data", "dictionary.RData"))
+load(here("01_data", "pc97-08-panel.RData"))
+
+# Recodages
+source(here("02_import", "02_recodages_pc18.R"), encoding = "utf8")
+source(here("02_import", "04_recodages_autres.R"), encoding = "utf8")
+
+# Fonctions d'analyse
+source(here("03_scripts", "functions_description.R"), encoding = "utf8")
+
+pc08 <- rename(pc08, POND_INIT = "POIDS",
+               SEXE = "Q28",
+               AGE = "Q29", # Q30 pour l'âge en classes
+               dipl = "DIP2",
+               pcs1 = "XCSPC9B")
+
+pc08 <- mutate(pc08, TYPMEN = 
+                 case_when(SITUAF %in% c("Célibataires", "Veufs, divorcés") & Q274 == 0 ~ "'Personne seule'", 
+                           SITUAF %in% c("Célibataires", "Veufs, divorcés") & Q274 > 0 ~ "'Famille monoparentale'", 
+                           SITUAF == "Mariés ou vivant maritalement" & Q274 == 0  ~ "'Couple sans enfant'", 
+                           SITUAF == "Mariés ou vivant maritalement" & Q274 > 0 ~ "'Couple avec enfant'", 
+                           TRUE ~ "'Ménage complexe'"))
+```
+
 
 # Évolution de l’équipement numérique des Français
 
 - Pointer que l’équipement numérique des ménages s’est développé
 - Et qu’à mesure de cette évolution, (1) l’usage d’Internet a augmenté (obviously) et (2) les traditionnels écarts entre les individus quant à l’usage d’Internet ont diminué. Même si en fait on va montrer quand même de gros écarts dans la suite de l’analyse, mais ça peut être un bon point de départ, de pointer cette évolution pour ensuite montrer les écarts.
  
-<!--commentaire-->
-
-```{r}
-## commentaire
-```
-
 
  
 ## Équipement (FG)
@@ -48,9 +88,71 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Musique (SC)
 
-+ Tableau des équipements utilisés pour l’écoute musicale selon les différentes variables
-- Maintien des formes non numériques : radio, cd ou cassettes (40% !), tv. Le numérique n’arrive qu’après.
-- Évoquer des formes numériques concurrentes : par exemple le streaming n’a pas du tout remplacé les fichiers musicaux numériques
+L'écoute de musique enregistrée est une pratique courante répandue depuis longtemps dans la population française. L'écoute au moins occasionnelle concerne au moins 70% de la population depuis les années 1980. Cependant, l'écoute quotidienne a elle beaucoup évoluée, connaissant une croissance linéaire entre 1973 et 2008, de moins de 10% à près de 35% de la population. L'enquête 2018 révèle que ce rythme s'est considérablement accéléré: en 10 ans seulement, l'écoute quotidienne est passée à 57% de la population, une croissance de plus de 20 points de pourcentages.
+
+```{r}
+select(panel, annee, poids, prat_musique, tljp_musique) %>% 
+  pivot_longer(cols = c(prat_musique, tljp_musique)) %>% 
+  count(annee, name, value, wt = poids) %>% 
+  group_by(annee, name) %>% 
+  mutate(f = n / sum(n),
+         name = ifelse(name == "prat_musique", "Écoute de musique enregistrée", "Écoute de musique enregistrée\ntous les jours")) %>% 
+  filter(value == "Oui") %>% 
+  ggplot(aes(annee, f, colour = name)) +
+    geom_point() +
+    geom_line() +
+    scale_y_continuous(labels = scales::percent) +
+    labs(x= "Année", y = "Fréquence", colour = "Écoute")
+```
+
+Il paraît raisonnable d'attribuer cette évolution au moins en partie à la numérisation de l'écoute de musique. Entre 2008 et 2018, les plateformes de streaming, dédiées à la musique (Spotify, Deezer) ou non (YouTube) se sont développées et ont attiré de nombreux utilisateurs. Elles constituent la source de revenus numériques la plus importante pour l'industrie de la musique. Un quart des auditeurs de musique utilisent des plateformes dédiées, et 13% d'autres plateformes. En outre, un quart de ces auditeurs emploient des fichiers numériques locaux, comme des mp3 issus du téléchargement. Ces usages peuvent se cumuler, de sorte que près de la moitié des auditeurs de musique (48%) utilisent au moins un dispositif numérique, plateforme de streaming ou fichiers locaux. L'usage d'au moins un outil numérique est légérement plus masculine -- elle concerne 52% des hommes et 46% des femmes -- mais dépend surtout de l'âge (elle concerne la quasi-totalité des moins de 20 ans, et la majorité des auditeurs de moins de 50 ans) et du milieu social (60% des cadres et professions intellectuelles supérieures contre 39% des ouvriers et 44% des employés). Les écarts sont particulièrement marqués pour les plateformes de streaming spécialisée.
+
+```{r, eval=FALSE}
+d <- mutate(d, support_musique_digital2 = fct_collapse(support_musique_digital, "N'écoute pas de musique en numérique" = "N'écoute pas de musique en numérique", other_level = "Écoute de la musique en numérique"))
+graph_univar_all(support_musique_digital2)
+```
+
+```{r, eval=FALSE, fig.cap = "Support écoute de musique (pond)", fig.height=6}
+graph_qcm_all(E81:E87)
+```
+
+En outre, les plateformes de streaming favorisent l'écoute mobile, notamment sur téléphone portable. La disponibilité continue de la musique, à son tour, renforce l'usage quotidien. On constate ainsi que 85% des répondants qui écoutent souvent de la musique "sur un équipement mobile en dehors de [leur] domicile" sont aussi des usagers quotidiens de musique enregistrée, contre 54% de ceux qui n'ont aucun usage mobile extérieur. 
+
+```{r, eval=FALSE}
+tabyl(d, E7, E8BIS) %>% adorn_percentages(denominator = "col")
+```
+
+Pour autant, malgré la pénétration croissante des services numériques, ce sont des terminaux analogiques qui dominent l'écoute musicale. La radio est employée par 71% des auditeurs et constitue, de loin, le premier mode d'accès à la musique. Elle est suivi par les CD et cassettes d'une part, et par la télévision d'autre part, deux catégories rassemblant autour de 40% des auditeurs de musique. Les usagers de la radio et des CD et cassettes sont en moyenne plus âgés que les usagers de terminaux numérique. L'usage de CD et cassettes concerne plus les cadres et professions intellectuelles supérieures, ainsi que les professions intermédiaires (près de 50%) que les ouvriers (33%) et les employés (39%). L'usage musical de la radio est plus équitablement réparti dans la population ; et la télévision est elle moins employée par les cadres et professions intellectuelles supérieures. Une analyse factorielle fait ressortir comme premier axe de différenciation des terminaux musicaux une opposition entre terminaux analogiques et terminaux numériques, et comme second axe l'usage, très marquant socialement, des vinyles.
+
+```{r, eval=FALSE}
+library(FactoMineR)
+library(factoextra)
+
+res_mca <- select(d, E81:E87) %>% 
+  filter(!is.na(E81)) %>% 
+  rename(cd_cassettes = "E81", vinyle = "E82", streaming_spec = "E83", streaming_autre = "E84", mp3 = "E85", radio = "E86", television= "E87") %>% 
+  MCA()
+#res_hcpc <- HCPC(res_mca, nb.clust = 3, graph = FALSE)
+
+fviz_eig(res_mca)
+plot(res_hcpc, choice = "tree")
+table(res_hcpc$data.clust$clust)
+fviz_mca_var(res_mca)
+fviz_mca_ind(res_mca)
+fviz_cluster(res_hcpc)
+fviz_mca_var(res_mca, axes = c(1, 3))
+
+pivot_longer(res_hcpc$data.clust, -clust) %>% 
+  count(clust, name, value) %>% 
+  group_by(clust, name) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(str_detect(value, "Yes")) %>% 
+  select(-value, -n) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = clust, values_from = f)
+
+```
+
 
 ## Livre (EG)
 

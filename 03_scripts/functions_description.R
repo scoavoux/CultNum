@@ -102,7 +102,7 @@ graph_univar_indep <- function(.dep, .indep, .data = d, .labs = labs) {
 }
 
 graph_univar_all <- function(.dep, .data = d, .labs = labs){
-  table_univar({{ .dep }}, .labs = .labs, .data=.data)
+  table_univar({{ .dep }}, .labs = .labs, .data=.data) %>% print()
   
   graph_univar_indep({{ .dep }}, SEXE, .labs = .labs, .data=.data) %>% print()
 

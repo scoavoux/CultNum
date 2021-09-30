@@ -6,7 +6,7 @@ output:
   html_document:
     df_print: paged
 editor_options:
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 
@@ -389,6 +389,26 @@ count(panel, prat_reseaux, annee, dipp, wt = poids) %>%
   adorn_pct_formatting() %>% 
   kable(caption = "Usage de réseaux sociaux par diplôme (pondéré)")
 ```
+
+## Musique
+
+```{r}
+select(panel, annee, poids, prat_musique, tljp_musique) %>% 
+  pivot_longer(cols = c(prat_musique, tljp_musique)) %>% 
+  count(annee, name, value, wt = poids) %>% 
+  group_by(annee, name) %>% 
+  mutate(f = n / sum(n),
+         name = ifelse(name == "prat_musique", "Écoute de musique enregistrée", "Écoute de musique enregistrée\ntous les jours")) %>% 
+  filter(value == "Oui") %>% 
+  ggplot(aes(annee, f, colour = name)) +
+    geom_point() +
+    geom_line() +
+    scale_y_continuous(labels = scales::percent) +
+    labs(x= "Année", y = "Fréquence", colour = "Écoute")
+```
+
+
+
 
 # Enquête pratiques culturelles 2008
 
@@ -827,6 +847,32 @@ Premier support est la radio (7/10), suivie de CD et tel (4/10). Streaming = seu
 ```{r, fig.cap = "Support écoute de musique (pond)", fig.height=6}
 graph_qcm_all(E81:E87)
 ```
+
+```{r, fig.height=8}
+d <- mutate(d, 
+            support_musique_digital = factor(paste0(E83, E84, E85),
+                                             levels = c(
+                                                        "'No''No''No'",
+                                                        "'Yes''No''No'",
+                                                        "'Yes''Yes''No'",
+                                                        "'Yes''No''Yes'",
+                                                        "'No''No''Yes'",
+                                                        "'No''Yes''No'",
+                                                        "'No''Yes''Yes'",
+                                                        "'Yes''Yes''Yes'"),
+                                             labels = c(
+                                                        "N'écoute pas de musique en numérique",
+                                                        "Plateforme spécialisée",
+                                                        "Plateforme spécialisée + non spécialisée",
+                                                        "Plateforme spécialisée + Téléchargement",
+                                                        "Téléchargement",
+                                                        "Plateforme non spécialisée",
+                                                        "Plateforme non spécialisée + téléchargement",
+                                                        "Plateforme spécialisée + non spécialisée + téléchargement")
+                                             ))
+graph_univar_all(support_musique_digital)
+```
+
 
 Ecoute mobile concerne 6 auditeurs sur 10 et est plus répandue chez les plus diplômés et dans les classes sups (65% des CPIS, 50% des ouvriers)
 

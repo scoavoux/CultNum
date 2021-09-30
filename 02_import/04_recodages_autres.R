@@ -5,6 +5,14 @@ panel <- mutate(panel,
                 sexn = factor(sexn, levels = 1:2, labels = c("Homme", "Femme")),
                 dipp = factor(dipp, levels = 1:4, labels = c("Aucun diplome ou CEP", "Brevet ou CAP", "Bac ou equivalent", "Etudes superieures")))
 
+panel <- mutate(panel,
+                across(.cols = c(prat_tv, tljp_tv,
+                                 prat_radio, tljp_radio,
+                                 prat_musique, tljp_musique,
+                                 prat_jv, tljp_jv,
+                                 prat_internet, tljp_internet,
+                                 prat_reseaux, tljp_reseaux,
+                                 prat_presse, tljp_presse), ~factor(.x, levels = c(0, 1), labels = c("Non", "Oui"))))
 
 pc08$AGGLO<- factor(pc08$AGGLO,levels=c(1,2,3,4,5,6),labels=c("Communes rurales","Moins de 20 000 hab.","20 000 à 100 000 hab.","Plus de 100 000 hab.","Paris intra-muros","Reste de l'agglom. parisienne"))
 pc08$CSPCFA<- factor(pc08$CSPCFA,levels=c(1,2,3,4,5,6,7,8,9),labels=c("Agriculteurs","Patrons de l'industrie et du commerce","Cadres sup et professions libérales","Cadres moyens","Employés","Ouvriers qualifiés et contremaîtres","O.S manoeuvres et personnels de service","Retraités","Autres inactifs"))
