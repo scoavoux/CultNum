@@ -181,7 +181,35 @@ Commentaire 5 : ces dernières données prennent encore en compte les NA, est-ce
 *	JV tous les jours
 
 ## Pratiques amateurs (EG)
- 
+
+Dans le cadre des pratiques amateurs déclarées par les individus (est-ce qu’on les liste ?), très peu font l’objet de cours, qu’il s’agisse de cours particuliers, au sein de structures spécialisées ou de cours en ligne (insérer chiffre général). 
+
++ Insérer un graphique qui compare de façon générale les cours (cumul des pratiques) pris dans les différentes structures pour voir la différence, puis le commenter (en l’état je n’arrive pas à voir s’il y a une différence. 
+
+Certaines pratiques amateurs font davantage l’objet de cours particulier (le cirque, la danse, la musique et le chant, la peinture et la sculpture et la poterie) ou de cours au sein de structures spécialisées telles que les conservatoires et écoles de musique, de danse, d’art dramatique, d’art plastique et de cirque (le cirque, la danse, la musique, la peinture et la sculpture, la poterie et le théâtre). En revanche, les pratiques du montage audio et vidéo, de la musique et du chant, et des activités scientifiques et techniques sont celles qui ont le plus fait l’objet de cours en ligne. Nous pouvons attribuer la part des cours en ligne de montage et d’activités scientifiques et techniques par la faible offre qui y est consacrée par ailleurs. La surreprésentation de la pratique de la musique et du chant s’explique par la prédominance de cette pratique au sein des pratiques amateurs : elles pratiquées par 34% des Français ce qui en fait la pratique amateur dominante. 
+Commentaire 1 : je n’arrive pas à lire précisément les chiffres sur ces graphiques mais ça vaudrait le coup de les indiquer. 
+
++ Insérer un tableau qui reprend ces données (abscisse les pratiques ; ordonnées les types de cours).
+
+Le recours à des outils numériques s’est généralisé dans l’ensemble de la population : 18% des répondants disent ne pas en utiliser dans le cadre de leur pratique amateur. Ces outils sont utilisés pour produire/créer (17%), se former/apprendre (15%) et diffuser/faire connaître sa pratique (14%). 
+Commentaire 2 : Le total ne fait pas 100%, pourquoi ? (cf graphique sur l’ensemble de la population)
+Commentaire 3 : dans quelle mesure on peut alléger une variable présente dans le questionnaire pour alléger une phrase (en l’occurrence ici « pour diffuser, faire connaître ce que vous faites, partager avec des proches ou des amis »)
+
++ Insérer un tableau qui regroupe l’ensemble des données sur les outils numériques utilisés dans le cadre des pratiques amateurs (abscisse les usages (se former/apprendre, exposer, etc. + total quel que soit l’usage qu’on n’a pas ici ; ordonnées le total, le sexe, la CS, le niveau d’étude).
+
+Utiliser des outils numériques dans le cadre de pratiques amateurs est davantage le fait des hommes, des cadres et professions intellectuelles supérieures et des plus diplômés, ce qui va dans le sens des constats opérés au sujet des autres pratiques culturelles et de l’équipement des Français. Insert phrases avec chiffres général par sexe, niveau d’étude et CS (sans distinguer par usage des outils numériques, à calculer). Les usages différenciés de ces outils, en revanche, ne semblent pas dépendre du sexe, du niveau d’étude ou de la position sociale.
+Commentaire 4 : à voir comment formuler la dernière idée de façon plus explicite.
+
+Commentaire 5 : pas certaine de bien saisir ce que signifient les graphiques sur l’âge. On voit que l’usage des outils numériques diminue avec l’âge, ou du moins que les personnes âgées les utilisent moins, mais il y a peu d’écart en ce qui concerne le fait de déclarer n’utiliser aucun outil numérique dans le cadre des pratiques amateurs. 
+
+Commentaire 6 : que fait-on des types de ménages ? 
+
+L’exposition des productions sur des blogs, plateformes ou réseaux sociaux est équivalente chez les hommes et les femmes mais elle est plus marquée chez les cadres et professions intellectuelles supérieures (11%) et les diplômés d’une licence ou plus (12%), que chez les employés (5%), les ouvriers (4%), les titulaires d’un CAP/BEP (3%). 
+Commentaire 7 : il faudrait voir les données concernant le fait d’exposer ses productions sur des blogs, réseau social, etc. sans les NA. 
+
+Les jeunes exposent davantage leurs productions sur ces espaces. 
+Commentaire 8 : à nouveau, décider comment on rend compte des écarts concernant l’âge (tranches ou autres), c’est difficile d’utiliser les données sinon. 
+
 
 # Conclusions transversales
  
