@@ -177,8 +177,24 @@ Commentaire 5 : ces dernières données prennent encore en compte les NA, est-ce
 
 ## Jeux vidéo (SC)
 
-*	JV
-*	JV tous les jours
+La pratique des jeux vidéo est documentée dans l'enquête Pratiques culturelles depuis 1997. Elle s'est considérablement répandue dans la population depuis lors. Alors qu'un quart environ des répondants déclaraient une pratique en 1997, ils sont 36% en 2008 et 44% en 2018. La proportion de pratique fréquente, tous les jours ou presque, double entre 2008 et 2018, passant de 6% à 15% (la question n'est pas posée en 1997). Notons cependant que, de 1997 à 2018, ce que l'on appelle jeux vidéo a considérablement changé. Alors que ceux-ci existent presque exclusivement sur des consoles dédiées ou sur des ordinateurs en 1997, l'arrivée des jeux en ligne, puis des smartphones et tablettes a radicalement reconfiguré les opportunités de pratiquer des jeux électroniques.
+
+```{r, eval=FALSE}
+count(panel, annee, prat_jv, wt = poids) %>% 
+        group_by(annee) %>% 
+        mutate(f = n/sum(n))
+```
+
+```{r, eval=FALSE}
+count(panel, annee, tljp_jv, wt = poids) %>% 
+        group_by(annee) %>% 
+        mutate(f = n/sum(n))
+```
+
+Les taux de pratique varient principalement avec l'âge. En 1997, on trouve une proportion importante de joueurs chez les moins de 25 ans, un plateau autour de 30% entre 25 et 50 ans, puis des pratiques assez marginales après 50 ans. les deux vagues suivantes voient le niveau global de pratique monter à tous les âges et la courbe du déclin de la pratique avec l'âge devenir linéairement décroissante. Ce sont toujours les plus jeunes qui jouent le plus, en particulier les moins de 25 ans -- la pratique concerne alors au moins les deux tiers des répondants -- mais on trouve encore des taux de pratiques importants aux âges plus avancés, y compris après 75 ans. Les hommes jouent plus que les femmes, et plus souvent qu'elles, dans les trois vagues de l'enquête, mais s'il s'accroît entre 1997 et 2008, il tend ensuite à décroître, de sorte que la différence dans les taux de pratiques tous les jours ou presque est aujourd'hui faible. Les jeux vidéo ont ceci de caractéristique, en outre, que si l'on analyse uniquement le fait de jouer ou de ne pas jouer, on constate peu de différences entre milieux sociaux, contrairement à la plupart des autres pratiques. 
+
+Au sein des pratiquants, les joueurs sont beaucoup plus susceptibles que les joueuses de jouer en ligne (50% contre 30%) mais cette pratique dépend elle aussi peu du milieu social. Les écarts entre pratiques masculines et féminines sont également conséquents en matière de contenus. En 2008 comme en 2018, les hommes sont fortement surreprésentés parmi les pratiquants de jeux d'action, de tir, de sport, de combat, de rôle et de stratégie, tandis ce que  les femmes sont plus nombreuses à pratiquer des jeux d'adresse et de puzzle -- un genre mesuré uniquement en 2018.
+
 
 ## Pratiques amateurs (EG)
 

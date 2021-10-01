@@ -71,7 +71,7 @@ count(panel, prat_internet, annee, sexn, wt = poids) %>%
   filter(!is.na(prat_internet)) %>% 
   group_by(annee, sexn) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_internet == 1) %>% 
+  filter(prat_internet  == "Oui") %>% 
   select(-n, -prat_internet) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -87,7 +87,7 @@ count(panel, prat_internet, annee, agen, wt = poids) %>%
   filter(!is.na(prat_internet)) %>% 
   group_by(annee, agen) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_internet == 1) %>% 
+  filter(prat_internet  == "Oui") %>% 
   select(-n, -prat_internet) %>% 
   ungroup() %>% 
   ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
@@ -103,7 +103,7 @@ count(panel, prat_internet, annee, cs_regroupee, wt = poids) %>%
   filter(!is.na(prat_internet)) %>% 
   group_by(annee, cs_regroupee) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_internet == 1) %>% 
+  filter(prat_internet  == "Oui") %>% 
   select(-n, -prat_internet) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -117,7 +117,7 @@ count(panel, prat_internet, annee, dipp, wt = poids) %>%
   filter(!is.na(prat_internet)) %>% 
   group_by(annee, dipp) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_internet == 1) %>% 
+  filter(prat_internet  == "Oui") %>% 
   select(-n, -prat_internet) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -136,7 +136,7 @@ count(panel, tljp_internet, annee, sexn, wt = poids) %>%
   filter(!is.na(tljp_internet)) %>% 
   group_by(annee, sexn) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(tljp_internet == 1) %>% 
+  filter(tljp_internet  == "Oui") %>% 
   select(-n, -tljp_internet) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -152,7 +152,7 @@ count(panel, tljp_internet, annee, agen, wt = poids) %>%
   filter(!is.na(tljp_internet)) %>% 
   group_by(annee, agen) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(tljp_internet == 1) %>% 
+  filter(tljp_internet  == "Oui") %>% 
   select(-n, -tljp_internet) %>% 
   ungroup() %>% 
   ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
@@ -168,7 +168,7 @@ count(panel, tljp_internet, annee, cs_regroupee, wt = poids) %>%
   filter(!is.na(tljp_internet)) %>% 
   group_by(annee, cs_regroupee) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(tljp_internet == 1) %>% 
+  filter(tljp_internet == "Oui") %>% 
   select(-n, -tljp_internet) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -184,7 +184,7 @@ count(panel, tljp_internet, annee, dipp, wt = poids) %>%
   filter(!is.na(tljp_internet)) %>% 
   group_by(annee, dipp) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(tljp_internet == 1) %>% 
+  filter(tljp_internet == "Oui") %>% 
   select(-n, -tljp_internet) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -201,7 +201,7 @@ count(panel, prat_jv, annee, sexn, wt = poids) %>%
   filter(!is.na(prat_jv)) %>% 
   group_by(annee, sexn) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_jv == 1) %>% 
+  filter(prat_jv == "Oui") %>% 
   select(-n, -prat_jv) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -218,13 +218,12 @@ count(panel, prat_jv, annee, agen, wt = poids) %>%
   filter(!is.na(prat_jv)) %>% 
   group_by(annee, agen) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_jv == 1) %>% 
+  filter(prat_jv == "Oui") %>% 
   select(-n, -prat_jv) %>% 
   ungroup() %>% 
   ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
     geom_line() +
     labs(x = "Âge", y = "Fréquence", title = "Usage de jeux vidéo par âge")
-
 ```
 
 Sans surprise la dynamique des âges est la même que pour internet: les jeunes jouent beaucoup, le déclin est prononcé. On passe la barre des 50% de joueurs bien plus tôt, vers 30 ans en 2008, plutôt vers 45 en 2018. Cependant, on trouve une minorité forte de joueurs même dans les classes d'âge élevées.
@@ -234,7 +233,7 @@ count(panel, prat_jv, annee, cs_regroupee, wt = poids) %>%
   filter(!is.na(prat_jv)) %>% 
   group_by(annee, cs_regroupee) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_jv == 1) %>% 
+  filter(prat_jv  == "Oui") %>% 
   select(-n, -prat_jv) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -250,7 +249,7 @@ count(panel, prat_jv, annee, dipp, wt = poids) %>%
   filter(!is.na(prat_jv)) %>% 
   group_by(annee, dipp) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_jv == 1) %>% 
+  filter(prat_jv  == "Oui") %>% 
   select(-n, -prat_jv) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -268,7 +267,7 @@ count(panel, tljp_jv, annee, sexn, wt = poids) %>%
   filter(!is.na(tljp_jv)) %>% 
   group_by(annee, sexn) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(tljp_jv == 1) %>% 
+  filter(tljp_jv  == "Oui") %>% 
   select(-n, -tljp_jv) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -284,7 +283,7 @@ count(panel, tljp_jv, annee, agen, wt = poids) %>%
   filter(!is.na(tljp_jv)) %>% 
   group_by(annee, agen) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(tljp_jv == 1) %>% 
+  filter(tljp_jv  == "Oui") %>% 
   select(-n, -tljp_jv) %>% 
   ungroup() %>% 
   ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
@@ -300,7 +299,7 @@ count(panel, tljp_jv, annee, cs_regroupee, wt = poids) %>%
   filter(!is.na(tljp_jv)) %>% 
   group_by(annee, cs_regroupee) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(tljp_jv == 1) %>% 
+  filter(tljp_jv  == "Oui") %>% 
   select(-n, -tljp_jv) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -316,7 +315,7 @@ count(panel, tljp_jv, annee, dipp, wt = poids) %>%
   filter(!is.na(tljp_jv)) %>% 
   group_by(annee, dipp) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(tljp_jv == 1) %>% 
+  filter(tljp_jv  == "Oui") %>% 
   select(-n, -tljp_jv) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -333,7 +332,7 @@ count(panel, prat_reseaux, annee, sexn, wt = poids) %>%
   filter(!is.na(prat_reseaux)) %>% 
   group_by(annee, sexn) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_reseaux == 1) %>% 
+  filter(prat_reseaux  == "Oui") %>% 
   select(-n, -prat_reseaux) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -349,7 +348,7 @@ count(panel, prat_reseaux, annee, agen, wt = poids) %>%
   filter(!is.na(prat_reseaux)) %>% 
   group_by(annee, agen) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_reseaux == 1) %>% 
+  filter(prat_reseaux  == "Oui") %>% 
   select(-n, -prat_reseaux) %>% 
   ungroup() %>% 
   ggplot(aes(agen, f, color = factor(annee), group = factor(annee))) +
@@ -365,7 +364,7 @@ count(panel, prat_reseaux, annee, cs_regroupee, wt = poids) %>%
   filter(!is.na(prat_reseaux)) %>% 
   group_by(annee, cs_regroupee) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_reseaux == 1) %>% 
+  filter(prat_reseaux  == "Oui") %>% 
   select(-n, -prat_reseaux) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -382,7 +381,7 @@ count(panel, prat_reseaux, annee, dipp, wt = poids) %>%
   filter(!is.na(prat_reseaux)) %>% 
   group_by(annee, dipp) %>% 
   mutate(f = n / sum(n)) %>% 
-  filter(prat_reseaux == 1) %>% 
+  filter(prat_reseaux  == "Oui") %>% 
   select(-n, -prat_reseaux) %>% 
   ungroup() %>% 
   pivot_wider(names_from = annee, values_from = f) %>% 
@@ -718,6 +717,47 @@ Jeux en ligne plus masculins, plus ouvriers.
 ```{r}
 graph_univar_all(B3)
 ```
+
+### Genres de jeux vidéo
+
+En 2008:
+
++ J15C_M1     "J15C_M1 : des jeux d'action dont jeux FPS, de\ncombat ou de plateforme (Super Mario,...)"
++ J15C_M2     "J15C_M2 : des jeux de sport (Pro Evolution Soccer,\nGran Turismo, Tenni s,...)"
++ J15C_M3     "J15C_M3 : des jeux de patience, de rôle ou de\nstratégie"
++ J15C_M4     "J15C_M4 : des jeux de société (cartes, échecs,...)"
++ J15C_M5     "J15C_M5 : des jeux de hasard (casino, loterie,...)"
++ J15C_M6     "J15C_M6 : des jeux éducatifs (adibou,...)"
++ J15C_M8     "J15C_M8 : des jeux de simulations (dont\naviation...)"
++ J15C_M9     "J15C_M9 : MMORPG"                                                                                                    
+
+En 2018:
+
++ B601     "Jeux de cartes, d'échecs, de société\n(poker, tarot, solitaires, échecs,\nscrabble, Monopoly, mots croisés…)"  
++ B602     "Jeux d’argent en ligne (Loto, PMU,\npoker, casino, paris…)"                                                    
++ B603     "Jeux de réflexion, d’énigmes, de quizz\n(Démineur, Professeur Layton, Docteur\nKawashima…)"                    
++ B604     "Jeux d’action/aventure et de rôle (Super\nMario, Zelda, Assassin’s Creed, Final\nFantasy…)"                    
++ B605     "Jeux d’adresse et de puzzle (Angry\nBirds, Tétris, Snake, Fruit Ninja, Candy\nCrush…)"                         
++ B606     "Jeux de combat et de tir / FPS (Doom,\nStreet Fighter, Tekken, Call of Duty…)"                                 
++ B607     "Jeux de sport, course, pilotage (FIFA,\nFootball Manager, Gran turismo, Super\nMario Kart…)"                   
++ B608     "Jeux musicaux/danse (Just dance,\nSingstar, Guitar Hero…)"                                                     
++ B609     "Jeux de gestion (Farmville, Sim City,\nLes Sims…)"                                                             
++ B610     "Jeux de stratégie et d’arène (Command &\nConquer, Age of Empires, Civilization,\nClash of Clans…)"             
++ B611     "Jeux massivement multi-joueurs (World of\nWarcraft, Dofus,…)"                                                  
+
+#### En 2008
+
+```{rfig.height=6}
+graph_qcm_all(.dep = J15C_M1:J15C_M9, .value = "OUI", .data = pc08, .labs = labs_pc08)
+```
+
+#### En 2018
+
+```{r, fig.height=6}
+graph_qcm_all(B601:B611)
+```
+
+
 
 
 ## Télévision
