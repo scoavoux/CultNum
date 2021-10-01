@@ -687,15 +687,6 @@ J'ai un doute sur les baseline. Mais CPIS mobilisent beaucoup plus le numérique
 graph_qcm_all(A311:A314, 1)
 ```
 
-La mise en scène des productions, elle, est plus répandue chez les cadres, mais plutôt parce qu'ils sont plus nombreux à être concernés -- en proportion de l'ensemble des concernés, ils ne le sont pas spécialement plus, et plutôt pmoins que les ouvriers et employés.
-
-```{r}
-d <- mutate(d, A32 = factor(A32, levels = c(1, 2),
-                       labels = c("Oui", "Non")) %>% 
-         fct_explicit_na(na_level = "Non concerné"))
-graph_univar_all(A32)
-```
-
 
 ## Jeux vidéo
 
@@ -747,7 +738,7 @@ En 2018:
 
 #### En 2008
 
-```{rfig.height=6}
+```{r, fig.height=6}
 graph_qcm_all(.dep = J15C_M1:J15C_M9, .value = "OUI", .data = pc08, .labs = labs_pc08)
 ```
 
@@ -889,32 +880,11 @@ graph_qcm_all(E81:E87)
 ```
 
 ```{r, fig.height=8}
-d <- mutate(d, 
-            support_musique_digital = factor(paste0(E83, E84, E85),
-                                             levels = c(
-                                                        "'No''No''No'",
-                                                        "'Yes''No''No'",
-                                                        "'Yes''Yes''No'",
-                                                        "'Yes''No''Yes'",
-                                                        "'No''No''Yes'",
-                                                        "'No''Yes''No'",
-                                                        "'No''Yes''Yes'",
-                                                        "'Yes''Yes''Yes'"),
-                                             labels = c(
-                                                        "N'écoute pas de musique en numérique",
-                                                        "Plateforme spécialisée",
-                                                        "Plateforme spécialisée + non spécialisée",
-                                                        "Plateforme spécialisée + Téléchargement",
-                                                        "Téléchargement",
-                                                        "Plateforme non spécialisée",
-                                                        "Plateforme non spécialisée + téléchargement",
-                                                        "Plateforme spécialisée + non spécialisée + téléchargement")
-                                             ))
 graph_univar_all(support_musique_digital)
 ```
 
 
-Ecoute mobile concerne 6 auditeurs sur 10 et est plus répandue chez les plus diplômés et dans les classes sups (65% des CPIS, 50% des ouvriers)
+Écoute mobile concerne 6 auditeurs sur 10 et est plus répandue chez les plus diplômés et dans les classes sups (65% des CPIS, 50% des ouvriers)
 
 ```{r}
 graph_univar_all(E8BIS)
@@ -947,6 +917,7 @@ Réseaux sociaux un peu plus féminins, et surtout jeunes, avec quasi-hégémoni
 ```{r}
 graph_univar_all(I5)
 ```
+
 Activités culturelles sur Internet limitées. principalement la recherche d'information, mais peu de consommation hors musique et vidéo: 16% concert, 10% expo virtuelle. S'accroissent considérablement avec diplôme et milieu social.
 
 ```{r, fig.cap = "Activités pratiquées sur Internet (I7)", fig.height=7}

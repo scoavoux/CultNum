@@ -157,9 +157,9 @@ pivot_longer(res_hcpc$data.clust, -clust) %>%
 ## Livre (EG)
 
 Dans la lignée de constats précédemment opérés au sujet de la lecture de livres (Mauger, 2020 ; Guittet, 2020 à compléter éventuellement), on constate que le livre au format papier reste le support privilégié et quasi-exclusif des lecteurs et lectrices (68%), alors que la tablette (4%) et la liseuse (4%) peinent à trouver un public. Ceci fait de la France un cas particulier ; si le livre papier reste partout la norme, la liseuse a trouvé un marché plus vaste dans d’autres pays occidentaux, comme aux États-Unis où 28% des adultes avaient lu un livre numérique au cours des 12 derniers mois en 2016 (Pew Research Institute, 2016) et où plus de la moitié des adultes possèdent une liseuse (chercher donnée). 
-Commentaire 1 : ça peut valoir le coup de checker d’autres pays pour voir d’autres perspectives ; je ne dis pas qu’on doit systématiquement comparer à d’autres pays évidemment mais pour le livre c’est quand même marqué). 
-Commentaire 2 : même question que posée lors de notre échange à ce sujet, Samuel : pourquoi on n’atteint pas les 100% au total, alors que c’est uniquement les lecteurs et lectrices qui répondent ici ?
-Commentaire 3 : un peu ennuyée de me citer mais je trouve dommage de ne pas lister les travaux qui ont fait ce constat : et il faut que je vérifie les autres aussi.
+<!-- Commentaire 1 : ça peut valoir le coup de checker d’autres pays pour voir d’autres perspectives ; je ne dis pas qu’on doit systématiquement comparer à d’autres pays évidemment mais pour le livre c’est quand même marqué).  -->
+<!-- Commentaire 2 : même question que posée lors de notre échange à ce sujet, Samuel : pourquoi on n’atteint pas les 100% au total, alors que c’est uniquement les lecteurs et lectrices qui répondent ici ? -->
+<!-- Commentaire 3 : un peu ennuyée de me citer mais je trouve dommage de ne pas lister les travaux qui ont fait ce constat : et il faut que je vérifie les autres aussi. -->
 
 ```{r, fig.height = 8}
 Insérer un tableau qui regroupe l’ensemble des données (abscisse les supports ; ordonnées le total, le sexe, la CS, le niveau d’étude)
@@ -170,7 +170,7 @@ Les femmes (76%) montrent un attachement plus fort au livre papier que les homme
 La lecture numérique, sur tablette comme sur liseuse, concerne davantage les plus diplômés : 11% des lecteurs et lectrices de niveau Bac+5 déclarent lire sur liseuse, contre 7% des diplômés d’une licence, 3% du bac ou 1% d’un CAP/BEP. Mais il en va de même pour la livre papier : 90% des forts diplômés déclarent lire sur livres papier contre 72% des diplômés du bac et de 58% des titulaires d’un CAP ou BEP. Le constat est le même au regard de la classe sociale : 9% des cadres et professions intellectuelles supérieures, 4% des professions intermédiaires, 1% des ouvriers, 0% des agriculteurs exploitants déclarent lire sur tablette ; 85% des cadres et professions intellectuelles supérieures, 77% des professions intermédiaires, 48% des ouvriers et des agriculteurs exploitants déclarent lire au format papier.
 
 Contrairement à ce qu’on observe pour d’autres pratiques culturelles, l’âge n’est pas une variable déterminante lorsqu’il s’agit de lire en numérique.
-Commentaire 4 : comment est-ce qu’on décide de présenter les données liées à l’âge : tranches ? graphiques comme ceux que tu as générés, Samuel ?
+<!-- Commentaire 4 : comment est-ce qu’on décide de présenter les données liées à l’âge : tranches ? graphiques comme ceux que tu as générés, Samuel ? -->
 
 Pour les trois quarts de la population, y compris lorsque les lecteurs et lectrices lisent sur différents supports, la lecture sur livre papier prévaut, quel que soit leur sexe. Un regard à l’appartenance sociale et au niveau d’étude montre que c’est dans les classes moyennes que l’on privilégie le moins le papier : 64% des employés privilégient le papier, contre 75% des ouvriers, 74% des cadres, 84% des artisans, commerçants et chefs d’entreprises ; 69% des titulaires d’un bac+2 privilégient le papier, contre 79% des titulaires d’un bac+5 et plus, et 75% des titulaires d’un BEP ou CAP.
 Commentaire 5 : ces dernières données prennent encore en compte les NA, est-ce que ça ne fausse pas les chiffres ?
@@ -203,22 +203,22 @@ Dans le cadre des pratiques amateurs déclarées par les individus (est-ce qu’
 + Insérer un graphique qui compare de façon générale les cours (cumul des pratiques) pris dans les différentes structures pour voir la différence, puis le commenter (en l’état je n’arrive pas à voir s’il y a une différence. 
 
 Certaines pratiques amateurs font davantage l’objet de cours particulier (le cirque, la danse, la musique et le chant, la peinture et la sculpture et la poterie) ou de cours au sein de structures spécialisées telles que les conservatoires et écoles de musique, de danse, d’art dramatique, d’art plastique et de cirque (le cirque, la danse, la musique, la peinture et la sculpture, la poterie et le théâtre). En revanche, les pratiques du montage audio et vidéo, de la musique et du chant, et des activités scientifiques et techniques sont celles qui ont le plus fait l’objet de cours en ligne. Nous pouvons attribuer la part des cours en ligne de montage et d’activités scientifiques et techniques par la faible offre qui y est consacrée par ailleurs. La surreprésentation de la pratique de la musique et du chant s’explique par la prédominance de cette pratique au sein des pratiques amateurs : elles pratiquées par 34% des Français ce qui en fait la pratique amateur dominante. 
-Commentaire 1 : je n’arrive pas à lire précisément les chiffres sur ces graphiques mais ça vaudrait le coup de les indiquer. 
+<!-- Commentaire 1 : je n’arrive pas à lire précisément les chiffres sur ces graphiques mais ça vaudrait le coup de les indiquer.  -->
 
 + Insérer un tableau qui reprend ces données (abscisse les pratiques ; ordonnées les types de cours).
 
 Le recours à des outils numériques s’est généralisé dans l’ensemble de la population : 18% des répondants disent ne pas en utiliser dans le cadre de leur pratique amateur. Ces outils sont utilisés pour produire/créer (17%), se former/apprendre (15%) et diffuser/faire connaître sa pratique (14%). 
-Commentaire 2 : Le total ne fait pas 100%, pourquoi ? (cf graphique sur l’ensemble de la population)
-Commentaire 3 : dans quelle mesure on peut alléger une variable présente dans le questionnaire pour alléger une phrase (en l’occurrence ici « pour diffuser, faire connaître ce que vous faites, partager avec des proches ou des amis »)
+<!-- Commentaire 2 : Le total ne fait pas 100%, pourquoi ? (cf graphique sur l’ensemble de la population) -->
+<!-- Commentaire 3 : dans quelle mesure on peut alléger une variable présente dans le questionnaire pour alléger une phrase (en l’occurrence ici « pour diffuser, faire connaître ce que vous faites, partager avec des proches ou des amis ») -->
 
 + Insérer un tableau qui regroupe l’ensemble des données sur les outils numériques utilisés dans le cadre des pratiques amateurs (abscisse les usages (se former/apprendre, exposer, etc. + total quel que soit l’usage qu’on n’a pas ici ; ordonnées le total, le sexe, la CS, le niveau d’étude).
 
 Utiliser des outils numériques dans le cadre de pratiques amateurs est davantage le fait des hommes, des cadres et professions intellectuelles supérieures et des plus diplômés, ce qui va dans le sens des constats opérés au sujet des autres pratiques culturelles et de l’équipement des Français. Insert phrases avec chiffres général par sexe, niveau d’étude et CS (sans distinguer par usage des outils numériques, à calculer). Les usages différenciés de ces outils, en revanche, ne semblent pas dépendre du sexe, du niveau d’étude ou de la position sociale.
-Commentaire 4 : à voir comment formuler la dernière idée de façon plus explicite.
+<!-- Commentaire 4 : à voir comment formuler la dernière idée de façon plus explicite. -->
 
-Commentaire 5 : pas certaine de bien saisir ce que signifient les graphiques sur l’âge. On voit que l’usage des outils numériques diminue avec l’âge, ou du moins que les personnes âgées les utilisent moins, mais il y a peu d’écart en ce qui concerne le fait de déclarer n’utiliser aucun outil numérique dans le cadre des pratiques amateurs. 
+<!-- Commentaire 5 : pas certaine de bien saisir ce que signifient les graphiques sur l’âge. On voit que l’usage des outils numériques diminue avec l’âge, ou du moins que les personnes âgées les utilisent moins, mais il y a peu d’écart en ce qui concerne le fait de déclarer n’utiliser aucun outil numérique dans le cadre des pratiques amateurs.  -->
 
-Commentaire 6 : que fait-on des types de ménages ? 
+<!-- Commentaire 6 : que fait-on des types de ménages ?  -->
 
 L’exposition des productions sur des blogs, plateformes ou réseaux sociaux est équivalente chez les hommes et les femmes mais elle est plus marquée chez les cadres et professions intellectuelles supérieures (11%) et les diplômés d’une licence ou plus (12%), que chez les employés (5%), les ouvriers (4%), les titulaires d’un CAP/BEP (3%). 
 Commentaire 7 : il faudrait voir les données concernant le fait d’exposer ses productions sur des blogs, réseau social, etc. sans les NA. 
@@ -228,29 +228,46 @@ Commentaire 8 : à nouveau, décider comment on rend compte des écarts concerna
 
 
 # Conclusions transversales
- 
+
+## Une numérisation à plusieurs vitesses (SC)
+
+Contrastes entre secteurs de très numérisés à peu numérisés, de JV à livres.
+
 a.     Une tendance générale à la numérisation des pratiques
 - Importance prise par le numérique dans l’ensemble des consommations et usages
+
+
+d.     Le livre et la lecture, un domaine qui échappe à la numérisation
+*	Attachement au livre papier chez tout le monde
+*	Rappeler que c’est dans les classes sup qu’on lit malgré tout en numérique, et citer le graphique/tableau correspondant (vu qu’on l’aura sans doute évoqué avant) / en soi c’est pas toujours évident de ménager du contenu pour la suite quand on aborde un sujet mais ça va sans doute être plus logique en faisant.
+*	Éventuellement évoquer en contrepoint le vinyle comme autre pratique pour laquelle l’objet physique (re)devient présent dans les pratiques, ce qui met en avant la valeur symbolique de certains objets (mais c’est tellement minoritaire ! cela dit c’est quand même un phénomène dans l’industrie de la musique, notamment en termes de ventes d’albums, ça peut être bien d’évoquer ça quand même).
  
+## Des disparités fortes dans l'accès aux pratiques numériques (SC)
+
 b.     Des disparités dans l’accès et les usages numériques
 - Idée que, quel que soit le domaine, on observe des disparités dans les pratiques numériques
 *	L’âge, la variable principale qui éclaire les écarts d’équipement et de pratiques 
 - Ici on peut regarder l’ensemble des consos selon l’âge, ce qui permet de montrer peut-être quels domaines sont les plus associés à la jeunesse ou au vieillissement 
 *	Des disparités qui reflètent des inégalités : ce sont toujours les moins diplômés, les catégories les plus populaires et isolées qui en ont les usages les plus faibles et qui sont les moins équipés. Je renote ici mais c’est écrit plus bas : faire un comparatif entre les individus d’une même tranche d’âge selon la classe sociale. Que ce soit les plus vieux ou les plus jeunes ça doit être intéressant. Et à vérifier mais je pense que le comparatif peut être assez parlant et nous dire beaucoup des inégalités sociales face au numérique, puisqu’il y a l’idée forte que tout est lié à l’âge, donc si on entre directement dans la catégorie...
 *	Pas d’écarts marqués entre les hommes et les femmes (contrairement aux débuts du numérique) même si je trouve intéressant, au niveau de la variable de genre, que si les femmes sont généralement les plus grandes consommatrices culturelles et ont des pratiques plus légitimes que les hommes, ça s’inverse si on prend les pratiques numériques les plus légitimes, ce sont souvent elles qui ont gardé les pratiques les plus tradi.
+
+e.   Des pratiques qui malgré une démocratisation numérique restent l’apanage des classes sup (à voir si ça ne fait pas redite avec le b mais je pense que ça peut être axé différemment).
+- Peut-être faire un point qui rappelle que le numérique n’est pas l’outil d’une démocratisation des pratiques culturelles, et que si le numérique en soi se démocratise, les pratiques légitimes, elles, continuent à être inégalement réparties.
+
  
+## La diversité des supports (SC)
+
 c. L’aisance numérique se manifeste également par la diversité des équipements utilisés 
 *	Point sur la diversité des équipements et des usages chez les classes sup / faire le pont avec omnivorisme des goûts / diversité des formes de prescription privilégiées
 *	Faire un point sur l’âge (est-ce que l’âge suffit à déterminer la diversité ? est-ce plus parlant que la position sociale/niveau d’étude ? Pas sûre même si les jeunes utilisent plus les nouveaux outils, et continuent de regarder la télé, etc. donc à vérifier). Serait intéressant ici ou ailleurs de croiser la variable de CS avec la variable d’âge, et comparer les jeunes entre eux ! Peut-être plutôt dans le b juste au-dessus, à l’endroit des disparités selon la position sociale, je le remonte aussi.
 *	C’est ici qu’on voit une différence entre hommes et femmes (peut-être aller jusqu’à parler d’usages routiniers ? à vérifier si on a des données sur la découverte d’outils, sur l’appétence pour le nouveau, même si je pense pas). 
- 
-d.     Le livre et la lecture, un domaine qui échappe à la numérisation
-*	Attachement au livre papier chez tout le monde
-*	Rappeler que c’est dans les classes sup qu’on lit malgré tout en numérique, et citer le graphique/tableau correspondant (vu qu’on l’aura sans doute évoqué avant) / en soi c’est pas toujours évident de ménager du contenu pour la suite quand on aborde un sujet mais ça va sans doute être plus logique en faisant.
-*	Éventuellement évoquer en contrepoint le vinyle comme autre pratique pour laquelle l’objet physique (re)devient présent dans les pratiques, ce qui met en avant la valeur symbolique de certains objets (mais c’est tellement minoritaire ! cela dit c’est quand même un phénomène dans l’industrie de la musique, notamment en termes de ventes d’albums, ça peut être bien d’évoquer ça quand même).
- 
-e.   Des pratiques qui malgré une démocratisation numérique restent l’apanage des classes sup (à voir si ça ne fait pas redite avec le b mais je pense que ça peut être axé différemment).
-- Peut-être faire un point qui rappelle que le numérique n’est pas l’outil d’une démocratisation des pratiques culturelles, et que si le numérique en soi se démocratise, les pratiques légitimes, elles, continuent à être inégalement réparties.
- 
+
+## Une moyennisation des pratiques numériques? (EG)
+
 f.      Des pratiques moyennes
 - Ici, idée de développer les pratiques numériques qui concernent davantage les classes moyennes (diplômes bac et bac+2). Idée en filigrane : maintenant que le numérique est démocratisé, qu’est-ce que celles et ceux qui ne l’utilisaient pas il y a 10 ans font avec ? Est-ce qu’il y a une culture numérique moyenne ? Réseaux sociaux, jeux vidéo, vidéos de youtubeur·ses, etc. 
+
+ 
+
+
+

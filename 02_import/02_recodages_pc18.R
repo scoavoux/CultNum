@@ -34,6 +34,28 @@ d <- mutate(d,
                                      "Employés", "Ouvriers",
                                      "Inactifs")))
 
-labs <- add_case(labs, variable = "pcs1", category = "recodage", varlabel = "PCS ego niveau 1")
+d <- mutate(d, 
+            support_musique_digital = factor(paste0(E83, E84, E85),
+                                             levels = c(
+                                               "'No''No''No'",
+                                               "'Yes''No''No'",
+                                               "'Yes''Yes''No'",
+                                               "'Yes''No''Yes'",
+                                               "'No''No''Yes'",
+                                               "'No''Yes''No'",
+                                               "'No''Yes''Yes'",
+                                               "'Yes''Yes''Yes'"),
+                                             labels = c(
+                                               "N'écoute pas de musique en numérique",
+                                               "Plateforme spécialisée",
+                                               "Plateforme spécialisée + non spécialisée",
+                                               "Plateforme spécialisée + Téléchargement",
+                                               "Téléchargement",
+                                               "Plateforme non spécialisée",
+                                               "Plateforme non spécialisée + téléchargement",
+                                               "Plateforme spécialisée + non spécialisée + téléchargement")
+            ))
 
+labs <- add_case(labs, variable = "pcs1", category = "recodage", varlabel = "PCS ego niveau 1")
+labs <- add_case(labs, variable = "support_musique_digital", category = "recodage", varlabel = "Support écoute de musique numérique")
 
