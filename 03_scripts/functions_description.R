@@ -4,11 +4,12 @@ graph_qcm <- function(.vars, .value = "'Yes'", .data=d, .labs=labs){
   select(.data, {{ .vars }}, POND_INIT) %>% 
     pivot_longer(-POND_INIT) %>% 
     count(name, value, wt = POND_INIT) %>% 
-    arrange(desc(n)) %>% 
+    filter(!is.na(value)) %>%
+    group_by(name) %>% 
+    mutate(f = n / sum(n)) %>% 
     filter(value == .value) %>% 
     left_join(select(.labs, name = "variable", lab = "varlabel")) %>% 
-    mutate(f = n / nrow(!! enquo(.data)),
-           lab = factor(lab, levels = unique(lab))) %>% 
+    mutate(lab = factor(lab, levels = unique(lab))) %>% 
     ggplot(aes(lab, f, label = paste0(round(f, 2)*100, "%"))) +
       geom_col() +
       geom_label() +
@@ -21,6 +22,7 @@ graph_qcm_indep <- function(.dep, .indep, .value = "'Yes'", .data=d, .labs=labs)
   x <- select(.data, {{ .dep }}, {{ .indep }}, POND_INIT) %>%
     pivot_longer({{ .dep }}) %>% 
     count(!! enquo(.indep), name, value, wt = POND_INIT) %>%
+    filter(!is.na(value)) %>% 
     group_by(!! enquo(.indep), name) %>% 
     mutate(f = n / sum(n)) %>% 
     ungroup() %>% 
@@ -66,7 +68,8 @@ table_univar <- function(.var, .labs = labs, .data = d){
   cpt <- filter(.labs, variable == as_name(enquo(.var))) %>% pull(varlabel)
 
   count(.data, !! enquo(.var), wt = POND_INIT) %>%
-    filter(!! enquo(.var) != "'(NSP)'",
+    filter(!is.na(!! enquo(.var)),
+           !! enquo(.var) != "'(NSP)'",
            !! enquo(.var) != "'(REF)'") %>% 
     mutate(f = round(n / sum(n) * 100),
            f = paste0(f, "%")) %>%
