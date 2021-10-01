@@ -156,6 +156,25 @@ pivot_longer(res_hcpc$data.clust, -clust) %>%
 
 ## Livre (EG)
 
+Dans la lignée de constats précédemment opérés au sujet de la lecture de livres (Mauger, 2020 ; Guittet, 2020 à compléter éventuellement), on constate que le livre au format papier reste le support privilégié et quasi-exclusif des lecteurs et lectrices (68%), alors que la tablette (4%) et la liseuse (4%) peinent à trouver un public. Ceci fait de la France un cas particulier ; si le livre papier reste partout la norme, la liseuse a trouvé un marché plus vaste dans d’autres pays occidentaux, comme aux États-Unis où 28% des adultes avaient lu un livre numérique au cours des 12 derniers mois en 2016 (Pew Research Institute, 2016) et où plus de la moitié des adultes possèdent une liseuse (chercher donnée). 
+Commentaire 1 : ça peut valoir le coup de checker d’autres pays pour voir d’autres perspectives ; je ne dis pas qu’on doit systématiquement comparer à d’autres pays évidemment mais pour le livre c’est quand même marqué). 
+Commentaire 2 : même question que posée lors de notre échange à ce sujet, Samuel : pourquoi on n’atteint pas les 100% au total, alors que c’est uniquement les lecteurs et lectrices qui répondent ici ?
+Commentaire 3 : un peu ennuyée de me citer mais je trouve dommage de ne pas lister les travaux qui ont fait ce constat : et il faut que je vérifie les autres aussi.
+
+```{r, fig.height = 8}
+Insérer un tableau qui regroupe l’ensemble des données (abscisse les supports ; ordonnées le total, le sexe, la CS, le niveau d’étude)
+```
+
+Les femmes (76%) montrent un attachement plus fort au livre papier que les hommes (59%), ce qui ne s’accompagne pas chez ces derniers de plus grandes pratiques numérique. Les femmes, qui depuis les années 80 lisent davantage que les hommes, déclarent donc également lire sur plus de supports différents que les hommes. 
+
+La lecture numérique, sur tablette comme sur liseuse, concerne davantage les plus diplômés : 11% des lecteurs et lectrices de niveau Bac+5 déclarent lire sur liseuse, contre 7% des diplômés d’une licence, 3% du bac ou 1% d’un CAP/BEP. Mais il en va de même pour la livre papier : 90% des forts diplômés déclarent lire sur livres papier contre 72% des diplômés du bac et de 58% des titulaires d’un CAP ou BEP. Le constat est le même au regard de la classe sociale : 9% des cadres et professions intellectuelles supérieures, 4% des professions intermédiaires, 1% des ouvriers, 0% des agriculteurs exploitants déclarent lire sur tablette ; 85% des cadres et professions intellectuelles supérieures, 77% des professions intermédiaires, 48% des ouvriers et des agriculteurs exploitants déclarent lire au format papier.
+
+Contrairement à ce qu’on observe pour d’autres pratiques culturelles, l’âge n’est pas une variable déterminante lorsqu’il s’agit de lire en numérique.
+Commentaire 4 : comment est-ce qu’on décide de présenter les données liées à l’âge : tranches ? graphiques comme ceux que tu as générés, Samuel ?
+
+Pour les trois quarts de la population, y compris lorsque les lecteurs et lectrices lisent sur différents supports, la lecture sur livre papier prévaut, quel que soit leur sexe. Un regard à l’appartenance sociale et au niveau d’étude montre que c’est dans les classes moyennes que l’on privilégie le moins le papier : 64% des employés privilégient le papier, contre 75% des ouvriers, 74% des cadres, 84% des artisans, commerçants et chefs d’entreprises ; 69% des titulaires d’un bac+2 privilégient le papier, contre 79% des titulaires d’un bac+5 et plus, et 75% des titulaires d’un BEP ou CAP.
+Commentaire 5 : ces dernières données prennent encore en compte les NA, est-ce que ça ne fausse pas les chiffres ?
+
 ## Jeux vidéo (SC)
 
 *	JV
