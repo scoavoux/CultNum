@@ -115,3 +115,20 @@ graph_univar_all <- function(.dep, .data = d, .labs = labs){
 
   graph_univar_indep({{ .dep }}, AGE, .labs = .labs, .data=.data) %>% print()
 }
+
+## Une fonction pour recoder les NA dans les questions filtrées
+## séparer NA parce que choix pas sélectionné de NA parce que question
+## non posée.
+## arguments:
+# .var: la variable cible
+# .filtre: la variable filtre
+# .filtre_val: la valeur de la variable filtre qui fait que la question
+# var est posée
+# .nonselection_val: la valeur que doit prendre le fait de ne pas avoir
+# coché la case quand on a posé la question
+recode_nonsel_na <- function(.var, .filtre, .filtre_val, .nonselection_val){
+  lvl <- c(levels(.var), .nonselection_val)
+  x <- as.character(.var)
+  ifelse(is.na(x) & {{ .filtre }} == .filtre_val, .nonselection_val, x) %>% 
+    factor(levels = lvl)
+}

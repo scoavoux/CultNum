@@ -38,12 +38,12 @@ load(here("01_data", "pc2018.RData"))
 load(here("01_data", "dictionary.RData"))
 load(here("01_data", "pc97-08-panel.RData"))
 
+# Fonctions d'analyse
+source(here("03_scripts", "functions_description.R"), encoding = "utf8")
+
 # Recodages
 source(here("02_import", "02_recodages_pc18.R"), encoding = "utf8")
 source(here("02_import", "04_recodages_autres.R"), encoding = "utf8")
-
-# Fonctions d'analyse
-source(here("03_scripts", "functions_description.R"), encoding = "utf8")
 
 pc08 <- rename(pc08, POND_INIT = "POIDS",
                SEXE = "Q28",
@@ -459,7 +459,6 @@ graph_univar_all(.dep = Q65, .data = pc08, .labs = labs_pc08)
 JV principalement sur console et ordinateur au foyer en 2008. Ordinateur plus CPIS/étudiants/PI, console plus populaire, esp. ouvriers.
 
 ```{r, fig.height = 8}
-pc08 <- select(pc08, -J14BC_M8)
 graph_qcm_all(.dep = J14BC_M1:J14BC_M14, .value = "OUI", .data = pc08, .labs = labs_pc08)
 ```
 Le temps passé a joué est globalement limité, peu de joueurs dépassant les 10 heures par semaine, et la plupart déclarant moins d'une heure.

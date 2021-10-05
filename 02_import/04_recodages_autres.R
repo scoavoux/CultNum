@@ -1367,4 +1367,7 @@ pc08$XSPV75_M7<- factor(pc08$XSPV75_M7,levels=c(1),labels=c("OUI"))
 pc08$XSPV75_M8<- factor(pc08$XSPV75_M8,levels=c(1),labels=c("OUI"))
 pc08$XSPV75_M9<- factor(pc08$XSPV75_M9,levels=c(1),labels=c("OUI"))
 
-pc08 <- select(pc08, -J15C_M7)
+pc08 <- select(pc08, -J15C_M7, -J14BC_M8)
+
+pc08 <- mutate(pc08, across(J14BC_M1:J14BC_M14, ~recode_nonsel_na(.x, Q64, "oui", "NON")))
+

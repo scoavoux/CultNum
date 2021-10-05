@@ -33,12 +33,12 @@ load(here("01_data", "pc2018.RData"))
 load(here("01_data", "dictionary.RData"))
 load(here("01_data", "pc97-08-panel.RData"))
 
+# Fonctions d'analyse
+source(here("03_scripts", "functions_description.R"), encoding = "utf8")
+
 # Recodages
 source(here("02_import", "02_recodages_pc18.R"), encoding = "utf8")
 source(here("02_import", "04_recodages_autres.R"), encoding = "utf8")
-
-# Fonctions d'analyse
-source(here("03_scripts", "functions_description.R"), encoding = "utf8")
 
 pc08 <- rename(pc08, POND_INIT = "POIDS",
                SEXE = "Q28",
