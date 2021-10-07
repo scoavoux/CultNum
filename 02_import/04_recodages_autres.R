@@ -1371,3 +1371,9 @@ pc08 <- select(pc08, -J15C_M7, -J14BC_M8)
 
 pc08 <- mutate(pc08, across(J14BC_M1:J14BC_M14, ~recode_nonsel_na(.x, Q64, "oui", "NON")))
 
+pc08 <- mutate(pc08, ordinateur_fixe_ou_portable = factor(Q51_O16 == "OUI" | Q51_O17 == "OUI", 
+                                                          levels = c(TRUE, FALSE),
+                                                          labels = c("oui", "non")))
+
+pc08 <- mutate(pc08, across(EQMICRO2_M1:EQMICRO2_M9, ~recode_nonsel_na(.x, ordinateur_fixe_ou_portable, "oui", "NON")))
+
