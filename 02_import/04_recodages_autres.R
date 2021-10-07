@@ -1377,6 +1377,12 @@ pc08 <- mutate(pc08, ordinateur_fixe_ou_portable = factor(Q51_O16 == "OUI" | Q51
 
 pc08 <- mutate(pc08, across(EQMICRO2_M1:EQMICRO2_M9, ~recode_nonsel_na(.x, ordinateur_fixe_ou_portable, "oui", "NON")))
 
+# (EG) Recodage usages d'Internet, en ne sélectionnant que celles et ceux qui déclarent avoir utilisé Internet (on ne sait pas trop bien sur quelle période mais on peut imaginer qu'il s'agit es 12 derniers mois)
+pc08 <- mutate(pc08, across(Q89_M1:Q89_M23, ~recode_nonsel_na(.x, Q80, "OUI", "non")))
+
+# (EG) Recodage types de jeux vidéos joués, en ne sélectionnant que celles et ceux qui déclarent avoir joué aux jeux vidéos au cours des 12 derniers mois :
+pc08 <- mutate(pc08, across(J15C_M1:J15C_M9, ~recode_nonsel_na(.x, Q64, "oui", "non")))
+
 # (FG) Recodage age en classes 
 panel$age_c <- cut(panel$agen, c(15, 24, 39, 54, 64, 99), include.lowest = TRUE, labels = c("15-24", "25-39", "40-54", "55-64","65+"))
 
@@ -1389,8 +1395,3 @@ panel$gen <- cut(panel$annee_naiss,
                  include.lowest = TRUE, 
                  labels = c("Gén. 1933 et avant", "Gén. 1934-1943", "Gén. 1944-1953", "Gén. 1954-1963", " Gén. 1964-1973", "Gén. 1974-1983", " Gén. 1984-1993", "Gén. 1994-2003"))
 
-# (EG) Recodage usages d'Internet, en ne sélectionnant que celles et ceux qui déclarent avoir utilisé Internet (on ne sait pas trop bien sur quelle période mais on peut imaginer qu'il s'agit es 12 derniers mois)
-pc08 <- mutate(pc08, across(Q89_M1:Q89_M23, ~recode_nonsel_na(.x, Q80, "oui", "non")))
-
-# (EG) Recodage types de jeux vidéos joués, en ne sélectionnant que celles et ceux qui déclarent avoir joué aux jeux vidéos au cours des 12 derniers mois :
-pc08 <- mutate(pc08, across(J15C_M1:J15C_M9, ~recode_nonsel_na(.x, Q64, "oui", "non")))
