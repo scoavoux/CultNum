@@ -1385,7 +1385,7 @@ pc08 <- mutate(pc08, across(J15C_M1:J15C_M9, ~recode_nonsel_na(.x, Q64, "oui", "
 
 # (FG) Recodage age en classes 
 panel$age_c <- cut(panel$agen, c(15, 24, 39, 54, 64, 99), include.lowest = TRUE, labels = c("15-24", "25-39", "40-54", "55-64","65+"))
-
+pc08$age_c <- cut(pc08$Q29, c(15, 24, 39, 54, 64, 99), include.lowest = TRUE, labels = c("15-24", "25-39", "40-54", "55-64","65+"))
 
 # (FG) Création d'une variable annee de naissance et génération
 panel <- mutate(panel,

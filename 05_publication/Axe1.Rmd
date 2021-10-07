@@ -84,7 +84,165 @@ pc08 <- mutate(pc08, TYPMEN =
 
 ## Information (FG)
 
-## Télévision, films et séries (FG)
+### La télévision
+La télévision reste un loisir incontournable en France en 2018. 
+Au delà de la généralisation de l'équipement TV au sein des foyers, regarder la télévision est une pratique à laquelle s'adonne la quasi-totalité de la population des 15 ans et plus. Seuls 6% déclarent ne jamais, ou pratiquement jamais, regarder la television, que ce soit chez eux ou ailleurs, chez leurs parents, des amis, au cafe, etc. La pratique reste quotidienne pour la très large majorité, mais elle est néanmoins en retrait par rapport à la précédente enquête. En 2018, 78% des 15 ans et plus déclarent regarder la télévision tous les jours ou presque, contre 87% en 2008, retrouvant ainsi un niveau comparable à celui enregistré en 1997.
+
+```{r, eval=FALSE}
+graph_univar_all(C1)
+```
+
+```{r}
+select(panel, annee, poids, prat_tv, tljp_tv) %>% 
+  pivot_longer(cols = c(prat_tv, tljp_tv)) %>% 
+  count(annee, name, value, wt = poids) %>% 
+  group_by(annee, name) %>% 
+  mutate(f = n / sum(n),
+         name = ifelse(name == "prat_tv", "Regarder la télévision", "Regarder la télévision\ntous les jours")) %>% 
+  filter(value == "Oui") %>% 
+  ggplot(aes(annee, f, colour = name)) +
+    geom_point() +
+    geom_line() +
+    scale_y_continuous(limits = c(0, 1), labels = scales::percent) +
+    labs(x= "Année", y = "Fréquence", colour = "TV") 
+```
+
+Regarder la télévision est une pratique quotidienne aussi répandue parmi les hommes que parmi les femmes (78% des hommes regardent quotidiennement la télévision contre 81% des femmes).
+
+En revanche, les différences selon le niveau de diplôme ou la catégorie sociale restent marquées. La part des individus regardant quotidiennement la télévision décroit lorsque le niveau scolaire augmente, passant ainsi de 89% de téléspectateurs quotidiens parmi les individus sans diplôme, ou ayant au plus réussi le BEPC, à seulement 62% des individus diplômés du 2ème cycle de l'enseignement supérieur. Si les différences selon les catégories sociales sont manifestes, elles sont moins marquées que celles observées selon le niveau de diplôme. Les agriculteurs exploitant comptent la proportion la plus élevée de télespectateurs quotidiens (89%) et les cadres et professions intellectuelles supérieures la proportion la plus faible (70%). 
+
+Mais les écarts sont surtout remarquables selon l'âge. Ainsi, la pratique quotidienne se généralise avec l'avancé en âge. La quasi-totalité des 65 ans et plus (92%) regardent qotidiennement la télévision. Inversement, les plus jeunes (15-24 ans) comptent la proportion de téléspectateurs quotidiens la plus faible (55%). Néanmoins la majorité des jeunes déclarent encore regarder quotidiennement la télévision en 2018.
+
+Parmi les personne déclarant regarder la télévision, la comparaison du temps moyen passé devant la télévision, sans compter les émissions enregistrées ou téléchargées, ou les vidéos à la demande (moyenne calculée à partir du temps passé devant la TV la semaine et le week-end) confirme les différences observées. Ainsi, le temps moyen passé devant la télévision sur une semaine est similaire entre les hommes et les femmes (3,1h pour les femmes vs. 2,9h pour les hommes). En revanche, le temps passé devant la TV augmente avec l'avancé en âge (de 2h en moyenne pour les 15-24 ans à 3,7h pour les 65 ans et plus) et décroit avec l'augmentation du niveau de diplôme (de 3,7h en moyenne pour les individus non diplômés ou ayant eu le BEPC à 1,9h pour les individus diplômé de 2ème cycle de l'enseignement supérieur) ou de la catégorie sociale (de 2,3h en moyenne pour les cadres et professions intellectuelles supérieures à 3,7h pour les ouvriers).
+
+```{r, eval=FALSE}
+svymean(~tpsTVjour, dw, na.rm = TRUE)
+
+t<-svyby(~tpsTVjour, ~SEXE, dw, na.rm = TRUE, svymean)
+kable(t, digits = 2)
+
+t<-svyby(~tpsTVjour, ~age_c, dw, na.rm = TRUE, svymean)
+kable(t, digits = 2)
+
+t<-svyby(~tpsTVjour, ~dipl, dw, na.rm = TRUE, svymean)
+kable(t, digits = 2)
+
+t<-svyby(~tpsTVjour, ~pcs1, dw, na.rm = TRUE, svymean)
+kable(t, digits = 2)
+
+```
+
+<!-- > Commenter les différences en termes d'âge et de génération. Avec l'âge en continu, on voit des choses un peu différentes. A discuter. -->
+
+```{r}
+count(panel, tljp_tv, gen, agen, wt = poids) %>% 
+  filter(!is.na(tljp_tv)) %>% 
+  group_by(gen, agen) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_tv == "Oui") %>% 
+  select(-n, -tljp_tv) %>% 
+  ungroup() %>% 
+  ggplot(aes(agen, f, color = factor(gen), group = factor(gen))) +
+    geom_smooth(se=FALSE) +  
+    labs(x = "Âge", y = "Fréquence", title = "Visionnage quotidien de la TV par âge") +
+    scale_y_continuous(limits = c(0, 1), labels = scales::percent)
+
+count(panel, tljp_tv, gen, agen_c, wt = poids) %>% 
+  filter(!is.na(tljp_tv)) %>% 
+  group_by(gen, agen_c) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_tv == "Oui") %>% 
+  select(-n, -tljp_tv) %>% 
+  ungroup() %>% 
+  ggplot(aes(agen_c, f, color = factor(gen), group = factor(gen))) +
+  geom_line() +
+    labs(x = "Âge", y = "Fréquence", title = "Visionnage quotidien de la TV par âge") +
+    scale_y_continuous(limits = c(0, 1), labels = scales::percent)
+
+```
+<!-- > Les chiffres qui suivent sont à reprendre car il serait plus logique de prendre uniquement les télespectateurs. -->
+
+Malgré la présence généralisée du mobile au sein des foyers et la large présence de l'ordinateur, l'écran de télévision est de très loin l'équipement le plus communément utilisé pour regarder la télévision. En 2018, 93% des individus ont utilisé un écran de télévision pour regarder la TV au cours des 12 mois précédant l'enquête, très loin devant l'ordinateur (13%), le smartphone (9%), la tablette (8%) ou l'écran d'un vidéoprojecteur (1%).
+Quels que soient le genre, l'âge, le niveau de diplôme ou la catégorie sociale, le téléviseur est très loin l'écran le plus répandu pour regarder la télévision. utiliser un ordinateur ou un smartphone pour regarder la télévision est certes plus répandu parmi les plus jeunes, mais cela reste une pratique encore largement minoritaire en 2018 où seuls 32% des 15-24 ans ont regardé la télévision sur un ordinateur et 31% l'ont regardé sur un smartphone, contre 84% sur un écran de TV.
+<!-- > il faudrait peut-être que je crée une variable regarder TV uniquement sur écran de TV / écran TV + autre / autre uniquement -->
+
+```{r, fig.cap = "Supports d'écoute de la télévision (pond)", eval=FALSE}
+graph_qcm(C61:C65, "'Yes'")
+
+graph_qcm_all(C61:C65, "'Yes'")
+```
+
+## Films
+
+Regarder des films est une pratique de loisir partagée par l'ensemble de la population ou presque. Seuls 7% déclarent ne jamais ou pratiquement jamais regarder des films, que ce soit sur un écran de télévision ou sur tout autre support, chez eux ou ailleurs (parents, amis, transports, ...), à l’exception des films vus dans les cinémas. Pour beaucoup, la pratique est fréquente : 25% en regardent tous les jours, 47% toutes les semaines. Il n'y a pas d'écart entre les hommes et les femmes, mais la pratique est plus souvent très fréquente dans les milieux plus populaires et les plus faibles niveaux de diplômes, du fait sans doute d'usages plus fréquents de la télé. Ainsi, seulement 17% des cadres et professions intellectuelles supérieurs déclarent regarder des films tous les jours ou presque contre 31% des employés et ouvriers. Les différences sont similaires si l'on considère le niveau de diplôme (30% des individus n'ayant pas de diplôme ou seulement le BEPC et 32% ayant un CAP ou BEP déclarent regarder quotidiennement des films, alors qu'ils ne dépassent pas les 20% parmi les diplômés du supérieur). Comme pour la télévision dans son ensemble, regarder des films quotidiennement est une pratique moins répandue parmi les jeunes (de 19% des 15-24 ans à 28% des 55-64 ans), mais si l'on y ajoute la pratique hebdomadaire, nettement plus courante quel que soit l'âge, les différences s'estompent. 
+
+```{r, eval=FALSE}
+t <- svytable(~ C19, dw)
+t <- freq(t, total = TRUE)
+kable(t, digits = 0)
+
+graph_univar_all(C19)
+```
+
+<!-- > Les chiffres qui suivent sont à reprendre car il serait plus logique de prendre uniquement les consommateurs de films -->
+
+Comme pour la télévision, l'écran de TV reste de très loin l'équipement privilégié pour regarder les films (87% des répondants), devant l'ordinateur (17%). Regarder des films sur d'autres supports reste confidentiel : seuls 6% des répondants ont déclaré avoir utilisé un un smartphone pour visionner des films, 6% ont déclaré avoir utilisé une tablette, et 2% un écran avec un vidéoprojecteur. L'écran de télévision reste l'équipement le plus communément utilisé pour regarder des films quels que soient le genre, le niveau de diplôme, la catégorie sociale et l'âge (concernant à chaque fois au moins 8 individus sur 10). Visionner des films sur un écran d'ordinateur est beaucoup plus répandue parmi les cadres et professions intellectuelles supérieures (20%) et les professions intermédiaires (18%) que parmi les ouvriers (11%), les artisants-commerçants (11%) et les agriculteurs (4%). Les différences selon le niveau de diplôme vont dans le même sens, les plus dipômés (27% des individus diplômés du 2ème cycle du sup., 27% des diplômés BAC+3) étant 3 fois plus nombreux a utiliser un ordinateur pour visionner des films que les moins diplômés (aucun diplôme, BEPC, CAP-BEP). Regarder des films sur ordinateur est également une pratique fortement liée à l'âge. La majorité (57%) des 15-24 ans le font, c'est le cas de 28% des 25-39 ans. Au delà de 40 ans la pratique devient beaucoup plus confidentielle (15% des 40-54 ans et seulement 4% des 65 ans et plus). Par ailleurs, visionner des films sur le petit écran d'un smartphone est une pratique relativement répandue parmi les plus jeunes, avec 30% des 15-24 ans qui l'ont fait durant les 12 mois précédant l'enquête.
+<!-- > il faudrait peut-être que je crée une variable regarder film uniquement sur écran de TV / écran TV + autre / autre uniquement -->
+
+```{r, fig.cap = "Support visionnage de films (pond)", eval=FALSE}
+graph_qcm(C211:C215, "'Yes'")
+graph_qcm_all(C211:C215, "'Yes'")
+
+```
+
+<!-- > Les chiffres qui suivent sont à reprendre car il serait plus logique de prendre uniquement les consommateurs de films -->
+
+Malgré les larges possibilités offertes par les nouveaux modes de diffusion des films, visionner des films en direct, sur des chaines gratuites ou payantes, reste de très loin le mode d'accès le plus communément utilisé. Ainsi 79% de la population regardent des films diffusés à la télévision. Les utilisations du replay, de la VOD (Netflix, Canal Play, myTFIvod...) ou du DVD/Blue ray sont certes relativement répandues, mais concernent une minorité de la population (entre un tiers et un quart). Regarder des films en streaming est plus confidentiel (16% de la population), néanmoins la pratique est peut-être sous-évaluée dans la mesure où Netflix a été cité comme solution de VOD plutôt que de streaming. Regarder des films directement à partir de fichiers numériques est rare (7% de la population). Une nouvelle fois, les différences entre les hommes et les femmes sont peu marquées concernant les supports de diffusion utilisés pour regarder des films. Si la diffusion à la télévision sur des chaînes gratuites ou payantes est le plus partagé au sein de la population quels que soient le genre, le niveau de diplôme, le niveau social ou l'âge, la diffusion en direct est fortement concurrencée par les autres modes de diffusion au sein de la population des 15-24 ans, et dans une moindre mesure parmi les 25-39 ans et les 40-54 ans. Ainsi, les 15-24 ans sont 66% à regarder des films diffusés en direct à la télévision, autant à en regarder en VOD, 55% à le faire en streaming, 43% en replay, 31% en DVD/Blu ray et 14% en fichiers numériques. Des différences, certes beaucoup moins marquées, sont également à noter en fonction du niveau social. Ainsi, c'est parmi les cadres et professions intellectuelles supérieures (suivi par les professions intermédiaires) que les différents modes de diffusion des films, en dehors de la diffusion "historique" (chaines TV), sont les plus utilisés. Inversement, les ouvriers utilisent moins les nouveaux modes de diffusion. 24% des ouvriers regardent des films en replay (contre 38% des cadres ou des professions intermédiaires), 20% regardent des films en VOD (contre 31% des cadres), 21% regardent des films sur DVD/Blue ray (contre 32% des cadres), 5% regardent des films à partir de chiers numériques (contre 12% des cadres). De même, si la diffusion à la télévision restent le mode de consommation de films le plus courant quel que soit le niveau de diplôme, l'utilisation des modes de diffusion alternatifs sont nettement moins répandus parmi les individus n'ayant pas le BAC. A titre d'exemple, seuls 18% des individus titulaires d'un CAP-BEP regardent des films en VOD et 28% en replay (contre respectivement 37% et 41% des diplômés du 2ème cycle de l'enseignement supérieur), 
+<!-- > il faudrait peut-être que je crée une variable regarder film uniquement diffuser à la TV / à la TV + autre / autre uniquement -->
+
+```{r, fig.cap = "Mode d'accès aux films (pond)", eval=FALSE}
+graph_qcm(C221:C226, "'Yes'")
+graph_qcm_all(C221:C226, "'Yes'")
+
+```
+<!-- > Est-ce que j'analyse la question "Au cours des 12 derniers mois, avez-vous regardé des films sur un équipement mobile en dehors de votre domicile ?" ? (même chose pour séries) -->
+
+```{r, eval=FALSE}
+graph_univar_all(C23)
+```
+
+## Séries
+
+Les séries (feuilletons) ont un public moins large que celui des films, néanmoins elles constituent un objet de consommation massive : 77% des 15 et plus déclarent avoir regardé des séries, au cours des 12 mois précédant l'enquête (contre 93% pour les films). Si regarder des séries est majoritairement répandue quels que soit le genre, la catégorie sociale, le niveau de diplôme ou la tranche d'âge, la pratique décroit néanmoins avec l'âge. Ainsi 92% des 15-24 ans consomment des séries, contre 64%  des 65 ans et plus.
+
+Comme pour les films, la majorité de la population (61%) regardent tous les jours ou au moins une fois par semaine des séries (72% pour les films). La consommation quotidienne de séries est même plus répandue que celle de films (30% contre 25%) et il s'agit d'une pratique beaucoup plus féminine (36% des femmes contre 23% des hommes), mais aussi plus populaire (40% des employés et 33% des ouvriers, contre 17% des cadres) et plus répandue parmi la jeunesse (39% des 15-24 ans).
+
+```{r, fig.height = 8, eval=FALSE}
+graph_univar_all(C31)
+```
+
+<!-- > Les chiffres qui suivent sont à reprendre car il serait plus logique de prendre uniquement les consommateurs de séries -->
+
+Comme pour les films, le visionnage de séries se fait principalement sur le téléviseur, loin devant l'ordinateur. Ainsi, 70% des 15 ans et plus regardent des séries sur un écran de télévision, 14% utilisent l'ordinateur et seulement 7% regardent des séries sur smartphone et 6% sur tablette. Regarder des séries sur un écran avec un vidéoprojecteur est tout à fait anecdotique (1%). Comme pour les films, l'écran de télévision reste l'équipement le plus communément utilisé pour regarder des séries quels que soient le genre, le niveau de diplôme, la catégorie sociale et l'âge, concernant à chaque fois une majorité d'individus. Néanmoins, pour les jeunes, l'écran de l'ordinateur, et dans une moindre mesure celui du smartphone, concurrencent fortement l'écran de télévision comme support de visionnage de séries. Ainsi, 65% des 15-24 ans regardent des séries sur un écran de télévision, 51% le font sur un ordinateur et 37% le font sur un smartphone. Comme pour les films, l'ordinateur comme support de visionnage de séries est très peu mobilisé dans les milieux populaires (8% des ouviers sont concernés, contre 18% des cadres) et parmi les moins diplomés (8% des individus sans diplôme ou avec le BEPC, 6% des titulaires d'un CAP-BEP, contre 24% des individus titulaires d'un bac+3 ou diplômés du 2ème cycle universitaire).
+
+```{r, fig.cap = "Termminal de visionnage de séries (pond)", eval=FALSE}
+graph_qcm(C331:C335, "'Yes'")
+graph_qcm_all(C331:C335, "'Yes'")
+```
+
+Toujours comme pour les films, la télévision de flux est le principal canal d'accès aux séries, loin devant le replay et la VOD. Ainsi 62% de la population regardent des séries diffusées à la télévision sur des chaînes gratuites ou payantes, 25% visionnent des séries en replay et 20% en VOD. Les autres modes de diffusion sont nettement plus confidentiels (12% regardent des séries en streaming, 8% le font sur DVD/Blue-ray, 5% sur fichiers numériques). Si la diffusion à la télévision reste de manière générale le mode de consommation de séries le plus partagé au sein de la population, force est de constater que pour les jeunes, la consommation de séries diffusées en direct à la télévision est dépassée par la consommation en VOD et pratiquement rattrapper par la consommation en streaming. Ainsi, 61% des 15-24 ans déclarent regarder des séries en VOD, contre 48% à la télévision et 45% en streaming. Comme pour les films, les nouveaux modes de diffusion des séries sont moins répandus parmi les ouvriers et les individus non titulaires du bac. Alors qu'environ 3 personnes sur 10 titualires du bac regardent des séries en replay et que presque autant en visionne en VOD, seuls 22% des titulaires d'un CAP-BEP mobilisent le replay et 13% la VOD (respectivement 15% et 12% pour les personnes sans diplômes ou avec seulement le BEPC).
+
+```{r, fig.cap = "Mode d'accès aux séries (pond)", eval=FALSE}
+graph_qcm(C341:C346, "'Yes'")
+graph_qcm_all(C341:C346, "'Yes'")
+```
+
+<!-- on pourrait peut-être laisser tomber la partie usage en mobilité dans ce chapitre -->
+L'usage mobile hors domicile est minoritaire: il concerne seulement 15% des spectateurs de séries, dont 4% seulement fréquemment. La pratique est trop minoritaire pour discerner clairement des tendances, si ce n'est que les spectateurs les plus jeunes semblent les plus susceptibles de l'avoir: elle concerne même 50% des adolescents.
+
+```{r, eval=FALSE}
+graph_univar_all(C35)
+```
 
 ## Musique (SC)
 
