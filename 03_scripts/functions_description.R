@@ -60,8 +60,7 @@ graph_qcm_all <- function(.dep, .value = "'Yes'", .data=d, .labs=labs){
   
   graph_qcm_indep(.dep = {{ .dep }}, .indep = AGE, .value = .value, .data=.data, .labs=.labs) %>% print()
   
-  graph_qcm_indep(.dep = {{ .dep }}, .indep = TYPMEN, .value = .value, .data=.data, .labs=.labs) %>% print()
-  
+  graph_qcm_indep(.dep = {{ .dep }}, .indep = age_c, .value = .value, .data=.data, .labs=.labs) %>% print()
 }
 
 table_univar <- function(.var, .labs = labs, .data = d){
@@ -114,6 +113,8 @@ graph_univar_all <- function(.dep, .data = d, .labs = labs){
   graph_univar_indep({{ .dep }}, pcs1, .labs = .labs, .data=.data) %>% print()
 
   graph_univar_indep({{ .dep }}, AGE, .labs = .labs, .data=.data) %>% print()
+  
+  graph_univar_indep({{ .dep }}, age_c, .labs = .labs, .data=.data) %>% print()
 }
 
 ## Une fonction pour recoder les NA dans les questions filtrées
