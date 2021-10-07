@@ -59,3 +59,69 @@ d <- mutate(d,
 labs <- add_case(labs, variable = "pcs1", category = "recodage", varlabel = "PCS ego niveau 1")
 labs <- add_case(labs, variable = "support_musique_digital", category = "recodage", varlabel = "Support écoute de musique numérique")
 
+# (FG) Recodage AGE en classes pour demandes PI_TV
+range(d$AGE)
+d$age_c <- cut(d$AGE, c(15, 24, 39, 54, 64, 97), include.lowest = TRUE, labels = c("15-24", "25-39", "40-54", "55-64","65+"))
+
+# (FG) Creation d'une variable "tpsTVjour" estimant le tps moyen par jour passé devant la tv, pour demandes PI_TV
+# Recodage à vérifier car résultat faux
+d$C11 <- as.character(d$C11)
+d$x1 <- case_when(
+  d$C11 == "'Par jour'" ~ d$C10_C_1 * 5,
+  d$C11 == "'Par semaine'" ~ d$C10_C_1,
+  d$C11 == "'Par mois'" ~ d$C10_C_1 / 4
+)
+
+d$C13 <- as.character(d$C13)
+d$x2<- case_when(
+  d$C13 == "'Par jour'" ~ d$C12_C_1*2,
+  d$C13 == "'Par week-end'" ~ d$C12_C_1
+)
+
+d$tpsTVjour <- (d$x1 + d$x2)/7
+
+d <- d %>% select(-x1,-x2) 
+
+# (FG) Nombre de postes de télévision dans le foyer
+d$nbtv <- case_when(
+  d$I102 == "'No'" ~ "Foyer sans TV",
+  d$I2 == "'Un'" ~ "Un",
+  d$I2 == "'Deux'" ~ "Deux",
+  d$I2 == "'Trois'" | d$I2 == "'Quatre'" | d$I2 == "'Cinq ou plus'"~ "Trois ou +",
+  d$I2 == "'(NSP)'" | d$I2 == "'(REF)'" ~ "NSP/REF")
+
+d$nbtv <- as.factor(d$nbtv)
+d$nbtv<- fct_relevel(
+  d$nbtv,
+  "Foyer sans TV",
+  "Un",
+  "Deux",
+  "Trois ou +",
+  "NSP/REF"
+)
+
+# (FG) Equipement en ordinateur (fixe ou portable) dans le foyer
+d$Iordi <- case_when(
+  d$I108 == "'Yes'" ~ "'Yes'",  
+  d$I109 == "'Yes'" ~ "'Yes'",
+  TRUE ~ "'No'")
+
+# (FG) Groupe PCS_menage : renommage des modalités
+d$G_PCS_MENAGE_r <- case_when(
+  d$G_PCS_MENAGE_ == "I"  ~  "I. à dominante cadre", 
+  d$G_PCS_MENAGE_ == "II" ~  "II. à dominante intermédiaire",
+  d$G_PCS_MENAGE_ == "III" ~ "III. à dominante employée",
+  d$G_PCS_MENAGE_ == "IV" ~  "IV. à dominante indépendante",
+  d$G_PCS_MENAGE_ == "V"  ~  "V. à dominante ouvrière",
+  d$G_PCS_MENAGE_ == "VI" ~  "VI. d’un employé ou ouvrier",
+  d$G_PCS_MENAGE_ == "VII" ~ "VII. inactifs (hors retraités)"
+)
+
+# (FG) Visionnage série en mobilité : recodage NA
+d$C31 <- as.character(d$C31)
+d$C35 <- as.character(d$C35)
+d$C35_r <- case_when(
+  d$C31 == "'Jamais ou pratiquement jamais'" | d$C31 == "'(NSP)'" | d$C31 == "'(REF)'"   ~  "Ne regarde pas de séries",
+  TRUE ~ d$C35
+)
+

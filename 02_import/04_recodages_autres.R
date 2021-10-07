@@ -1377,3 +1377,14 @@ pc08 <- mutate(pc08, ordinateur_fixe_ou_portable = factor(Q51_O16 == "OUI" | Q51
 
 pc08 <- mutate(pc08, across(EQMICRO2_M1:EQMICRO2_M9, ~recode_nonsel_na(.x, ordinateur_fixe_ou_portable, "oui", "NON")))
 
+# (FG) Recodage age en classes 
+panel$age_c <- cut(panel$agen, c(15, 24, 39, 54, 64, 99), include.lowest = TRUE, labels = c("15-24", "25-39", "40-54", "55-64","65+"))
+
+
+# (FG) Création d'une variable annee de naissance et génération
+panel <- mutate(panel,
+                annee_naiss = annee - agen)
+panel$gen <- cut(panel$annee_naiss, 
+                 c(1874, 1933, 1943, 1953, 1963, 1973, 1983, 1993, 2003), 
+                 include.lowest = TRUE, 
+                 labels = c("Gén. 1933 et avant", "Gén. 1934-1943", "Gén. 1944-1953", "Gén. 1954-1963", " Gén. 1964-1973", "Gén. 1974-1983", " Gén. 1984-1993", "Gén. 1994-2003"))
