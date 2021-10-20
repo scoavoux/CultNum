@@ -1395,3 +1395,19 @@ panel$gen <- cut(panel$annee_naiss,
                  include.lowest = TRUE, 
                  labels = c("Gén. 1933 et avant", "Gén. 1934-1943", "Gén. 1944-1953", "Gén. 1954-1963", " Gén. 1964-1973", "Gén. 1974-1983", " Gén. 1984-1993", "Gén. 1994-2003"))
 
+# (FG) Création d'une variable ordinateur (agrégeant fixe et portable) dans l'enquête 2008
+pc08$Q51_ordi <- case_when(
+  pc08$Q51_O16 == "OUI" ~ "OUI",  
+  pc08$Q51_O17 == "OUI" ~ "OUI",
+  TRUE ~ "NON")
+
+# (FG) Création d'une variable console (agrégeant fixe et portable) dans l'enquête 2008
+pc08$Q51_console <- case_when(
+  pc08$Q51_O11 == "OUI" ~ "OUI",  
+  pc08$Q51_O12 == "OUI" ~ "OUI",
+  TRUE ~ "NON")
+
+# (FG) Création d'une variable accès internet dans l'enquête 2008
+pc08$Q60_internet <- case_when(
+  pc08$EQMICRO2_M8 == "OUI" ~ "OUI",  
+  is.na(pc08$EQMICRO2_M8) == TRUE ~ "NON")

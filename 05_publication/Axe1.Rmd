@@ -13,6 +13,10 @@ library(conflicted)
 
 library(janitor)
 
+library(survey)
+
+library(questionr)
+
 options("digits" = 2)
 
 conflict_prefer("here", "here")
@@ -40,6 +44,10 @@ source(here("03_scripts", "functions_description.R"), encoding = "utf8")
 source(here("02_import", "02_recodages_pc18.R"), encoding = "utf8")
 source(here("02_import", "04_recodages_autres.R"), encoding = "utf8")
 
+# Ponderation
+dw <- svydesign(ids = ~1, data = d, weights = ~ d$POND_INIT)
+
+
 pc08 <- rename(pc08, POND_INIT = "POIDS",
                SEXE = "Q28",
                AGE = "Q29", # Q30 pour l'âge en classes
@@ -52,6 +60,10 @@ pc08 <- mutate(pc08, TYPMEN =
                            SITUAF == "Mariés ou vivant maritalement" & Q274 == 0  ~ "'Couple sans enfant'", 
                            SITUAF == "Mariés ou vivant maritalement" & Q274 > 0 ~ "'Couple avec enfant'", 
                            TRUE ~ "'Ménage complexe'"))
+
+# Ponderation
+pc08w <- svydesign(ids = ~1, data = pc08, weights = ~ pc08$POND_INIT)
+
 ```
 
 
@@ -70,7 +82,55 @@ pc08 <- mutate(pc08, TYPMEN =
 *	PC2018: mode d’abonnement internet
 *	Tableau qui regroupe les données à ce sujet selon les 4 variables (Sexe, Âge en faisant des tranches ?, Diplôme, CS, + éventuellement type de ménage ?)
  
-> Problème des questions sur l’équipement du ménage (finalement ça ne nous dit pas grand-chose, ou alors il faut les mettre en relation avec les questions sur les pratiques numériques en prenant la variable type de ménage et voir quel effet l’équipement (présumé) des autres membres du foyer peut avoir sur les pratiques (je sais pas si je suis très claire). 
+<!-- > (EG) Problème des questions sur l’équipement du ménage (finalement ça ne nous dit pas grand-chose, ou alors il faut les mettre en relation avec les questions sur les pratiques numériques en prenant la variable type de ménage et voir quel effet l’équipement (présumé) des autres membres du foyer peut avoir sur les pratiques (je sais pas si je suis très claire).  -->
+
+Entre 2008 et 2018, la présence de l'ordinateur au sein des foyers se renforce. Ainsi, en 2018, 79% des individus de 15 ans et plus vivent dans un foyer équipé d'un ordinateur, contre 65% dix ans auparavant. Par ailleurs, alors que l'équipement en ordinateur fixe était le plus courant en 2008, la tendance s'est totalement inversée au profit de l'ordinateur portable. En 2018, 64% des individus disposent d'un ordinateur portable dans leur foyer et 39% d'un ordinateur fixe (en 2008, 56% vivaient dans un foyer équipé d'un ordinateur fixe et 27% dans un foyer équipé d'un ordinateur portable). L'accès internet, qui n'est plus conditionné à l'utilisation d'un ordinateur, a également fortement progressé sur la période. En 2018, 84% de la population de 15 ans et plus vit dans un foyer ayant accés à Internet, contre 56% en 2008. Le téléphone portable, équipement de plus en plus multifonction, tend à se généraliser. Alors que déjà 85% des 15 ans et plus vivaient dans un foyer où le téléphone portable était présent, ils sont 92% en 2018. La présence d'un appareil photo numérique (hors téléphone mobile) progresse légèrement, 66% de la population en est équipé dans son foyer en 2018 (contre 57% en 2008). De nouveaux écrans font également leur apparition entre les deux enquêtes, comme la tablette, présente dans la moitié des foyers des enquêtés en 2018.
+
+Pour autant, la progression de ces équipements numériques n'a pas entrainé la disparition d'équipements plus "traditionnels". Le téléviseur reste un équipement incontournable dans l'environnement du foyer. En 2018, 95% des individus de 15 ans et plus vivent dans un foyer qui en est équipé (97% en 2008). En revanche, le multi-équipement TV a régressé, passant ainsi de 58% d'individus vivant dans un foyer multi-équipé en 2008, à 48% en 2018.
+
+La présence de platines vinyles et de consoles de jeux se maintient. Ainsi, 27% de la population enquêtée vit dans un foyer disposant d'une platine vinyle (contre 30% en 2008) et 38% vit dans un foyer disposant d'une console de jeux fixe ou portable (41% en 2008). 
+
+L'équipement en poste de radio recule, mais reste très largement majoritaire, passant de 90% d'individus vivant dans un foyer qui en est équipé en 2008 à 75% en 2018. 
+
+```{r, eval=FALSE}
+# equipements foyers 2018
+graph_qcm(I101:I113, "'Yes'")
+graph_qcm(Iordi,"'Yes'")
+graph_qcm(Iconsole, "'Yes'")
+
+t <- svytable(~ nbtv, dw)
+t <- freq(t, total = TRUE)
+kable(t, digits = 0)
+
+t <- svytable(~ I3, dw)
+t <- freq(t, total = TRUE)
+kable(t, digits = 0)
+
+# equipements foyers 2008
+graph_qcm(Q51_O1:Q51_O18, .value = "OUI", .data = pc08, .labs = labs_pc08)
+graph_qcm(Q51_ordi, .value = "OUI", .data = pc08, .labs = labs_pc08)
+graph_qcm(Q51_console, .value = "OUI", .data = pc08, .labs = labs_pc08)
+graph_qcm(Q60_internet, .value = "OUI", .data = pc08, .labs = labs_pc08)
+
+t <- svytable(~ XQ52BIS, pc08w) # nb tv
+t <- freq(t, total = TRUE)
+kable(t, digits = 0)
+```
+
+En 2018, l'environnement matériel du foyer diffère peu entre les femmes et les hommes. Seul l'ordinateur fixe est un équipement plus répandu dans les foyers des hommes enquêtés (43% disposent d'un ordinateur fixe, contre 36% pour les femmes). 
+En revanche, les taux équipements présents dans le foyer diffèrent nettement selon l'âge de l'enquêté. En 2018, une part non négligeable des 65 ans et plus (19%) vit dans un foyer sans téléphone portable, alors que le taux d'équipement est généralisé parmi les autres classes d'âge (taux au delà de 94%). De même, la majorité des enquêtés de 65 ans et plus vit dans un foyer équipé d'un ordinateur, mais le taux d'équipement est nettement plus faible comparativement aux autres catégories d'âge. Ainsi si 9 individus sur 10 de 15 à 54 ans disposent d'un ordinateur à domicile, ils sont 8 sur 10 entre 55 et 64 ans et seulement 6 sur 10 au delà. Par ailleurs, si l'ordinateur portable est plus répandu que l'ordinateur fixe, quelle que soit la classe d'âge, la différence est particulièrement marquée parmi les moins de 40 ans (77% des 25-39 ans et 83% des 15-24 ans ont un ordinateur portable dans leur foyer, contre 33% et 36% pour l'ordinateur fixe). Les plus de 65 ans sont également moins souvent équipés de tablette (33% vivent dans un foyer qui en est équipé, contre de 51% à 63% dans les autres catégories d'âge). Un tiers des 65 ans et plus n'ont pas accès à Internet, contre 14% des 55-64 ans et 7% des 40-54 ans, 6% des 25-39 ans et des 15-24 ans. D'autre part, l'équipement en console de jeux se raréfie considérablement dans les foyers des enquêtés les plus âgés. Ainsi seul 7% des 65 ans et plus et 21% des 55-64 ans en sont équipés, contre 55% des 40-54 ans, 64% des 25-39 ans et 72% des 15-24 ans. S'agissant des appareils photo numériques, les taux d'équipement au foyer varient relativement peu selon l'âge de l'enquêté, de 56% au minimum parmi les 65 ans et plus à 73% au maximum parmi les 40-54 ans. En revanche, les 65 ans et plus sont les plus équipés en platine vinyle (40% le sont, contre 13% des 15-24 ans) et en poste de radio (90% le sont, contre 49% des 15-24 ans). S'agissant des lecteur de CD/DVD, c'est parmi les 40 64 ans que l'équipement est le plus répandu (82% en sont équipés, contre 73% parmi les 65 ans et plus et 70% parmi les 25-39 ans et 66% parmi les 15-24 ans). L'équipement en télévision est en revanche assez peu sensible à l'âge de l'interviewé, le taux d'équipement au foyer variant entre 91% parmi les 15-24 an à 98% parmi les 65 ans et plus.
+
+Contrairement au téléviseur qui équipe la quasi-totalité des foyers quel que soit leur niveau social (le minimum étant observé parmi les cadres et professions intellectuelles supérieures avec 92% d'équipés TV), l'ordinateur est encore absent de nombreux foyers d'ouvriers ou d'agriculteurs. Ainsi, si l'ordinateur est présent chez la quasi-totalité des cadres (93% équipés) et des professions intermédiaires enquêtés (88% équipés), la situation est beaucoup plus contrastée au sein des foyers des ouvriers (65% équipés) et des agriculteurs (53% équipés). L'accès à internet est également moins répandu parmi les agriculteurs (57%) et les ouvriers (73%), et quasi-généralisé chez les cadres (95%) et les professions intermédiaires (91%). Les appareils photo numériques, les tablettes, les lecteurs CD et/ ou DVD, les platines vinyles sont également davantage présents chez les cadres (et dans une moindre mesure chez les professions intermédiaires), moins présents chez les ouviers et les agriculteurs.
+
+En revanche, l'équipement en console de jeux suit une logique différente. Les taux d'équipements des foyers des ouvriers, employés et professions intermédiaires sont identiques (38% pour les ouvriers et employés, 39% pour les profesions intermédiaires), légèrement supérieur à celui des cadres et professions intellectuelles supérieurs (34%). Seuls les artisans, commerçants, chefs d'entreprise et surtout les agriculteurs exploitants en sont beaucoup moins équipés (respectivement 27% et 13% d'équipés). Le téléphone portable est présent dans la plupart des foyers, néanmoins 26% des agriculteurs et 13% des ouvriers vivent dans un foyer sans téléphone portable, contre seulement 3% des cadres. Le poste de radio est à l'inverse, le seul équipement plus répandu parmi les agriculteurs (90% équipés, les employés étant les moins équipés avec un taux d'équipement de 72%).
+
+Les différences d'équipements sont également remarquables en fonction du niveau de diplôme. Les individus n'ayant aucun diplôme ou seulement le BEPC présentent des taux déquipement en ordinateur, accès internet, appareil photo numérique, console de jeux, tablette et téléphone portable nettement inférieurs. Ils sont, par exemple, seulement 54% à vivre dans foyer disposant d'un ordinateur (contre 94% des individus ayant au moins BAC+2). Inversement le taux d'équipement en poste de radio reste pratiquement le même quel que soit le niveau de diplôme (compris entre 72% et 77%) et le taux d'équipement TV varie peu (de 88% pour les diplômés du 2eme cycle de l'enseignement supérieur à 98% parmi les non diplômés ou disposant du seul BEPC). L'équipement en platine vinyle est également relativement similaire quel que soit le niveau de diplôme (de 25% parmi les non diplômés ou disposant du seul BEPC à 31% parmi les diplômés du 2ème cycle de l'enseignement supérieur).
+
+```{r, fig.cap = "Taux d'équipement en terminaux (pondéré)", fig.height = 7, eval=FALSE}
+graph_qcm_all(I101:I113, "'Yes'")
+graph_qcm_all(Iordi, "'Yes'")
+graph_qcm_all(Iconsole, "'Yes'")
+```
 
 ## Fréquence des usages d’Internet et des réseaux sociaux (EG)
 
@@ -84,9 +144,31 @@ pc08 <- mutate(pc08, TYPMEN =
 
 ## Information (FG)
 
+<!-- > (FG) Je n'ai pas commenté la question D1 sur les thèmes d'intérêt. -->
+
+L'ensemble de la population des 15 ans et plus déclare se tenir informé de l'actualité. Seul 1% déclare ne jamais le faire, ou pratiquement jamais, et seuls 2% déclarent le faire moins d'une fois par semaine. Pour la plupart, se tenir informer de l'actualité est une pratique quotidienne. 79% des 15 ans et plus déclarent se tenir informés de l'actualité tous les jours ou presque. Les femmes sont pratiquement aussi nombreuses que les hommes à se tenir informées de l'actualité quotidiennement (77% versus 82%). En revanche, si les 15-24 ans déclarent se tenir informés (seuls 2% déclarent ne jamais le faire, ou presque, et 5% le faire moins d'une fois par semaine), la moitié d'entre eux le font de manière non quotidienne. Avec l'âge, la pratique s'inscrit de plus en plus massivement dans le quotidien (de 68% des 25-39 ans à 92% des 65 ans et plus). Les différences sont relativement peu marquées selon les profils sociaux. Se tenir informer de l'actualité se fait généralement quotidiennement quels que soient la catégorie sociale ou le niveau de diplôme. Les ouvriers et les employés sont les moins nombreux à le faire quotidiennement (76% et 77%) et, inversement, les agriculteurs et les cadres et professions intellectuelles supérieurés sont les plus nombreux (91% et 88%). Les différences selon le niveau de diplôme sont encore moins marquées, le minimum étant observé pour les titulaires du bac (76% s'informent quotdiennement) et le maximum pour les diplômés du 2ème cycle (83%).
+
+```{r, eval=FALSE}
+graph_univar_all(D2)
+```
+
+La télévision est de loin le moyen de se tenir informer le plus répandu. Ainsi 79% des 15 ans et plus privilégient la télévision, devant la radio (51%) et la presse papier (34%). Les médias traditionnels restent loin devant les médias numériques : 29% citent la presse numérique/les sites web d'information, 23% les réseaux sociaux, 9% d'autres moyens offerts par l'internet et 3% les blogs et forums.
+
+Les types de médias utilisés pour s'informer ne diffèrent pas entre les hommes et les femmes (la plus forte différence est observée pour la presse numérique ou les sites web d'information qui sont cités par 32% des hommes contre 26% des femmes). En revanche, les différences sont nettement marquées selon l'âge. La télévision est certes une source d'information majoritairement mobilisée quel que soit l'âge, mais elle est largement concurrencée par les réseaux sociaux parmi les 15-24 ans, et dans une moindre mesure parmi les 25-39 ans. Ainsi, 63% des 15-24 ans et 68% des 25-39 ans utilisent la télévision pour se tenir informés, ils sont respectivement 67% et 44% à utiliser les réseaux sociaux. La presse numérique ou les sites web d'information sont également une source d'information pour une large part des 15-24 ans (42%) et des 25-39 ans (44%), puis décline avec l'avancée en âge (34% des 40-54 ans, 25% des 40-54 ans et 13% des 65 ans et plus). Inversement la presse papier accroit son inflence avec l'avancée en âge. Alors que seuls 14% des 15-24 ans utilisent la presse papier pour s'informer, ils sont 50% parmi les 65 ans et plus. La radio est également un média assez peu mobilisé par les 15-24 ans (28%), alors qu'il s'agit d'une source d'information privilégiée par la moitié, voire plus, des autres classes d'âges (% compris entre 48% des 25-39 ans et 60% des 40-54 ans).
+
+```{r, eval=FALSE}
+graph_qcm(D31:D37, "'Yes'")
+
+graph_qcm_all(D31:D37, "'Yes'")
+```
+
+<!-- > (FG) Je n'ai pas commenté l'usage en mobilité. -->
+
+## Télévision, films et séries (FG)
+
 ### La télévision
 La télévision reste un loisir incontournable en France en 2018. 
-Au delà de la généralisation de l'équipement TV au sein des foyers, regarder la télévision est une pratique à laquelle s'adonne la quasi-totalité de la population des 15 ans et plus. Seuls 6% déclarent ne jamais, ou pratiquement jamais, regarder la television, que ce soit chez eux ou ailleurs, chez leurs parents, des amis, au cafe, etc. La pratique reste quotidienne pour la très large majorité, mais elle est néanmoins en retrait par rapport à la précédente enquête. En 2018, 78% des 15 ans et plus déclarent regarder la télévision tous les jours ou presque, contre 87% en 2008, retrouvant ainsi un niveau comparable à celui enregistré en 1997.
+Au delà de la généralisation de l'équipement TV au sein des foyers, regarder la télévision est une pratique à laquelle s'adonne la quasi-totalité de la population des 15 ans et plus. Seuls 6% déclarent ne jamais, ou pratiquement jamais, regarder la television, que ce soit chez eux ou ailleurs, chez leurs parents, des amis, au café, etc. La pratique reste quotidienne pour la très large majorité, mais elle est néanmoins en retrait par rapport à la précédente enquête. En 2018, 78% des 15 ans et plus déclarent regarder la télévision tous les jours ou presque, contre 87% en 2008, retrouvant ainsi un niveau comparable à celui enregistré en 1997.
 
 ```{r, eval=FALSE}
 graph_univar_all(C1)
@@ -113,7 +195,7 @@ En revanche, les différences selon le niveau de diplôme ou la catégorie socia
 
 Mais les écarts sont surtout remarquables selon l'âge. Ainsi, la pratique quotidienne se généralise avec l'avancé en âge. La quasi-totalité des 65 ans et plus (92%) regardent qotidiennement la télévision. Inversement, les plus jeunes (15-24 ans) comptent la proportion de téléspectateurs quotidiens la plus faible (55%). Néanmoins la majorité des jeunes déclarent encore regarder quotidiennement la télévision en 2018.
 
-Parmi les personne déclarant regarder la télévision, la comparaison du temps moyen passé devant la télévision, sans compter les émissions enregistrées ou téléchargées, ou les vidéos à la demande (moyenne calculée à partir du temps passé devant la TV la semaine et le week-end) confirme les différences observées. Ainsi, le temps moyen passé devant la télévision sur une semaine est similaire entre les hommes et les femmes (3,1h pour les femmes vs. 2,9h pour les hommes). En revanche, le temps passé devant la TV augmente avec l'avancé en âge (de 2h en moyenne pour les 15-24 ans à 3,7h pour les 65 ans et plus) et décroit avec l'augmentation du niveau de diplôme (de 3,7h en moyenne pour les individus non diplômés ou ayant eu le BEPC à 1,9h pour les individus diplômé de 2ème cycle de l'enseignement supérieur) ou de la catégorie sociale (de 2,3h en moyenne pour les cadres et professions intellectuelles supérieures à 3,7h pour les ouvriers).
+Parmi les personne déclarant regarder la télévision, la comparaison du temps moyen passé devant la télévision, sans compter les émissions enregistrées ou téléchargées, ou les vidéos à la demande (moyenne calculée à partir du temps passé devant la TV la semaine et le week-end) confirme les différences observées. Ainsi, le temps moyen passé devant la télévision sur une semaine est similaire entre les hommes et les femmes (3,1h pour les femmes vs. 2,9h pour les hommes). En revanche, le temps passé devant la TV augmente avec l'avancée en âge (de 2h en moyenne pour les 15-24 ans à 3,7h pour les 65 ans et plus) et décroit avec l'augmentation du niveau de diplôme (de 3,7h en moyenne pour les individus non diplômés ou ayant eu seulement le BEPC à 1,9h pour les individus diplômés du 2ème cycle de l'enseignement supérieur) ou de la catégorie sociale (de 2,3h en moyenne pour les cadres et professions intellectuelles supérieures à 3,7h pour les ouvriers).
 
 ```{r, eval=FALSE}
 svymean(~tpsTVjour, dw, na.rm = TRUE)
@@ -160,10 +242,13 @@ count(panel, tljp_tv, gen, agen_c, wt = poids) %>%
     scale_y_continuous(limits = c(0, 1), labels = scales::percent)
 
 ```
+
 <!-- > Les chiffres qui suivent sont à reprendre car il serait plus logique de prendre uniquement les télespectateurs. -->
 
 Malgré la présence généralisée du mobile au sein des foyers et la large présence de l'ordinateur, l'écran de télévision est de très loin l'équipement le plus communément utilisé pour regarder la télévision. En 2018, 93% des individus ont utilisé un écran de télévision pour regarder la TV au cours des 12 mois précédant l'enquête, très loin devant l'ordinateur (13%), le smartphone (9%), la tablette (8%) ou l'écran d'un vidéoprojecteur (1%).
+
 Quels que soient le genre, l'âge, le niveau de diplôme ou la catégorie sociale, le téléviseur est très loin l'écran le plus répandu pour regarder la télévision. utiliser un ordinateur ou un smartphone pour regarder la télévision est certes plus répandu parmi les plus jeunes, mais cela reste une pratique encore largement minoritaire en 2018 où seuls 32% des 15-24 ans ont regardé la télévision sur un ordinateur et 31% l'ont regardé sur un smartphone, contre 84% sur un écran de TV.
+
 <!-- > il faudrait peut-être que je crée une variable regarder TV uniquement sur écran de TV / écran TV + autre / autre uniquement -->
 
 ```{r, fig.cap = "Supports d'écoute de la télévision (pond)", eval=FALSE}
@@ -174,7 +259,7 @@ graph_qcm_all(C61:C65, "'Yes'")
 
 ## Films
 
-Regarder des films est une pratique de loisir partagée par l'ensemble de la population ou presque. Seuls 7% déclarent ne jamais ou pratiquement jamais regarder des films, que ce soit sur un écran de télévision ou sur tout autre support, chez eux ou ailleurs (parents, amis, transports, ...), à l’exception des films vus dans les cinémas. Pour beaucoup, la pratique est fréquente : 25% en regardent tous les jours, 47% toutes les semaines. Il n'y a pas d'écart entre les hommes et les femmes, mais la pratique est plus souvent très fréquente dans les milieux plus populaires et les plus faibles niveaux de diplômes, du fait sans doute d'usages plus fréquents de la télé. Ainsi, seulement 17% des cadres et professions intellectuelles supérieurs déclarent regarder des films tous les jours ou presque contre 31% des employés et ouvriers. Les différences sont similaires si l'on considère le niveau de diplôme (30% des individus n'ayant pas de diplôme ou seulement le BEPC et 32% ayant un CAP ou BEP déclarent regarder quotidiennement des films, alors qu'ils ne dépassent pas les 20% parmi les diplômés du supérieur). Comme pour la télévision dans son ensemble, regarder des films quotidiennement est une pratique moins répandue parmi les jeunes (de 19% des 15-24 ans à 28% des 55-64 ans), mais si l'on y ajoute la pratique hebdomadaire, nettement plus courante quel que soit l'âge, les différences s'estompent. 
+Regarder des films est une pratique de loisir partagée par l'ensemble de la population ou presque. Seuls 7% déclarent ne jamais, ou pratiquement jamais, regarder des films, que ce soit sur un écran de télévision ou sur tout autre support, chez eux ou ailleurs (parents, amis, transports, ...), à l’exception des films vus dans les cinémas. Pour beaucoup, la pratique est fréquente : 25% en regardent tous les jours, 47% toutes les semaines. Il n'y a pas d'écart entre les hommes et les femmes, mais la pratique est plus souvent très fréquente dans les milieux plus populaires et les plus faibles niveaux de diplômes, du fait sans doute d'usages plus fréquents de la télévision. Ainsi, seulement 17% des cadres et professions intellectuelles supérieurs déclarent regarder des films tous les jours ou presque contre 31% des employés et ouvriers. Les différences sont similaires si l'on considère le niveau de diplôme (30% des individus n'ayant pas de diplôme ou seulement le BEPC et 32% ayant un CAP ou BEP déclarent regarder quotidiennement des films, alors qu'ils ne dépassent pas les 20% parmi les diplômés du supérieur). Comme pour la télévision dans son ensemble, regarder des films quotidiennement est une pratique moins répandue parmi les jeunes (de 19% des 15-24 ans à 28% des 55-64 ans), mais si l'on y ajoute la pratique hebdomadaire, nettement plus courante quel que soit l'âge, les différences s'estompent. 
 
 ```{r, eval=FALSE}
 t <- svytable(~ C19, dw)
@@ -187,6 +272,7 @@ graph_univar_all(C19)
 <!-- > Les chiffres qui suivent sont à reprendre car il serait plus logique de prendre uniquement les consommateurs de films -->
 
 Comme pour la télévision, l'écran de TV reste de très loin l'équipement privilégié pour regarder les films (87% des répondants), devant l'ordinateur (17%). Regarder des films sur d'autres supports reste confidentiel : seuls 6% des répondants ont déclaré avoir utilisé un un smartphone pour visionner des films, 6% ont déclaré avoir utilisé une tablette, et 2% un écran avec un vidéoprojecteur. L'écran de télévision reste l'équipement le plus communément utilisé pour regarder des films quels que soient le genre, le niveau de diplôme, la catégorie sociale et l'âge (concernant à chaque fois au moins 8 individus sur 10). Visionner des films sur un écran d'ordinateur est beaucoup plus répandue parmi les cadres et professions intellectuelles supérieures (20%) et les professions intermédiaires (18%) que parmi les ouvriers (11%), les artisants-commerçants (11%) et les agriculteurs (4%). Les différences selon le niveau de diplôme vont dans le même sens, les plus dipômés (27% des individus diplômés du 2ème cycle du sup., 27% des diplômés BAC+3) étant 3 fois plus nombreux a utiliser un ordinateur pour visionner des films que les moins diplômés (aucun diplôme, BEPC, CAP-BEP). Regarder des films sur ordinateur est également une pratique fortement liée à l'âge. La majorité (57%) des 15-24 ans le font, c'est le cas de 28% des 25-39 ans. Au delà de 40 ans la pratique devient beaucoup plus confidentielle (15% des 40-54 ans et seulement 4% des 65 ans et plus). Par ailleurs, visionner des films sur le petit écran d'un smartphone est une pratique relativement répandue parmi les plus jeunes, avec 30% des 15-24 ans qui l'ont fait durant les 12 mois précédant l'enquête.
+
 <!-- > il faudrait peut-être que je crée une variable regarder film uniquement sur écran de TV / écran TV + autre / autre uniquement -->
 
 ```{r, fig.cap = "Support visionnage de films (pond)", eval=FALSE}
@@ -197,7 +283,7 @@ graph_qcm_all(C211:C215, "'Yes'")
 
 <!-- > Les chiffres qui suivent sont à reprendre car il serait plus logique de prendre uniquement les consommateurs de films -->
 
-Malgré les larges possibilités offertes par les nouveaux modes de diffusion des films, visionner des films en direct, sur des chaines gratuites ou payantes, reste de très loin le mode d'accès le plus communément utilisé. Ainsi 79% de la population regardent des films diffusés à la télévision. Les utilisations du replay, de la VOD (Netflix, Canal Play, myTFIvod...) ou du DVD/Blue ray sont certes relativement répandues, mais concernent une minorité de la population (entre un tiers et un quart). Regarder des films en streaming est plus confidentiel (16% de la population), néanmoins la pratique est peut-être sous-évaluée dans la mesure où Netflix a été cité comme solution de VOD plutôt que de streaming. Regarder des films directement à partir de fichiers numériques est rare (7% de la population). Une nouvelle fois, les différences entre les hommes et les femmes sont peu marquées concernant les supports de diffusion utilisés pour regarder des films. Si la diffusion à la télévision sur des chaînes gratuites ou payantes est le plus partagé au sein de la population quels que soient le genre, le niveau de diplôme, le niveau social ou l'âge, la diffusion en direct est fortement concurrencée par les autres modes de diffusion au sein de la population des 15-24 ans, et dans une moindre mesure parmi les 25-39 ans et les 40-54 ans. Ainsi, les 15-24 ans sont 66% à regarder des films diffusés en direct à la télévision, autant à en regarder en VOD, 55% à le faire en streaming, 43% en replay, 31% en DVD/Blu ray et 14% en fichiers numériques. Des différences, certes beaucoup moins marquées, sont également à noter en fonction du niveau social. Ainsi, c'est parmi les cadres et professions intellectuelles supérieures (suivi par les professions intermédiaires) que les différents modes de diffusion des films, en dehors de la diffusion "historique" (chaines TV), sont les plus utilisés. Inversement, les ouvriers utilisent moins les nouveaux modes de diffusion. 24% des ouvriers regardent des films en replay (contre 38% des cadres ou des professions intermédiaires), 20% regardent des films en VOD (contre 31% des cadres), 21% regardent des films sur DVD/Blue ray (contre 32% des cadres), 5% regardent des films à partir de chiers numériques (contre 12% des cadres). De même, si la diffusion à la télévision restent le mode de consommation de films le plus courant quel que soit le niveau de diplôme, l'utilisation des modes de diffusion alternatifs sont nettement moins répandus parmi les individus n'ayant pas le BAC. A titre d'exemple, seuls 18% des individus titulaires d'un CAP-BEP regardent des films en VOD et 28% en replay (contre respectivement 37% et 41% des diplômés du 2ème cycle de l'enseignement supérieur), 
+Malgré les larges possibilités offertes par les nouveaux modes de diffusion des films, visionner des films en direct, sur des chaines gratuites ou payantes, reste de très loin le mode d'accès le plus communément utilisé. Ainsi 79% de la population regardent des films diffusés à la télévision. Les utilisations du replay, de la VOD (Netflix, Canal Play, myTFIvod...) ou du DVD/Blue ray sont certes relativement répandues, mais concernent une minorité de la population (entre un tiers et un quart). Regarder des films en streaming est plus confidentiel (16% de la population), néanmoins la pratique est peut-être sous-évaluée dans la mesure où Netflix a été cité comme solution de VOD plutôt que de streaming. Regarder des films directement à partir de fichiers numériques est rare (7% de la population). Une nouvelle fois, les différences entre les hommes et les femmes sont peu marquées concernant les supports de diffusion utilisés pour regarder des films. Si la diffusion à la télévision sur des chaînes gratuites ou payantes est le plus partagé au sein de la population quels que soient le genre, le niveau de diplôme, le niveau social ou l'âge, la diffusion en direct est fortement concurrencée par les autres modes de diffusion au sein de la population des 15-24 ans, et dans une moindre mesure parmi les 25-39 ans et les 40-54 ans. Ainsi, les 15-24 ans sont 66% à regarder des films diffusés en direct à la télévision, autant à en regarder en VOD, 55% à le faire en streaming, 43% en replay, 31% en DVD/Blu ray et 14% en fichiers numériques. Des différences, certes beaucoup moins marquées, sont également à noter en fonction du niveau social. Ainsi, c'est parmi les cadres et professions intellectuelles supérieures (suivi par les professions intermédiaires) que les différents modes de diffusion des films, en dehors de la diffusion sur les chaines TV, sont les plus utilisés. Inversement, les ouvriers utilisent moins les nouveaux modes de diffusion. 24% des ouvriers regardent des films en replay (contre 38% des cadres ou des professions intermédiaires), 20% regardent des films en VOD (contre 31% des cadres), 21% regardent des films sur DVD/Blue ray (contre 32% des cadres), 5% regardent des films à partir de fichiers numériques (contre 12% des cadres). De même, si la diffusion à la télévision reste le mode de consommation de films le plus courant quel que soit le niveau de diplôme, l'utilisation des modes de diffusion alternatifs sont nettement moins répandus parmi les individus n'ayant pas le BAC. A titre d'exemple, seuls 18% des individus titulaires d'un CAP-BEP regardent des films en VOD et 28% en replay (contre respectivement 37% et 41% des diplômés du 2ème cycle de l'enseignement supérieur), 
 <!-- > il faudrait peut-être que je crée une variable regarder film uniquement diffuser à la TV / à la TV + autre / autre uniquement -->
 
 ```{r, fig.cap = "Mode d'accès aux films (pond)", eval=FALSE}
@@ -263,7 +349,7 @@ select(panel, annee, poids, prat_musique, tljp_musique) %>%
     labs(x= "Année", y = "Fréquence", colour = "Écoute")
 ```
 
-Il paraît raisonnable d'attribuer cette évolution au moins en partie à la numérisation de l'écoute de musique. Entre 2008 et 2018, les plateformes de streaming, dédiées à la musique (Spotify, Deezer) ou non (YouTube) se sont développées et ont attiré de nombreux utilisateurs. Elles constituent la source de revenus numériques la plus importante pour l'industrie de la musique. Un quart des auditeurs de musique utilisent des plateformes dédiées, et 14% d'autres plateformes. En outre, un quart de ces auditeurs emploient des fichiers numériques locaux, comme des mp3 issus du téléchargement. Ces usages peuvent se cumuler, de sorte que près de la moitié des auditeurs de musique (48%) utilisent au moins un dispositif numérique, plateforme de streaming ou fichiers locaux. L'usage d'au moins un outil numérique est légérement plus masculine -- elle concerne 52% des hommes et 46% des femmes -- mais dépend surtout de l'âge (elle concerne 90% des auditeurs de moins de 25 ans, et la majorité des auditeurs de moins de 50 ans) et du milieu social (60% des cadres et professions intellectuelles supérieures contre 39% des ouvriers et 44% des employés). Les écarts sont particulièrement marqués pour les plateformes de streaming spécialisée.
+Il paraît raisonnable d'attribuer cette évolution au moins en partie à la numérisation de l'écoute de musique. Entre 2008 et 2018, les plateformes de streaming, dédiées à la musique (Spotify, Deezer) ou non (YouTube) se sont développées et ont attiré de nombreux utilisateurs. Elles constituent la source de revenus numériques la plus importante pour l'industrie de la musique. Un quart des auditeurs de musique utilisent des plateformes dédiées, et 13% d'autres plateformes. En outre, un quart de ces auditeurs emploient des fichiers numériques locaux, comme des mp3 issus du téléchargement. Ces usages peuvent se cumuler, de sorte que près de la moitié des auditeurs de musique (48%) utilisent au moins un dispositif numérique, plateforme de streaming ou fichiers locaux. L'usage d'au moins un outil numérique est légérement plus masculine -- elle concerne 52% des hommes et 46% des femmes -- mais dépend surtout de l'âge (elle concerne la quasi-totalité des moins de 20 ans, et la majorité des auditeurs de moins de 50 ans) et du milieu social (60% des cadres et professions intellectuelles supérieures contre 39% des ouvriers et 44% des employés). Les écarts sont particulièrement marqués pour les plateformes de streaming spécialisée.
 
 ```{r, eval=FALSE}
 d <- mutate(d, support_musique_digital2 = fct_collapse(support_musique_digital, "N'écoute pas de musique en numérique" = "N'écoute pas de musique en numérique", other_level = "Écoute de la musique en numérique"))
@@ -280,7 +366,7 @@ En outre, les plateformes de streaming favorisent l'écoute mobile, notamment su
 tabyl(d, E7, E8BIS) %>% adorn_percentages(denominator = "col")
 ```
 
-Pour autant, malgré la pénétration croissante des services numériques, ce sont des terminaux analogiques qui dominent l'écoute musicale. La radio est employée par 77% des auditeurs et constitue, de loin, le premier mode d'accès à la musique. Elle est suivi par les CD et cassettes d'une part, et par la télévision d'autre part, deux catégories rassemblant autour de 40% des auditeurs de musique. Les usagers de la radio et des CD et cassettes sont en moyenne plus âgés que les usagers de terminaux numérique. L'usage de CD et cassettes concerne plus les cadres et professions intellectuelles supérieures, ainsi que les professions intermédiaires (près de 50% des auditeurs de musique) que les ouvriers (38%) et les employés (42%). L'usage musical de la radio est plus équitablement réparti dans la population ; et la télévision est elle moins employée par les cadres et professions intellectuelles supérieures. Une analyse factorielle fait ressortir comme premier axe de différenciation des terminaux musicaux une opposition entre terminaux analogiques et terminaux numériques, et comme second axe l'usage, très marquant socialement, des vinyles.
+Pour autant, malgré la pénétration croissante des services numériques, ce sont des terminaux analogiques qui dominent l'écoute musicale. La radio est employée par 71% des auditeurs et constitue, de loin, le premier mode d'accès à la musique. Elle est suivi par les CD et cassettes d'une part, et par la télévision d'autre part, deux catégories rassemblant autour de 40% des auditeurs de musique. Les usagers de la radio et des CD et cassettes sont en moyenne plus âgés que les usagers de terminaux numérique. L'usage de CD et cassettes concerne plus les cadres et professions intellectuelles supérieures, ainsi que les professions intermédiaires (près de 50%) que les ouvriers (33%) et les employés (39%). L'usage musical de la radio est plus équitablement réparti dans la population ; et la télévision est elle moins employée par les cadres et professions intellectuelles supérieures. Une analyse factorielle fait ressortir comme premier axe de différenciation des terminaux musicaux une opposition entre terminaux analogiques et terminaux numériques, et comme second axe l'usage, très marquant socialement, des vinyles.
 
 ```{r, eval=FALSE}
 library(FactoMineR)
