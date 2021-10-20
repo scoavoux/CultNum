@@ -106,6 +106,12 @@ d$Iordi <- case_when(
   d$I109 == "'Yes'" ~ "'Yes'",
   TRUE ~ "'No'")
 
+# (FG) Equipement en console de jeux (fixe ou portable) dans le foyer
+d$Iconsole <- case_when(
+  d$I105 == "'Yes'" ~ "'Yes'",  
+  d$I106 == "'Yes'" ~ "'Yes'",
+  TRUE ~ "'No'")
+
 # (FG) Groupe PCS_menage : renommage des modalités
 d$G_PCS_MENAGE_r <- case_when(
   d$G_PCS_MENAGE_ == "I"  ~  "I. à dominante cadre", 
