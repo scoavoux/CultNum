@@ -117,8 +117,9 @@ t <- freq(t, total = TRUE)
 kable(t, digits = 0)
 ```
 
-En 2018, l'environnement matériel du foyer diffère peu entre les femmes et les hommes. Seul l'ordinateur fixe est un équipement plus répandu dans les foyers des hommes enquêtés (43% disposent d'un ordinateur fixe, contre 36% pour les femmes). 
-En revanche, les taux équipements présents dans le foyer diffèrent nettement selon l'âge de l'enquêté. En 2018, une part non négligeable des 65 ans et plus (19%) vit dans un foyer sans téléphone portable, alors que le taux d'équipement est généralisé parmi les autres classes d'âge (taux au delà de 94%). De même, la majorité des enquêtés de 65 ans et plus vit dans un foyer équipé d'un ordinateur, mais le taux d'équipement est nettement plus faible comparativement aux autres catégories d'âge. Ainsi si 9 individus sur 10 de 15 à 54 ans disposent d'un ordinateur à domicile, ils sont 8 sur 10 entre 55 et 64 ans et seulement 6 sur 10 au delà. Par ailleurs, si l'ordinateur portable est plus répandu que l'ordinateur fixe, quelle que soit la classe d'âge, la différence est particulièrement marquée parmi les moins de 40 ans (77% des 25-39 ans et 83% des 15-24 ans ont un ordinateur portable dans leur foyer, contre 33% et 36% pour l'ordinateur fixe). Les plus de 65 ans sont également moins souvent équipés de tablette (33% vivent dans un foyer qui en est équipé, contre de 51% à 63% dans les autres catégories d'âge). Un tiers des 65 ans et plus n'ont pas accès à Internet, contre 14% des 55-64 ans et 7% des 40-54 ans, 6% des 25-39 ans et des 15-24 ans. D'autre part, l'équipement en console de jeux se raréfie considérablement dans les foyers des enquêtés les plus âgés. Ainsi seul 7% des 65 ans et plus et 21% des 55-64 ans en sont équipés, contre 55% des 40-54 ans, 64% des 25-39 ans et 72% des 15-24 ans. S'agissant des appareils photo numériques, les taux d'équipement au foyer varient relativement peu selon l'âge de l'enquêté, de 56% au minimum parmi les 65 ans et plus à 73% au maximum parmi les 40-54 ans. En revanche, les 65 ans et plus sont les plus équipés en platine vinyle (40% le sont, contre 13% des 15-24 ans) et en poste de radio (90% le sont, contre 49% des 15-24 ans). S'agissant des lecteur de CD/DVD, c'est parmi les 40 64 ans que l'équipement est le plus répandu (82% en sont équipés, contre 73% parmi les 65 ans et plus et 70% parmi les 25-39 ans et 66% parmi les 15-24 ans). L'équipement en télévision est en revanche assez peu sensible à l'âge de l'interviewé, le taux d'équipement au foyer variant entre 91% parmi les 15-24 an à 98% parmi les 65 ans et plus.
+En 2018, l'environnement matériel du foyer diffère peu entre les femmes et les hommes. Seul l'ordinateur fixe est un équipement plus répandu dans les foyers des hommes enquêtés (43% disposent d'un ordinateur fixe, contre 36% pour les femmes).
+
+En revanche, les taux d'équipements présents dans le foyer diffèrent nettement selon l'âge de l'enquêté. En 2018, une part non négligeable des 65 ans et plus (19%) vit dans un foyer sans téléphone portable, alors que le taux d'équipement est généralisé parmi les autres classes d'âge (taux au delà de 94%). De même, la majorité des enquêtés de 65 ans et plus vit dans un foyer équipé d'un ordinateur, mais le taux d'équipement est nettement plus faible comparativement aux autres catégories d'âge. Ainsi si 9 individus sur 10 de 15 à 54 ans disposent d'un ordinateur à domicile, ils sont 8 sur 10 entre 55 et 64 ans et seulement 6 sur 10 au delà. Par ailleurs, si l'ordinateur portable est plus répandu que l'ordinateur fixe, quelle que soit la classe d'âge, la différence est particulièrement marquée parmi les moins de 40 ans (77% des 25-39 ans et 83% des 15-24 ans ont un ordinateur portable dans leur foyer, contre 33% et 36% pour l'ordinateur fixe). Les plus de 65 ans sont également moins souvent équipés de tablette (33% vivent dans un foyer qui en est équipé, contre de 51% à 63% dans les autres catégories d'âge). Un tiers des 65 ans et plus n'ont pas accès à Internet, contre 14% des 55-64 ans et 7% des 40-54 ans, 6% des 25-39 ans et des 15-24 ans. D'autre part, l'équipement en console de jeux se raréfie considérablement dans les foyers des enquêtés les plus âgés. Ainsi seul 7% des 65 ans et plus et 21% des 55-64 ans en sont équipés, contre 55% des 40-54 ans, 64% des 25-39 ans et 72% des 15-24 ans. S'agissant des appareils photo numériques, les taux d'équipement au foyer varient relativement peu selon l'âge de l'enquêté, de 56% au minimum parmi les 65 ans et plus à 73% au maximum parmi les 40-54 ans. En revanche, les 65 ans et plus sont les plus équipés en platine vinyle (40% le sont, contre 13% des 15-24 ans) et en poste de radio (90% le sont, contre 49% des 15-24 ans). S'agissant des lecteur de CD/DVD, c'est parmi les 40 64 ans que l'équipement est le plus répandu (82% en sont équipés, contre 73% parmi les 65 ans et plus et 70% parmi les 25-39 ans et 66% parmi les 15-24 ans). L'équipement en télévision est en revanche assez peu sensible à l'âge de l'interviewé, le taux d'équipement au foyer variant entre 91% parmi les 15-24 an à 98% parmi les 65 ans et plus.
 
 Contrairement au téléviseur qui équipe la quasi-totalité des foyers quel que soit leur niveau social (le minimum étant observé parmi les cadres et professions intellectuelles supérieures avec 92% d'équipés TV), l'ordinateur est encore absent de nombreux foyers d'ouvriers ou d'agriculteurs. Ainsi, si l'ordinateur est présent chez la quasi-totalité des cadres (93% équipés) et des professions intermédiaires enquêtés (88% équipés), la situation est beaucoup plus contrastée au sein des foyers des ouvriers (65% équipés) et des agriculteurs (53% équipés). L'accès à internet est également moins répandu parmi les agriculteurs (57%) et les ouvriers (73%), et quasi-généralisé chez les cadres (95%) et les professions intermédiaires (91%). Les appareils photo numériques, les tablettes, les lecteurs CD et/ ou DVD, les platines vinyles sont également davantage présents chez les cadres (et dans une moindre mesure chez les professions intermédiaires), moins présents chez les ouviers et les agriculteurs.
 
@@ -154,7 +155,7 @@ graph_univar_all(D2)
 
 La télévision est de loin le moyen de se tenir informer le plus répandu. Ainsi 79% des 15 ans et plus privilégient la télévision, devant la radio (51%) et la presse papier (34%). Les médias traditionnels restent loin devant les médias numériques : 29% citent la presse numérique/les sites web d'information, 23% les réseaux sociaux, 9% d'autres moyens offerts par l'internet et 3% les blogs et forums.
 
-Les types de médias utilisés pour s'informer ne diffèrent pas entre les hommes et les femmes (la plus forte différence est observée pour la presse numérique ou les sites web d'information qui sont cités par 32% des hommes contre 26% des femmes). En revanche, les différences sont nettement marquées selon l'âge. La télévision est certes une source d'information majoritairement mobilisée quel que soit l'âge, mais elle est largement concurrencée par les réseaux sociaux parmi les 15-24 ans, et dans une moindre mesure parmi les 25-39 ans. Ainsi, 63% des 15-24 ans et 68% des 25-39 ans utilisent la télévision pour se tenir informés, ils sont respectivement 67% et 44% à utiliser les réseaux sociaux. La presse numérique ou les sites web d'information sont également une source d'information pour une large part des 15-24 ans (42%) et des 25-39 ans (44%), puis décline avec l'avancée en âge (34% des 40-54 ans, 25% des 40-54 ans et 13% des 65 ans et plus). Inversement la presse papier accroit son inflence avec l'avancée en âge. Alors que seuls 14% des 15-24 ans utilisent la presse papier pour s'informer, ils sont 50% parmi les 65 ans et plus. La radio est également un média assez peu mobilisé par les 15-24 ans (28%), alors qu'il s'agit d'une source d'information privilégiée par la moitié, voire plus, des autres classes d'âges (% compris entre 48% des 25-39 ans et 60% des 40-54 ans).
+Les types de médias utilisés pour s'informer ne diffèrent pas entre les hommes et les femmes (la plus forte différence est observée pour la presse numérique ou les sites web d'information qui sont cités par 32% des hommes contre 26% des femmes). En revanche, les différences sont nettement marquées selon l'âge. La télévision est certes une source d'information majoritairement mobilisée quel que soit l'âge, mais elle est largement concurrencée par les réseaux sociaux parmi les 15-24 ans, et dans une moindre mesure parmi les 25-39 ans. Ainsi, 63% des 15-24 ans et 68% des 25-39 ans utilisent la télévision pour se tenir informés, ils sont respectivement 67% et 44% à utiliser les réseaux sociaux. La presse numérique ou les sites web d'information sont également une source d'information pour une large part des 15-24 ans (42%) et des 25-39 ans (44%), puis décline avec l'avancée en âge (34% des 40-54 ans, 25% des 40-54 ans et 13% des 65 ans et plus). Inversement la presse papier accroit son influence avec l'avancée en âge. Alors que seuls 14% des 15-24 ans utilisent la presse papier pour s'informer, ils sont 50% parmi les 65 ans et plus. La radio est également un média assez peu mobilisé par les 15-24 ans (28%), alors qu'il s'agit d'une source d'information privilégiée par la moitié, voire plus, des autres classes d'âges (entre 48% des 25-39 ans et 60% des 40-54 ans).
 
 ```{r, eval=FALSE}
 graph_qcm(D31:D37, "'Yes'")
@@ -164,9 +165,8 @@ graph_qcm_all(D31:D37, "'Yes'")
 
 <!-- > (FG) Je n'ai pas commenté l'usage en mobilité. -->
 
-## Télévision, films et séries (FG)
+## La télévision
 
-### La télévision
 La télévision reste un loisir incontournable en France en 2018. 
 Au delà de la généralisation de l'équipement TV au sein des foyers, regarder la télévision est une pratique à laquelle s'adonne la quasi-totalité de la population des 15 ans et plus. Seuls 6% déclarent ne jamais, ou pratiquement jamais, regarder la television, que ce soit chez eux ou ailleurs, chez leurs parents, des amis, au café, etc. La pratique reste quotidienne pour la très large majorité, mais elle est néanmoins en retrait par rapport à la précédente enquête. En 2018, 78% des 15 ans et plus déclarent regarder la télévision tous les jours ou presque, contre 87% en 2008, retrouvant ainsi un niveau comparable à celui enregistré en 1997.
 
@@ -360,11 +360,16 @@ graph_univar_all(support_musique_digital2)
 graph_qcm_all(E81:E87)
 ```
 
-En outre, les plateformes de streaming favorisent l'écoute mobile, notamment sur téléphone portable. La disponibilité continue de la musique, à son tour, renforce l'usage quotidien. On constate ainsi que 85% des répondants qui écoutent souvent de la musique "sur un équipement mobile en dehors de [leur] domicile" sont aussi des usagers quotidiens de musique enregistrée, contre 54% de ceux qui n'ont aucun usage mobile extérieur. 
+L'écoute en numérique est corrélée à l'intensité de la pratique. Plus de 75% des répondants utilisant des outils numériques écoutent de la musique tous les jours ou presque, contre un peu moins de 60% de ceux qui n'utilisent que des terminaux analogiques. En outre, les plateformes de streaming favorisent l'écoute mobile, notamment sur téléphone portable. La disponibilité continue de la musique, à son tour, renforce l'usage quotidien. On constate ainsi que 85% des répondants qui écoutent souvent de la musique "sur un équipement mobile en dehors de [leur] domicile" sont aussi des usagers quotidiens de musique enregistrée, contre 54% de ceux qui n'ont aucun usage mobile extérieur.
 
 ```{r, eval=FALSE}
 tabyl(d, E7, E8BIS) %>% adorn_percentages(denominator = "col")
 ```
+
+```{r, eval=FALSE}
+tabyl(d, E7, support_musique_digital2) %>% adorn_percentages(denominator = "col")
+```
+
 
 Pour autant, malgré la pénétration croissante des services numériques, ce sont des terminaux analogiques qui dominent l'écoute musicale. La radio est employée par 71% des auditeurs et constitue, de loin, le premier mode d'accès à la musique. Elle est suivi par les CD et cassettes d'une part, et par la télévision d'autre part, deux catégories rassemblant autour de 40% des auditeurs de musique. Les usagers de la radio et des CD et cassettes sont en moyenne plus âgés que les usagers de terminaux numérique. L'usage de CD et cassettes concerne plus les cadres et professions intellectuelles supérieures, ainsi que les professions intermédiaires (près de 50%) que les ouvriers (33%) et les employés (39%). L'usage musical de la radio est plus équitablement réparti dans la population ; et la télévision est elle moins employée par les cadres et professions intellectuelles supérieures. Une analyse factorielle fait ressortir comme premier axe de différenciation des terminaux musicaux une opposition entre terminaux analogiques et terminaux numériques, et comme second axe l'usage, très marquant socialement, des vinyles.
 
@@ -408,7 +413,7 @@ Dans la lignée de constats précédemment opérés au sujet de la lecture de li
 <!-- Je suis étonné par l'absence du téléphone dans l'enquête PC18. Ne faudrait-il pas le mentionner? -->
 
 ```{r, fig.height = 8}
-Insérer un tableau qui regroupe l’ensemble des données (abscisse les supports ; ordonnées le total, le sexe, la CS, le niveau d’étude)
+#Insérer un tableau qui regroupe l’ensemble des données (abscisse les supports ; ordonnées le total, le sexe, la CS, le niveau d’étude)
 ```
 
 On n'observe pas de différence notable entre les hommes et les femmes concernant les supports privilégiés, malgré des pratiques de lecture plus fréquentes et intensives chez les femmes (et ce depuis les années 80) : 20% des femmes déclarent ne pas lire contre 35% des hommes, et 38% des lectrices déclarent lire tous les jours ou presque contre 25% des lecteurs.
@@ -482,22 +487,25 @@ Les jeunes exposent davantage leurs productions sur ces espaces.
 <!-- Commentaire 7 : j'avais noté ça dans la précédente version du rapport mais depuis le recalcul, il n'y a plus les données. Il me semble qu'on avait décidé qu'elles étaient inutiles, c'est pour ça ? -->
 <!-- je ne vois pas de quoi tu parles désolé... -->
 
-
-
 # Conclusions transversales
 
 ## Une numérisation à plusieurs vitesses (SC)
 
-Contrastes entre secteurs de très numérisés à peu numérisés, de JV à livres.
+Vivons-nous vraiment à l'"ère numérique"? Si les technologies numériques ont bel et bien radicalement changé l'offre culturelle, force est de constater que la numérisation des pratiques culturelle et de loisir est encore limitée, et surtout très inégale d'un secteur à l'autre. Dans la plupart des domaines, les technologies antérieures dominent largement les usages. La télévision demeure le terminal le plus utilisé pour le divertissement au quotidien, bien que les postes de télévision eux-mêmes incorporent désormais de nombreux services numériques, du replay aux services de vod et aux diverses plateformes, et la radio le premier support d'écoute de musique. Moins qu'à une révolution, nous assistons à une évolution, sur la longue durée, des pratiques culturelles et de loisir, qui incorpore peu à peu terminaux et services numériques tout en conservant les couches technologiques antérieures.
 
-a.     Une tendance générale à la numérisation des pratiques
-- Importance prise par le numérique dans l’ensemble des consommations et usages
+En outre, les différents secteurs culturels sont différemment concernés par cette numérisation. L'un d'entre eux est "nâtivement numérique", en quelque sorte: les jeux vidéo ne peuvent pas exister sans processeurs. La place croissante qu'ils occupent dans les loisirs, par le renouvellement, depuis 20 ans, de leurs publics, notamment grâce aux terminaux mobiles comme le smartphone, constitue sans doute le meilleur exemple d'une numérisation des loisirs. De la même manière, l'écoute quotidienne de musique enregistrée a considérablement progressé en dix ans, passant d'un tiers à plus de la moitié de la population, une évolution qui apparaît liée à l'écoute numérique, notamment liée à l'émergence des plateformes de streaming, bien qu'il soit difficile d'établir un lien de causalité strict. Les pratiques numériques d'écoute de musique concernent toutefois la moitié des auditeurs, faisant de ce secteur le plus avancé sur la voie de la numérisation, après le jeu vidéo. 
 
+Quand on pense aux plateformes culturelles, pourtant, ce sont les plateformes de vidéo à la demande, à l'image de Netflix, qui dominent les discours. Elles sont pourtant moins utilisées que les plateformes audio, bien qu'elles soient employées par un peu plus d'un quart des personnes regardant des films, tout comme les séries. Dans ces deux cas, la diffusion télévisée domine encore largement, concernant 4 personnes sur 5. En outre, le visionnage de films et séries passe le plus souvent par le poste de télévision, y compris pour les plateformes de VOD, alors que l'usage, dans cet objectif, de l'ordinateur et des autres terminaux numériques est marginal.
 
+<!-- Pratiques amateures
+Livre
+ 
 d.     Le livre et la lecture, un domaine qui échappe à la numérisation
 *	Attachement au livre papier chez tout le monde
 *	Rappeler que c’est dans les classes sup qu’on lit malgré tout en numérique, et citer le graphique/tableau correspondant (vu qu’on l’aura sans doute évoqué avant) / en soi c’est pas toujours évident de ménager du contenu pour la suite quand on aborde un sujet mais ça va sans doute être plus logique en faisant.
 *	Éventuellement évoquer en contrepoint le vinyle comme autre pratique pour laquelle l’objet physique (re)devient présent dans les pratiques, ce qui met en avant la valeur symbolique de certains objets (mais c’est tellement minoritaire ! cela dit c’est quand même un phénomène dans l’industrie de la musique, notamment en termes de ventes d’albums, ça peut être bien d’évoquer ça quand même).
+-->
+
  
 ## Des disparités fortes dans l'accès aux pratiques numériques (SC)
 
@@ -511,20 +519,18 @@ b.     Des disparités dans l’accès et les usages numériques
 e.   Des pratiques qui malgré une démocratisation numérique restent l’apanage des classes sup (à voir si ça ne fait pas redite avec le b mais je pense que ça peut être axé différemment).
 - Peut-être faire un point qui rappelle que le numérique n’est pas l’outil d’une démocratisation des pratiques culturelles, et que si le numérique en soi se démocratise, les pratiques légitimes, elles, continuent à être inégalement réparties.
 
- 
-## La diversité des supports (SC)
+**Une moyennisation des pratiques numériques? (EG)**
+
+f.      Des pratiques moyennes
+- Ici, idée de développer les pratiques numériques qui concernent davantage les classes moyennes (diplômes bac et bac+2). Idée en filigrane : maintenant que le numérique est démocratisé, qu’est-ce que celles et ceux qui ne l’utilisaient pas il y a 10 ans font avec ? Est-ce qu’il y a une culture numérique moyenne ? Réseaux sociaux, jeux vidéo, vidéos de youtubeur·ses, etc. 
+
+**La diversité des supports (SC)**
+
+Une forme de cumulativité à l'œuvre dans la numérisation.
 
 c. L’aisance numérique se manifeste également par la diversité des équipements utilisés 
 *	Point sur la diversité des équipements et des usages chez les classes sup / faire le pont avec omnivorisme des goûts / diversité des formes de prescription privilégiées
 *	Faire un point sur l’âge (est-ce que l’âge suffit à déterminer la diversité ? est-ce plus parlant que la position sociale/niveau d’étude ? Pas sûre même si les jeunes utilisent plus les nouveaux outils, et continuent de regarder la télé, etc. donc à vérifier). Serait intéressant ici ou ailleurs de croiser la variable de CS avec la variable d’âge, et comparer les jeunes entre eux ! Peut-être plutôt dans le b juste au-dessus, à l’endroit des disparités selon la position sociale, je le remonte aussi.
 *	C’est ici qu’on voit une différence entre hommes et femmes (peut-être aller jusqu’à parler d’usages routiniers ? à vérifier si on a des données sur la découverte d’outils, sur l’appétence pour le nouveau, même si je pense pas). 
-
-## Une moyennisation des pratiques numériques? (EG)
-
-f.      Des pratiques moyennes
-- Ici, idée de développer les pratiques numériques qui concernent davantage les classes moyennes (diplômes bac et bac+2). Idée en filigrane : maintenant que le numérique est démocratisé, qu’est-ce que celles et ceux qui ne l’utilisaient pas il y a 10 ans font avec ? Est-ce qu’il y a une culture numérique moyenne ? Réseaux sociaux, jeux vidéo, vidéos de youtubeur·ses, etc. 
-
- 
-
 
 
