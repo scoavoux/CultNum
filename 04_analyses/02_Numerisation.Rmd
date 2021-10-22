@@ -747,37 +747,12 @@ graph_univar_all(B2)
 
 Jeux en ligne plus masculins, plus ouvriers.
 
-
 ```{r}
 graph_univar_all(B3)
 ```
 
 ### Genres de jeux vidéo
 
-En 2008:
-
-+ J15C_M1     "J15C_M1 : des jeux d'action dont jeux FPS, de\ncombat ou de plateforme (Super Mario,...)"
-+ J15C_M2     "J15C_M2 : des jeux de sport (Pro Evolution Soccer,\nGran Turismo, Tenni s,...)"
-+ J15C_M3     "J15C_M3 : des jeux de patience, de rôle ou de\nstratégie"
-+ J15C_M4     "J15C_M4 : des jeux de société (cartes, échecs,...)"
-+ J15C_M5     "J15C_M5 : des jeux de hasard (casino, loterie,...)"
-+ J15C_M6     "J15C_M6 : des jeux éducatifs (adibou,...)"
-+ J15C_M8     "J15C_M8 : des jeux de simulations (dont\naviation...)"
-+ J15C_M9     "J15C_M9 : MMORPG"                                                                                                    
-
-En 2018:
-
-+ B601     "Jeux de cartes, d'échecs, de société\n(poker, tarot, solitaires, échecs,\nscrabble, Monopoly, mots croisés…)"  
-+ B602     "Jeux d’argent en ligne (Loto, PMU,\npoker, casino, paris…)"                                                    
-+ B603     "Jeux de réflexion, d’énigmes, de quizz\n(Démineur, Professeur Layton, Docteur\nKawashima…)"                    
-+ B604     "Jeux d’action/aventure et de rôle (Super\nMario, Zelda, Assassin’s Creed, Final\nFantasy…)"                    
-+ B605     "Jeux d’adresse et de puzzle (Angry\nBirds, Tétris, Snake, Fruit Ninja, Candy\nCrush…)"                         
-+ B606     "Jeux de combat et de tir / FPS (Doom,\nStreet Fighter, Tekken, Call of Duty…)"                                 
-+ B607     "Jeux de sport, course, pilotage (FIFA,\nFootball Manager, Gran turismo, Super\nMario Kart…)"                   
-+ B608     "Jeux musicaux/danse (Just dance,\nSingstar, Guitar Hero…)"                                                     
-+ B609     "Jeux de gestion (Farmville, Sim City,\nLes Sims…)"                                                             
-+ B610     "Jeux de stratégie et d’arène (Command &\nConquer, Age of Empires, Civilization,\nClash of Clans…)"             
-+ B611     "Jeux massivement multi-joueurs (World of\nWarcraft, Dofus,…)"                                                  
 
 #### En 2008
 
@@ -801,6 +776,7 @@ TV tlj plus faible chez les cadres, mais tout de même 7/10.
 ```{r}
 graph_univar_all(C1)
 ```
+
 L'écoute de TV se fait encore très largement sur un écran de TV. Les écoutes alternatives sont plutôt CPIS/diplômés: 18% des CPIS écoutent sur ordinateur, 13% sur tablette, contre 8% et 5% des ouvriers.
 
 ```{r, fig.cap = "Supports d'écoute de la télévision (pond)"}
@@ -863,6 +839,7 @@ graph_univar_all(C31)
 ```
 
 Là aussi, l'écran de télévision domine largement (70% des spectateurs), devant l'ordinateur (14%). La télévision est le seul terminal plus utilisé par les femmes que par les hommes. Son usage se réduit dans les milieux sociaux supérieurs (65% des cadres contre 76% des employés et 72% des ouvriers), à l'inverse de l'ordinateur (18% des cadres, 8% des ouvriers) et chez les étudiants et les jeunes.
+
 ```{r, fig.cap = "Termminal de visionnage de séries (pond)"}
 graph_qcm_all(C331:C335, "'Yes'")
 ```
@@ -891,7 +868,7 @@ graph_qcm_all(D31:D37)
 
 En ce qui concerne la presse numérique, la presse payante n'attire que 3% des répondants, contre 27% pour la presse gratuite. Les deux sont plus consommés par les classes supérieures, mais c'est même quasi exclusif pour la presse payante (9% des CPIS contre 1% des ouvriers, 2% employés, 3% PI).
 
-```{r, fig.cap = "Mode d'accès à l'information (pond)"}
+```{r, fig.cap = "Information numérique gratuite ou payante (pond)"}
 graph_qcm_all(D41:D42)
 ```
 
@@ -967,3 +944,206 @@ Activités culturelles sur Internet limitées. principalement la recherche d'inf
 graph_qcm_all(I71:I77)
 ```
 
+# Diversité des supports
+
+```{r}
+# Nombre de supports de musique différents
+d <- select(d, E81:E87, IDENT18) %>% 
+  mutate(across(E81:E87, ~as.numeric(.x) -1)) %>% 
+  mutate(nb_dispositifs_musique = rowSums(across(E81:E87))) %>% 
+  select(IDENT18, nb_dispositifs_musique) %>% 
+  right_join(d)
+d <- mutate(d, nb_dispositifs_musique2 = cut(nb_dispositifs_musique, breaks = c(-1, 1, 2, 3, 9)))
+
+```
+
+```{r}
+# Nombre de supports de television différents
+d <- select(d, C61:C65, IDENT18) %>% 
+  mutate(across(C61:C65, ~as.numeric(.x) -1)) %>% 
+  mutate(nb_dispositifs_tele = rowSums(across(C61:C65))) %>% 
+  select(IDENT18, nb_dispositifs_tele) %>% 
+  right_join(d)
+d <- mutate(d, nb_dispositifs_tele2 = cut(nb_dispositifs_tele, breaks = c(-1, 1, 2, 9)))
+
+```
+
+
+```{r}
+# Nombre de supports de films différents
+d <- select(d, C211:C215, IDENT18) %>% 
+  mutate(across(C211:C215, ~as.numeric(.x) -1)) %>% 
+  mutate(nb_dispositifs_films = rowSums(across(C211:C215))) %>% 
+  select(IDENT18, nb_dispositifs_films) %>% 
+  right_join(d)
+d <- mutate(d, nb_dispositifs_films2 = cut(nb_dispositifs_films, breaks = c(-1, 1, 2, 9)))
+```
+
+```{r}
+# Nombre de supports de séries différents
+d <- select(d, C331:C335, IDENT18) %>% 
+  mutate(across(C331:C335, ~as.numeric(.x) -1)) %>% 
+  mutate(nb_dispositifs_series = rowSums(across(C331:C335))) %>% 
+  select(IDENT18, nb_dispositifs_series) %>% 
+  right_join(d)
+d <- mutate(d, nb_dispositifs_series2 = cut(nb_dispositifs_series, breaks = c(-1, 1, 2, 9)))
+```
+
+
+```{r}
+# Nombre de supports d'information différents
+d <- select(d, D31:D37, IDENT18) %>% 
+  mutate(across(D31:D37, ~as.numeric(.x) -1)) %>% 
+  mutate(nb_dispositifs_information = rowSums(across(D31:D37))) %>% 
+  select(IDENT18, nb_dispositifs_information) %>% 
+  right_join(d)
+d <- mutate(d, nb_dispositifs_information2 = cut(nb_dispositifs_information, breaks = c(-1, 1, 2, 3, 9)))
+```
+
+## Musique
+
+```{r, fig.height=8}
+filter(d, !is.na(nb_dispositifs_musique2)) %>% 
+  tabyl(pcs1, nb_dispositifs_musique2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de musique par classe sociale")
+```
+
+```{r}
+filter(d, !is.na(nb_dispositifs_musique2)) %>% 
+  tabyl(SEXE, nb_dispositifs_musique2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de musique par sexe")
+```
+
+```{r}
+filter(d, !is.na(nb_dispositifs_musique2)) %>% 
+  tabyl(age_c, nb_dispositifs_musique2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de musique par âge")
+```
+
+
+## Télévision
+
+```{r, fig.height=8}
+filter(d, !is.na(nb_dispositifs_tele2)) %>% 
+  tabyl(pcs1, nb_dispositifs_tele2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de television par classe sociale")
+```
+
+```{r}
+filter(d, !is.na(nb_dispositifs_tele2)) %>% 
+  tabyl(SEXE, nb_dispositifs_tele2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de television par sexe")
+```
+
+
+```{r}
+filter(d, !is.na(nb_dispositifs_tele2)) %>% 
+  tabyl(age_c, nb_dispositifs_tele2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de television par classe d'âge")
+```
+
+
+## Films
+
+```{r, fig.height=8}
+filter(d, !is.na(nb_dispositifs_films2)) %>% 
+  tabyl(pcs1, nb_dispositifs_films2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de film par classe sociale")
+```
+
+```{r}
+filter(d, !is.na(nb_dispositifs_films2)) %>% 
+  tabyl(SEXE, nb_dispositifs_films2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de film par sexe")
+```
+
+```{r}
+filter(d, !is.na(nb_dispositifs_films2)) %>% 
+  tabyl(age_c, nb_dispositifs_films2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de film par classe d'âge")
+```
+
+## Séries
+
+```{r, fig.height=8}
+filter(d, !is.na(nb_dispositifs_series2)) %>% 
+  tabyl(pcs1, nb_dispositifs_series2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de serie par classe sociale")
+```
+
+```{r}
+filter(d, !is.na(nb_dispositifs_series2)) %>% 
+  tabyl(SEXE, nb_dispositifs_series2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de serie par sexe")
+```
+
+```{r}
+filter(d, !is.na(nb_dispositifs_series2)) %>% 
+  tabyl(age_c, nb_dispositifs_series2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'écoute de serie par classe d'âge")
+```
+
+## Information
+
+```{r, fig.height=8}
+filter(d, !is.na(nb_dispositifs_information2)) %>% 
+  tabyl(pcs1, nb_dispositifs_information2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'information par classe sociale")
+```
+
+```{r}
+filter(d, !is.na(nb_dispositifs_information2)) %>% 
+  tabyl(SEXE, nb_dispositifs_information2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'information par classe sociale")
+```
+
+```{r}
+filter(d, !is.na(nb_dispositifs_information2)) %>% 
+  tabyl(age_c, nb_dispositifs_information2) %>% 
+  adorn_totals() %>% 
+  adorn_percentages() %>% 
+  adorn_pct_formatting() %>% 
+  kable(caption = "Nombre de dispositifs d'information par classe d'âge")
+```

@@ -76,12 +76,12 @@ pc08w <- svydesign(ids = ~1, data = pc08, weights = ~ pc08$POND_INIT)
  
 ## Équipement (FG)
 
-*	Questions de PC2008 sur équipement informatique (pas encore traités)
-*	PC2018: équipement informatique 
+<!-- * Questions de PC2008 sur équipement informatique (pas encore traités)
+* PC2018: équipement informatique 
 * Noter la domination de la TV et du smartphone ; deux logiques opposées : idée que l’équipement mobile est généralisé mais n’est pas venu mettre en péril la domination de la tv
-*	PC2018: mode d’abonnement internet
-*	Tableau qui regroupe les données à ce sujet selon les 4 variables (Sexe, Âge en faisant des tranches ?, Diplôme, CS, + éventuellement type de ménage ?)
- 
+* PC2018: mode d’abonnement internet
+* Tableau qui regroupe les données à ce sujet selon les 4 variables (Sexe, Âge en faisant des tranches ?, Diplôme, CS, + éventuellement type de ménage ?)
+ --> 
 <!-- > (EG) Problème des questions sur l’équipement du ménage (finalement ça ne nous dit pas grand-chose, ou alors il faut les mettre en relation avec les questions sur les pratiques numériques en prenant la variable type de ménage et voir quel effet l’équipement (présumé) des autres membres du foyer peut avoir sur les pratiques (je sais pas si je suis très claire).  -->
 
 Entre 2008 et 2018, la présence de l'ordinateur au sein des foyers se renforce. Ainsi, en 2018, 79% des individus de 15 ans et plus vivent dans un foyer équipé d'un ordinateur, contre 65% dix ans auparavant. Par ailleurs, alors que l'équipement en ordinateur fixe était le plus courant en 2008, la tendance s'est totalement inversée au profit de l'ordinateur portable. En 2018, 64% des individus disposent d'un ordinateur portable dans leur foyer et 39% d'un ordinateur fixe (en 2008, 56% vivaient dans un foyer équipé d'un ordinateur fixe et 27% dans un foyer équipé d'un ordinateur portable). L'accès internet, qui n'est plus conditionné à l'utilisation d'un ordinateur, a également fortement progressé sur la période. En 2018, 84% de la population de 15 ans et plus vit dans un foyer ayant accés à Internet, contre 56% en 2008. Le téléphone portable, équipement de plus en plus multifonction, tend à se généraliser. Alors que déjà 85% des 15 ans et plus vivaient dans un foyer où le téléphone portable était présent, ils sont 92% en 2018. La présence d'un appareil photo numérique (hors téléphone mobile) progresse légèrement, 66% de la population en est équipé dans son foyer en 2018 (contre 57% en 2008). De nouveaux écrans font également leur apparition entre les deux enquêtes, comme la tablette, présente dans la moitié des foyers des enquêtés en 2018.
@@ -162,7 +162,9 @@ Les écarts concernant le milieu social se sont eux fortement résorbés. Alors 
 <!-- Commentaire 5 : c’est notamment une des variables qui me faisait penser à une moyennisation, puisque pour d’autres pratiques (légitimes), les CS ne sont pas concernées de façon similaire (et qu’on peut faire le même constat pour une poignée d’autres pratiques « moyennes « ) -->
 
 A nouveau, le niveau d’étude suit les tendances observées du point de vue de la classe sociale : si les non diplômés et titulaires du certificat d’étude restent peu concernés par l’usage des réseaux sociaux (29,7%), plus de 53,9% des Français ayant au moins le bac les utilisent. A noter que contrairement à l’usage d’internet, celui des réseaux sociaux est davantage marqué chez les individus occupant une position intermédiaires. Si l’écart est faible au regard de la classe sociale (3 points d’écart entre les cadres et les professions intermédiaires), il s’accroit très légèrement entre les titulaires du bac (66,1%) et les individus ayant fait des études supérieures (61,3%), séparés de 5 points. Ceci tend à montrer qu’à mesure que les usages d’internet se sont répandus dans la population, et bien qu’on observe des usages plus marqués dans les classes supérieures notamment en ce qui concerne les pratiques culturelles les plus légitimes (comme nous ne verrons dans la suite de ce rapport), certaines pratiques plus « moyennes » socialement comme l’usage des réseaux sociaux ont pu se développer.
-                                
+<!-- Citer Hargittai sur la stratification sociale des réseaux sociaux, Potential biases in big data: Omitted voices on social media
+
+Peut-être présenter ça comme une hypothèse -->
 
 # La numérisation des loisirs et des pratiques culturelles
 
@@ -509,9 +511,7 @@ Les jeunes exposent davantage leurs productions sur ces espaces.
 <!-- Commentaire 7 : j'avais noté ça dans la précédente version du rapport mais depuis le recalcul, il n'y a plus les données. Il me semble qu'on avait décidé qu'elles étaient inutiles, c'est pour ça ? -->
 <!-- je ne vois pas de quoi tu parles désolé... -->
 
-# Conclusions transversales
-
-## Une numérisation à plusieurs vitesses (SC)
+# Conclusion
 
 Vivons-nous vraiment à l'"ère numérique"? Si les technologies numériques ont bel et bien radicalement changé l'offre culturelle, force est de constater que la numérisation des pratiques culturelle et de loisir est encore limitée, et surtout très inégale d'un secteur à l'autre. Dans la plupart des domaines, les technologies antérieures dominent largement les usages. La télévision demeure le terminal le plus utilisé pour le divertissement au quotidien, bien que les postes de télévision eux-mêmes incorporent désormais de nombreux services numériques, du replay aux services de vod et aux diverses plateformes, et la radio le premier support d'écoute de musique. Moins qu'à une révolution, nous assistons à une évolution, sur la longue durée, des pratiques culturelles et de loisir, qui incorpore peu à peu terminaux et services numériques tout en conservant les couches technologiques antérieures.
 
@@ -519,17 +519,17 @@ En outre, les différents secteurs culturels sont différemment concernés par c
 
 Quand on pense aux plateformes culturelles, pourtant, ce sont les plateformes de vidéo à la demande, à l'image de Netflix, qui dominent les discours. Elles sont pourtant moins utilisées que les plateformes audio, bien qu'elles soient employées par un peu plus d'un quart des personnes regardant des films, tout comme les séries. Dans ces deux cas, la diffusion télévisée domine encore largement, concernant 4 personnes sur 5. En outre, le visionnage de films et séries passe le plus souvent par le poste de télévision, y compris pour les plateformes de VOD, alors que l'usage, dans cet objectif, de l'ordinateur et des autres terminaux numériques est marginal.
 
-<!-- Pratiques amateures
+EG
+Pratiques amateures
 Livre
  
 d.     Le livre et la lecture, un domaine qui échappe à la numérisation
 *	Attachement au livre papier chez tout le monde
 *	Rappeler que c’est dans les classes sup qu’on lit malgré tout en numérique, et citer le graphique/tableau correspondant (vu qu’on l’aura sans doute évoqué avant) / en soi c’est pas toujours évident de ménager du contenu pour la suite quand on aborde un sujet mais ça va sans doute être plus logique en faisant.
 *	Éventuellement évoquer en contrepoint le vinyle comme autre pratique pour laquelle l’objet physique (re)devient présent dans les pratiques, ce qui met en avant la valeur symbolique de certains objets (mais c’est tellement minoritaire ! cela dit c’est quand même un phénomène dans l’industrie de la musique, notamment en termes de ventes d’albums, ça peut être bien d’évoquer ça quand même).
--->
-
  
-## Des disparités fortes dans l'accès aux pratiques numériques (SC)
+
+La numérisation limitée des pratiques culturelles est liée non seulement à la résistance des terminaux analogiques, mais aussi à une adoption inégale des technologies numériques. Dans la grande majorité des domaines analysés dans cette enquête, les usagers du numérique sont plus jeunes et plus diplômés, et plus souvent issus des classes supérieures, que les non-usagers.
 
 b.     Des disparités dans l’accès et les usages numériques
 - Idée que, quel que soit le domaine, on observe des disparités dans les pratiques numériques
@@ -543,16 +543,10 @@ e.   Des pratiques qui malgré une démocratisation numérique restent l’apana
 
 **Une moyennisation des pratiques numériques? (EG)**
 
-f.      Des pratiques moyennes
+f.      Des pratiques moyennes EG
 - Ici, idée de développer les pratiques numériques qui concernent davantage les classes moyennes (diplômes bac et bac+2). Idée en filigrane : maintenant que le numérique est démocratisé, qu’est-ce que celles et ceux qui ne l’utilisaient pas il y a 10 ans font avec ? Est-ce qu’il y a une culture numérique moyenne ? Réseaux sociaux, jeux vidéo, vidéos de youtubeur·ses, etc. 
 
-**La diversité des supports (SC)**
+Les enquêtes sur la culture constatent régulièrement la prévalence d'une "logique de cumul" des pratiques culturelles. Les inégalités de diversité et d'intensité des pratiques s'ajoutent ainsi aux inégalités d'accès. Cette logique se confirme en ce qui concerne l'accès numérique à la culture. Les plus favorisés sont aussi ceux qui utilisent le plus grand nombres de terminaux différents, et ont de ce fait l'accès le plus variés à la culture. Parmi les auditeurs de musique, 21% des cadres et professions intellectuelles supérieures utilisent au moins trois dispositifs différents pour écouter de la musique, contre 14% des ouvriers. 31% des cadres et professions intellectuelles supérieures utilisent plus d'un terminal pour regarder la télévision, contre seulement 16% des ouvriers. Le même constat vaut pour les films (23% des cadres et professions intellectuelles supérieures utilisent plus d'un terminal contre 15% des ouvriers) et les séries (26% contre 14%), et il se radicalise pour l'accès à l'information, avec 50% des cadres, mais seulement 33% des ouvriers, utilisant au moins 3 terminaux différents. 
 
-Une forme de cumulativité à l'œuvre dans la numérisation.
-
-c. L’aisance numérique se manifeste également par la diversité des équipements utilisés 
-*	Point sur la diversité des équipements et des usages chez les classes sup / faire le pont avec omnivorisme des goûts / diversité des formes de prescription privilégiées
-*	Faire un point sur l’âge (est-ce que l’âge suffit à déterminer la diversité ? est-ce plus parlant que la position sociale/niveau d’étude ? Pas sûre même si les jeunes utilisent plus les nouveaux outils, et continuent de regarder la télé, etc. donc à vérifier). Serait intéressant ici ou ailleurs de croiser la variable de CS avec la variable d’âge, et comparer les jeunes entre eux ! Peut-être plutôt dans le b juste au-dessus, à l’endroit des disparités selon la position sociale, je le remonte aussi.
-*	C’est ici qu’on voit une différence entre hommes et femmes (peut-être aller jusqu’à parler d’usages routiniers ? à vérifier si on a des données sur la découverte d’outils, sur l’appétence pour le nouveau, même si je pense pas). 
-
+En outre, le cumul numérique concerne d'abord les personnes les plus jeunes. Les 15-24 ans sont par exemple moins de la moitié à regarder la télévision sur un seul dispositif, alors que cela concerne 64% des 24-39 ans et jusqu'à 91%  des soixante-cinq ans et plus.
 
