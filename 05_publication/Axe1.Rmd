@@ -542,38 +542,147 @@ Au sein des pratiquants, les joueurs sont beaucoup plus susceptibles que les jou
 
 ## Pratiques amateurs (EG)
 
-L'enquête Pratiques Culturelles 2018 mesure les pratiques amateures: écriture, montage, pratique de la peinture, du théâtre, du dessin, de la danse, de la poterie, de la photographie, généalogie, activité scientifique. Certaines sont fortement numérisées, comme le montage audio ou video, ou la photographie. La plupart, cependant, se prêtent apparamment peu à la numérisation. Comment numériser la pratique de la peinture ou celle de la danse? La littérature montre pourtant que les "mondes de loisir" s'appuient sur une infrastructure matérielle et organisationnelle (Fine, 2015). Le numérique vient équiper ces pratiques en facilitant des activités parfois pensées comme périphériques, mais qui sont essentielles, comme le montre Vinciane Zabban (XXXX) à propos de l'effet de la publicisation des productions de tricot sur les plateformes.
-<!-- Commentaire 1 : je ne suis pas sûre de comprendre à quelle variable les premiers chiffres calculés renvoient. Dans le questionnaire il n'y a pas de question pour laquelle les modalités serait "oui", "non", "jamais"...  -->
-<!--sur les pratiques amateures, le oui/non/jamais est une variable synthétique fondée sur les questions est-ce que vous avez fait... au cours de votre vie / au cours des douze derniers mois
-oui = oui oui, non = oui non, jamais = non NA -->
+L'enquête Pratiques Culturelles 2018 mesure un certain nombre de pratiques amateures : écriture, montage, pratique de la peinture, du théâtre, du dessin, de la danse, de la poterie, de la photographie, généalogie, activité scientifique. Certaines sont fortement numérisées, comme le montage audio ou video, ou la photographie. La plupart, cependant, se prêtent apparamment peu à la numérisation. Comment numériser la pratique de la peinture ou celle de la danse ? La littérature montre pourtant que les "mondes de loisir" s'appuient sur une infrastructure matérielle et organisationnelle (Fine, 2015). Le numérique vient équiper ces pratiques en facilitant des activités parfois pensées comme périphériques, mais qui sont essentielles, comme le montre Vinciane Zabban (2015) à propos de l'effet de la publicisation des productions de tricot sur les plateformes.
+<!-- Emma : Je suis pas hyper convaincue par la phrase "Comment numériser la pratique de la peinture ou celle de la danse ?" A vrai dire il y a énormément de contenus en ligne sur ces questions ; du coup, on part du principe que c'est quand même marginal ? -->
 
-+ Insérer un graphique qui compare de façon générale les cours (cumul des pratiques) pris dans les différentes structures pour voir la différence, puis le commenter (en l’état je n’arrive pas à voir s’il y a une différence. 
-<!-- Commentaire 2 : Je voulais calculer la part d'individus ayant déclaré une pratique amateur (n'importe laquelle) et ayant déclaré prendre des cours, mais la manière dont les réponses sont codées fait que je ne suis pas sûre que ce soit possible. On n'a pas une réponse pour l'ensemble de la population ayant déclaré au minimum une pratique amateur mais on a une variable créée par pratique amateur...  -->
-<!--C'est difficile parce que se pose la question d'une personne qui a deux activités mais suit un seul cours.
-Je peux faire: suit au moins un cours pour une des activités qu'il ou elle fait.
-Fait dans numerisation.Rmd
- -->
+Dans l'enquête, l'activité périphérique qui est mesurée systématiquement sur les pratiques amateures est l'apprentissage : les répondants ont-ils pris des cours pour chaque activité déclarée ? Et si oui, était-ce un cours sur Internet ? Près de la moitié des répondants (46%) déclarent au moins une pratique amateure ; parmi eux, un sur cinq déclare avoir pris des cours, et un peu moins d'un sur dix (8%) des cours en ligne. Certaines pratiques amateurs font davantage l’objet de cours particulier (le cirque, la danse, la musique et le chant, la peinture et la sculpture, la poterie, les activités scientifiques et techniques et le théâtre) ou de cours au sein de structures spécialisées telles que les conservatoires et écoles de musique, de danse, d’art dramatique, d’art plastique et de cirque (le cirque, la danse, le théâtre et la poterie). En revanche, les pratiques du montage audio et vidéo, de la musique et du chant, et des activités scientifiques et techniques sont celles qui ont le plus fait l’objet de cours en ligne. Nous pouvons attribuer la part des cours en ligne de montage et d’activités scientifiques et techniques par la faible offre qui y est consacrée par ailleurs. La surreprésentation de la pratique de la musique et du chant s’explique par la prédominance de cette pratique au sein des pratiques amateurs : elles sont pratiquées par 34% des Français·es ce qui en fait la pratique amateur dominante. 
 
-Dans l'enquête, l'activité périphérique qui est mesurée systématiquement sur les pratiques amateures est l'éducation: les répondants ont-ils pris des cours pour chaque activité déclarée? Et si oui, était-ce un cours sur Internet? Près de la moitié des répondants (46%) déclarent au moins une pratique amateure; parmi eux, un sur cinq déclare avoir pris des cours, et un peu moins d'un sur dix (8%) des cours en ligne. Certaines pratiques amateurs font davantage l’objet de cours particulier (le cirque, la danse, la musique et le chant, la peinture et la sculpture, la poterie, les activités scientifiques et techniques et le théâtre) ou de cours au sein de structures spécialisées telles que les conservatoires et écoles de musique, de danse, d’art dramatique, d’art plastique et de cirque (le cirque, la danse, le théâtre et la poterie). En revanche, les pratiques du montage audio et vidéo, de la musique et du chant, et des activités scientifiques et techniques sont celles qui ont le plus fait l’objet de cours en ligne. Nous pouvons attribuer la part des cours en ligne de montage et d’activités scientifiques et techniques par la faible offre qui y est consacrée par ailleurs. La surreprésentation de la pratique de la musique et du chant s’explique par la prédominance de cette pratique au sein des pratiques amateurs : elles sont pratiquées par 34% des Français·es ce qui en fait la pratique amateur dominante. 
-<!-- Commentaire 3 : je n’arrive pas à lire précisément les chiffres sur ces graphiques mais ça vaudrait le coup de les indiquer.  -->
-<!-- Yep, il suffit d'executer le code avant l'appel à ggplot et on a accès aux chiffres bruts sous la forme d'un tableau, ou alors d'agrandir le graph en jouant avec fig.height dans les options du chunks -->
-<!-- Commentaire 4 : Selon le sens dans lequel on prend les chiffres, ça change tout. Une pratique peut ne pas être une des plus concernées par un type de cours, mais être néanmoins plus enseignées de cette manière que d'une autre manière... Comment on fait dans ces cas-là ?  -->
+  <!-- Emma : ci-dessous, je pensais jusqu'à l'avant dernière ligne avoir réussi à faire un truc avec ce que tu m'as envoyé, en revoyant, la fin, mais en fait comme ce qui est codé en variable c'est pratique+cours+structure et non juste pratique+cours mis en regard de la structure, ça marche pas... :() -->
 
-+ Insérer un tableau qui reprend ces données (abscisse les pratiques ; ordonnées les types de cours).
-
+```{r}
+mutate(d, 
+       A20_Loop_1_A241 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A241), 2, A20_Loop_1_A241),
+       A20_Loop_2_A241 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A241), 2, A20_Loop_2_A241),
+       A20_Loop_3_A241 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A241), 2, A20_Loop_3_A241),
+       A20_Loop_4_A241 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A241), 2, A20_Loop_4_A241),
+       A20_Loop_5_A241 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A241), 2, A20_Loop_5_A241),
+       A20_Loop_6_A241 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A241), 2, A20_Loop_6_A241),
+       A20_Loop_7_A241 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A241), 2, A20_Loop_7_A241),
+       A20_Loop_8_A241 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A241), 2, A20_Loop_8_A241),
+       A20_Loop_9_A241 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A241), 2, A20_Loop_9_A241),
+       A20_Loop_10_A241 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A241), 2, A20_Loop_10_A241),
+       A20_Loop_11_A241 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A241), 2, A20_Loop_11_A241),
+       A20_Loop_12_A241 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A241), 2, A20_Loop_12_A241),
+       A20_Loop_13_A241 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A241), 2, A20_Loop_13_A241),
+       A20_Loop_1_A242 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A242), 2, A20_Loop_1_A242),
+       A20_Loop_2_A242 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A242), 2, A20_Loop_2_A242),
+       A20_Loop_3_A242 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A242), 2, A20_Loop_3_A242),
+       A20_Loop_4_A242 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A242), 2, A20_Loop_4_A242),
+       A20_Loop_5_A242 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A242), 2, A20_Loop_5_A242),
+       A20_Loop_6_A242 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A242), 2, A20_Loop_6_A242),
+       A20_Loop_7_A242 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A242), 2, A20_Loop_7_A242),
+       A20_Loop_8_A242 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A242), 2, A20_Loop_8_A242),
+       A20_Loop_9_A242 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A242), 2, A20_Loop_9_A242),
+       A20_Loop_10_A242 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A242), 2, A20_Loop_10_A242),
+       A20_Loop_11_A242 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A242), 2, A20_Loop_11_A242),
+       A20_Loop_12_A242 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A242), 2, A20_Loop_12_A242),
+       A20_Loop_13_A242 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A242), 2, A20_Loop_13_A242),
+       A20_Loop_1_A243 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A243), 2, A20_Loop_1_A243),
+       A20_Loop_2_A243 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A243), 2, A20_Loop_2_A243),
+       A20_Loop_3_A243 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A243), 2, A20_Loop_3_A243),
+       A20_Loop_4_A243 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A243), 2, A20_Loop_4_A243),
+       A20_Loop_5_A243 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A243), 2, A20_Loop_5_A243),
+       A20_Loop_6_A243 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A243), 2, A20_Loop_6_A243),
+       A20_Loop_7_A243 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A243), 2, A20_Loop_7_A243),
+       A20_Loop_8_A243 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A243), 2, A20_Loop_8_A243),
+       A20_Loop_9_A243 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A243), 2, A20_Loop_9_A243),
+       A20_Loop_10_A243 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A243), 2, A20_Loop_10_A243),
+       A20_Loop_11_A243 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A243), 2, A20_Loop_11_A243),
+       A20_Loop_12_A243 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A243), 2, A20_Loop_12_A243),
+       A20_Loop_13_A243 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A243), 2, A20_Loop_13_A243)) %>% 
+  select(contains("_A241"), contains("_A242"), contains("_A243"), POND_INIT) %>% 
+  pivot_longer(-POND_INIT) %>% 
+  mutate(value = factor(value, levels = 1:2, labels = c("Oui", "Non"))) %>% 
+  filter(!is.na(value)) %>% 
+  group_by(name, value) %>% 
+  summarize(f = sum(POND_INIT)) %>% 
+  group_by(name) %>% 
+  mutate(f = f / sum(f)) %>% 
+  mutate(freq = f / sum(f) * 100) %>% 
+  rename(variable = "name") %>% 
+  left_join(crealabs) %>% 
+  filter(value == "Oui") %>% 
+  ungroup() %>% 
+  select(contains("_A241"), contains("_A242"), contains("_A243"), varlabel, freq)%>% 
+  pivot_wider(names_from = varlabel, values_from = freq)
+```
 Plus généralement, le recours à des outils numériques s’est généralisé dans l’ensemble de la population, bien que 40% des répondants disent ne pas en utiliser dans le cadre de leur pratique amateur. Ces outils sont utilisés pour produire/créer (38%), se former/apprendre (32%) et diffuser/faire connaître sa pratique (31%). 
-<!-- Commentaire 5 : dans quelle mesure on peut alléger une variable présente dans le questionnaire pour alléger une phrase (en l’occurrence ici « pour diffuser, faire connaître ce que vous faites, partager avec des proches ou des amis ») -->
 
-+ Insérer un graphique avec histogrammes qui regroupe uniquement les déclarations de ne pas utiliser d'outils numériques dans le cadre des pratiques amateurs (parce qu'a priori on ne peut pas faire grand chose des modalités "se former/apprendre", "exposer...", etc. selon les variables de sexe, CS, niveau d’étude + le total).
+Utiliser des outils numériques dans le cadre de pratiques amateurs est davantage le fait des hommes, des cadres et professions intellectuelles supérieures et des plus diplômés, ce qui va dans le sens des constats opérés au sujet des autres pratiques culturelles et de l’équipement des Français.
 
-Utiliser des outils numériques dans le cadre de pratiques amateurs est davantage le fait des hommes, des cadres et professions intellectuelles supérieures et des plus diplômés, ce qui va dans le sens des constats opérés au sujet des autres pratiques culturelles et de l’équipement des Français. 45% des hommes utilisent les outils numériques pour produire, créer (contre 32% des femmes), 38% pour se former, apprendre (contre 28% des femmes), et 34% pour diffuser et faire connaître leur pratique (contre 29% des femmes). Ces dernières sont 45% à déclarer ne pas utiliser d'outils nuémriques, contre 32% des hommes. Le même constat s'impose au regard de la classe sociale ou du niveau d'étude : 29% des diplômés d'un bac+5 déclarent ne pas utiliser d'outils numériques contre 36% des titulaires du baccalauréat et 54% des non diplômés ; 28% des cadres et prof. intellectuelles sup. déclarent ne pas utiliser ces outils contre 47% des employés et 51% des ouvriers. L'objectif de l'usage d'Internet, en revanche, ne semble pas dépendre du sexe, du niveau d’étude ou de la position sociale.
-<!-- Commentaire 6 : à voir comment formuler la dernière idée de façon plus explicite, et en fonction de ce qu'on peut réellement faire de façon sérieuse de cette donnée. Pour le sexe, je l'ai laissé, on voit que l'écart est plus fort en ce qui concerne produire, créer que pour la diffusion, par exemple. Et il faudrait donc ajouter une représentation graphique de cette donnée selon la variable de sexe ? pourquoi pas un graphique de type secteur ? -->
+```{r}
+select(d, SEXE, POND_INIT, A311:A314)%>% 
+  rename(Se_former_apprendre = "A311",
+         Produire_créer = "A312",
+         Diffuser_faire_connaître = "A313",
+         Aucun_outil = "A314") %>% 
+  pivot_longer(Se_former_apprendre:Aucun_outil)%>% 
+  count(SEXE, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(SEXE)) %>% 
+  group_by(SEXE, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "1") %>% 
+  ungroup() %>% 
+  select(SEXE, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+45% des hommes utilisent en effet les outils numériques pour produire, créer (contre 32% des femmes), 38% pour se former, apprendre (contre 28% des femmes), et 34% pour diffuser et faire connaître leur pratique (contre 29% des femmes). Ces dernières sont 45% à déclarer ne pas utiliser d'outils nuémriques, contre 32% des hommes. 
 
-La déclaration d'usage d'outils numériques est fortement correlée  de l'âge. Plus les individus sont âgés, moins ils les utilisent : 55% des personnes âgées de plus de 65 ans déclarent ne pas utiliser d'outils numériques contre 35% des 40-54 ans et 24% des 15-24 ans. 
-L’exposition des productions sur des blogs, plateformes ou réseaux sociaux est équivalente chez les hommes et les femmes mais elle est plus marquée chez les cadres et professions intellectuelles supérieures (11%) et les diplômés d’une licence ou plus (12%), que chez les employés (5%), les ouvriers (4%), les titulaires d’un CAP/BEP (3%). 
-Les jeunes exposent davantage leurs productions sur ces espaces. 
-<!-- Commentaire 7 : j'avais noté ça dans la précédente version du rapport mais depuis le recalcul, il n'y a plus les données. Il me semble qu'on avait décidé qu'elles étaient inutiles, c'est pour ça ? -->
-<!-- je ne vois pas de quoi tu parles désolé... -->
+```{r}
+select(d, pcs1, POND_INIT, A311:A314)%>% 
+  rename(Se_former_apprendre = "A311",
+         Produire_créer = "A312",
+         Diffuser_faire_connaître = "A313",
+         Aucun_outil = "A314") %>% 
+  pivot_longer(Se_former_apprendre:Aucun_outil)%>% 
+  count(pcs1, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(pcs1)) %>% 
+  group_by(pcs1, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "1") %>% 
+  ungroup() %>% 
+  select(pcs1, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+```{r}
+select(d, dipl, POND_INIT, A311:A314)%>% 
+  rename(Se_former_apprendre = "A311",
+         Produire_créer = "A312",
+         Diffuser_faire_connaître = "A313",
+         Aucun_outil = "A314") %>% 
+  pivot_longer(Se_former_apprendre:Aucun_outil)%>% 
+  count(dipl, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(dipl)) %>% 
+  group_by(dipl, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "1") %>% 
+  ungroup() %>% 
+  select(dipl, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+Le même constat s'impose au regard de la classe sociale ou du niveau d'étude : 29% des diplômés d'un bac+5 déclarent ne pas utiliser d'outils numériques contre 36% des titulaires du baccalauréat et 54% des non diplômés ; 28% des cadres et prof. intellectuelles sup. déclarent ne pas utiliser ces outils contre 47% des employés et 51% des ouvriers. 
+
+```{r}
+select(d, age_c, POND_INIT, A311:A314)%>% 
+  rename(Se_former_apprendre = "A311",
+         Produire_créer = "A312",
+         Diffuser_faire_connaître = "A313",
+         Aucun_outil = "A314") %>% 
+  pivot_longer(Se_former_apprendre:Aucun_outil)%>% 
+  count(age_c, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(age_c)) %>% 
+  group_by(age_c, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "1") %>% 
+  ungroup() %>% 
+  select(age_c, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+
+Les usages d'outils numériques sont fortement correlés à l'âge. Plus les individus sont âgés, moins ils les utilisent : 55% des personnes âgées de plus de 65 ans déclarent ne pas utiliser d'outils numériques contre 35% des 40-54 ans et 24% des 15-24 ans. 
+
+Si les hommes, les plus diplômés, les cadres et les plus jeunes utilisent davantage ces ressources, il est en revanche difficile  d'attribuer des usages précis de ces ressources (se former/apprendre, diffuser/faire connaître, produire/créer) à certains types d'individus. 
+
 
 # Conclusion
 
