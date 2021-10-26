@@ -430,29 +430,93 @@ pivot_longer(res_hcpc$data.clust, -clust) %>%
 ## Livre (EG)
 
 Dans la lignée de constats précédemment opérés au sujet de la lecture de livres, qui montrent que le numérique n'a ni remplacé le papier ni révolutionné les pratiques de lecture (Gaudric, Mauger, Zunigo, 2016 ; Guittet, 2020), on constate dans ce dernier volet de l'enquête menée par le Deps que le livre au format papier reste le support privilégié et quasi-exclusif des lecteurs et lectrices (98%), alors que la tablette (6%) et la liseuse (5%) peinent à trouver un public. Ceci fait de la France un cas particulier ; si le livre papier reste partout la norme, la liseuse a trouvé un marché plus vaste dans d’autres pays occidentaux, comme aux États-Unis où 28% des adultes avaient lu un livre numérique au cours des 12 derniers mois en 2016 (Pew Research Institute, 2016) et où plus de la moitié des adultes possèdent une liseuse (voir données dans les commentaires). 
-<!-- Commentaire 1 : ça peut valoir le coup de checker d’autres pays pour voir d’autres perspectives ; je ne dis pas qu’on doit systématiquement comparer à d’autres pays évidemment mais pour le livre c’est quand même marqué).  -->
-<!-- Oui, pourquoi pas s'il y a de forts écarts -->
-<!-- Commentaire 3 : J'ai pris la dernière donnée ici, je ne sais pas ce qu'elle vaut ni comment la citer : https://www.statista.com/statistics/190283/penetration-rate-of-ereaders-in-the-united-states-since-2009/ -->
-<!-- je suis d'avis de laisser tomber le "la moitié des adultes possèdent une liseuse + sourcer la référence à Pew. -->
-<!-- Je suis étonné par l'absence du téléphone dans l'enquête PC18. Ne faudrait-il pas le mentionner? -->
+<!-- Emma : Je ne suis vraiment pas sûre de comprendre comme toi les données du Pew : j'ai l'impression que même s'ils ne sont pas rigoureux dans leur manière de le présenter, ça veut dire 28% des adultes ayant lu un livre -->
+<!-- Sam : Je suis étonné par l'absence du téléphone dans l'enquête PC18. Ne faudrait-il pas le mentionner? -->
+<!-- Emma : Ça doit être dans "Autre", je ne vois pas trop bien ce qui peut être dans cette catégorie à part ça d'ailleurs, et oui on peut leur mentionner -->
 
-```{r, fig.height = 8}
-#Insérer un tableau qui regroupe l’ensemble des données (abscisse les supports ; ordonnées le total, le sexe, la CS, le niveau d’étude)
+```{r}
+select(d, SEXE, POND_INIT, F121:F124) %>% 
+  rename(Papier = "F121",
+         Liseuse = "F122",
+         Tablette = "F123",
+         Autre = "F124") %>% 
+  pivot_longer(Papier:Autre) %>% 
+  count(SEXE, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(SEXE)) %>% 
+  group_by(SEXE, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "'Yes'") %>% 
+  ungroup() %>% 
+  select(SEXE, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
 ```
+<!-- Emma : Je me demande s'il ne serait pas mieux de dire Hommes/Femmes plutôt que Masculin/Féminin (un détail, sans doute) -->
+<!-- Emma : Pas réussi à afficher le total dans les tableaux -->
+<!-- Emma : Par ailleurs, j'aurais bien aimé faire un tableau global avec verticalement le genre, puis le diplôme, la CS et les tranches d'âge, j'ai essayé mais n'ai pas réussi à le faire -->
 
 On n'observe pas de différence notable entre les hommes et les femmes concernant les supports privilégiés, malgré des pratiques de lecture plus fréquentes et intensives chez les femmes (et ce depuis les années 80) : 20% des femmes déclarent ne pas lire contre 35% des hommes, et 38% des lectrices déclarent lire tous les jours ou presque contre 25% des lecteurs.
-<!-- Commentaire 4 : J'ai utilisé graph_univar_all(F5) puis la même chose avec la question F11. On aurait pu aussi passer par le nombre de livres déclarés mais je n'étais pas sûre de parvenir à faire des tranches. -->
-<!-- tu peux faire des tranches avec la fonction cut(), dans un mutate(d, tranches_livres = cut(variable_nombre_de_livres_lus, breaks = c(les valeurs délimitant les tranches, en mettant -1 plutôt que 0 pour la première pour être sûr d'inclure le 0))) -->
 
+```{r}
+select(d, dipl, POND_INIT, F121:F124) %>% 
+  rename(Papier = "F121",
+         Liseuse = "F122",
+         Tablette = "F123",
+         Autre = "F124") %>% 
+  pivot_longer(Papier:Autre) %>% 
+  count(dipl, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(dipl)) %>% 
+  group_by(dipl, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "'Yes'") %>% 
+  ungroup() %>% 
+  select(dipl, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+<!-- Emma : Je ne comprends pas trop pourquoi il reste des NA dans le tableau ci-dessus. -->
+
+```{r}
+select(d, pcs1, POND_INIT, F121:F124) %>% 
+  rename(Papier = "F121",
+         Liseuse = "F122",
+         Tablette = "F123",
+         Autre = "F124") %>% 
+  pivot_longer(Papier:Autre) %>% 
+  count(pcs1, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(pcs1)) %>% 
+  group_by(pcs1, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "'Yes'") %>% 
+  ungroup() %>% 
+  select(pcs1, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
 La lecture numérique, sur tablette comme sur liseuse, concerne davantage les plus diplômés : 12% des lecteurs et lectrices de niveau Bac+5 déclarent lire sur liseuse, contre 8% des diplômés d’une licence, 4% du bac ou 2% d’un CAP/BEP. Le même constat peut être fait vis-à-vis de la classe sociale : 11% des cadres et professions intellectuelles supérieures, 4% des employés, 2% des ouvriers, 01% des agriculteurs exploitants déclarent lire sur tablette. La lecture sur livres papier, à l'inverse, concerne l'ensemble de la population de façon égale, au regard du niveau d'étude ou de la classe sociale.
 
-Contrairement à ce qu’on observe pour d’autres pratiques culturelles, l’âge n’est pas une variable déterminante lorsqu’il s’agit de lire en numérique.
-<!-- Commentaire 5 : on a un écart qui va de 4% chez les +65 ans à 7% chez les 40-54 (qui sont au max), on est d'accord qu'on ne considère pas ça comme un écart significatif ? -->
-<!-- complétement -->
+```{r}
+select(d, age_c, POND_INIT, F121:F124) %>% 
+  rename(Papier = "F121",
+         Liseuse = "F122",
+         Tablette = "F123",
+         Autre = "F124") %>% 
+  pivot_longer(Papier:Autre) %>% 
+  count(age_c, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(age_c)) %>% 
+  group_by(age_c, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "'Yes'") %>% 
+  ungroup() %>% 
+  select(age_c, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+
+Contrairement à ce qu’on observe pour d’autres pratiques culturelles, l’âge n’est pas une variable déterminante lorsqu’il s’agit de lire en numérique, mis à part pour les plus de 65 ans, moins concernés que les autres tranches d'âge par les pratiques de lecture numérique (à l'instar de ce qu'on observe pour l'ensemble des pratiques numériques).
+
+```{r}
+graph_univar_all(F12BIS)
+```
+<!-- Emma : Je me suis pris la tête un certain moment pour faire des barplot sans succès. Je laisse de côté pour avancer sur le reste. -->
 
 Pour les trois quarts de la population, y compris lorsque les lecteurs et lectrices lisent sur différents supports, la lecture sur livre papier prévaut, quel que soit leur sexe. Un regard à l’appartenance sociale et au niveau d’étude montre que c’est dans les classes moyennes que l’on privilégie le moins le papier : 64% des employés privilégient le papier, contre 75% des ouvriers, 74% des cadres, 84% des artisans, commerçants et chefs d’entreprises ; 69% des titulaires d’un bac+2 privilégient le papier, contre 79% des titulaires d’un bac+5 et plus, et 75% des titulaires d’un BEP ou CAP. 
-<!-- Commentaire 6 : si on voulait aller au bout des choses, et pour vérifier le constat que je fais dans mon article dans BSSG, il faudrait également vérifier la trajectoire sociale, et donc l'écart avec le milieu d'origine (ça constituerait une différence au sein des cadres.) -->
-<!-- Je ne sais pas si la variable est présente mais ça vaut le coup d'essayer -->
 
 
 ## Jeux vidéo (SC)
