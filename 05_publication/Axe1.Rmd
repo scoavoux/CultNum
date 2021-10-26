@@ -583,9 +583,10 @@ En outre, les différents secteurs culturels sont différemment concernés par c
 
 Quand on pense aux plateformes culturelles, pourtant, ce sont les plateformes de vidéo à la demande, à l'image de Netflix, qui dominent les discours. Elles sont pourtant moins utilisées que les plateformes audio, bien qu'elles soient employées par un peu plus d'un quart des personnes regardant des films, tout comme les séries. Dans ces deux cas, la diffusion télévisée domine encore largement, concernant 4 personnes sur 5. En outre, le visionnage de films et séries passe le plus souvent par le poste de télévision, y compris pour les plateformes de VOD, alors que l'usage, dans cet objectif, de l'ordinateur et des autres terminaux numériques est marginal.
 
-EG
-Pratiques amateures
-Livre
+Le livre  fait sans aucun doute figure d'exception au sein des différents domaines pris dans l'enquête, en ce que les pratiques de lecture échappent quasi complètement à la numérisation. Le format papier reste en effet le support privilégié et quasi-exclusif des lectures, et reste largement majoritaire y compris chez les lecteurs et lectrices cumulant différents supports, ce qui témoigne d'un attachement fort à l'objet-livre. Notons néanmoins des écarts marqués entre les individus : si la lecture numérique est rare dans tous les milieux, elle est néanmoins plus fréquente dans les classes supérieures et chez les plus diplômés. 
+
+EG Pratiques amateures
+
  
 d.     Le livre et la lecture, un domaine qui échappe à la numérisation
 *	Attachement au livre papier chez tout le monde
