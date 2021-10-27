@@ -606,6 +606,65 @@ mutate(d,
   select(contains("_A241"), contains("_A242"), contains("_A243"), varlabel, freq)%>% 
   pivot_wider(names_from = varlabel, values_from = freq)
 ```
+
+```{r}
+mutate(d, 
+       A20_Loop_1_A241 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A241), 2, A20_Loop_1_A241),
+       A20_Loop_2_A241 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A241), 2, A20_Loop_2_A241),
+       A20_Loop_3_A241 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A241), 2, A20_Loop_3_A241),
+       A20_Loop_4_A241 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A241), 2, A20_Loop_4_A241),
+       A20_Loop_5_A241 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A241), 2, A20_Loop_5_A241),
+       A20_Loop_6_A241 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A241), 2, A20_Loop_6_A241),
+       A20_Loop_7_A241 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A241), 2, A20_Loop_7_A241),
+       A20_Loop_8_A241 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A241), 2, A20_Loop_8_A241),
+       A20_Loop_9_A241 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A241), 2, A20_Loop_9_A241),
+       A20_Loop_10_A241 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A241), 2, A20_Loop_10_A241),
+       A20_Loop_11_A241 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A241), 2, A20_Loop_11_A241),
+       A20_Loop_12_A241 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A241), 2, A20_Loop_12_A241),
+       A20_Loop_13_A241 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A241), 2, A20_Loop_13_A241),
+       A20_Loop_1_A242 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A242), 2, A20_Loop_1_A242),
+       A20_Loop_2_A242 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A242), 2, A20_Loop_2_A242),
+       A20_Loop_3_A242 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A242), 2, A20_Loop_3_A242),
+       A20_Loop_4_A242 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A242), 2, A20_Loop_4_A242),
+       A20_Loop_5_A242 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A242), 2, A20_Loop_5_A242),
+       A20_Loop_6_A242 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A242), 2, A20_Loop_6_A242),
+       A20_Loop_7_A242 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A242), 2, A20_Loop_7_A242),
+       A20_Loop_8_A242 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A242), 2, A20_Loop_8_A242),
+       A20_Loop_9_A242 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A242), 2, A20_Loop_9_A242),
+       A20_Loop_10_A242 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A242), 2, A20_Loop_10_A242),
+       A20_Loop_11_A242 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A242), 2, A20_Loop_11_A242),
+       A20_Loop_12_A242 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A242), 2, A20_Loop_12_A242),
+       A20_Loop_13_A242 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A242), 2, A20_Loop_13_A242),
+       A20_Loop_1_A243 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A243), 2, A20_Loop_1_A243),
+       A20_Loop_2_A243 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A243), 2, A20_Loop_2_A243),
+       A20_Loop_3_A243 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A243), 2, A20_Loop_3_A243),
+       A20_Loop_4_A243 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A243), 2, A20_Loop_4_A243),
+       A20_Loop_5_A243 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A243), 2, A20_Loop_5_A243),
+       A20_Loop_6_A243 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A243), 2, A20_Loop_6_A243),
+       A20_Loop_7_A243 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A243), 2, A20_Loop_7_A243),
+       A20_Loop_8_A243 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A243), 2, A20_Loop_8_A243),
+       A20_Loop_9_A243 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A243), 2, A20_Loop_9_A243),
+       A20_Loop_10_A243 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A243), 2, A20_Loop_10_A243),
+       A20_Loop_11_A243 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A243), 2, A20_Loop_11_A243),
+       A20_Loop_12_A243 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A243), 2, A20_Loop_12_A243),
+       A20_Loop_13_A243 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A243), 2, A20_Loop_13_A243)) %>% 
+  select(contains("_A241"), contains("_A242"), contains("_A243"), POND_INIT) %>% 
+  pivot_longer(-POND_INIT) %>% 
+  mutate(value = factor(value, levels = 1:2, labels = c("Oui", "Non"))) %>% 
+  filter(!is.na(value)) %>% 
+  group_by(name, value) %>% 
+  summarize(f = sum(POND_INIT)) %>% 
+  group_by(name) %>% 
+  mutate(f = paste0(round(f / sum(f) * 100, 1), "%")) %>% 
+  ungroup() %>% 
+  rename(variable = "name") %>% 
+  left_join(crealabs) %>% 
+  separate(varlabel, into = c("discipline", "cours"), sep = "cours") %>% 
+  filter(value == "Oui") %>% 
+  select(discipline, f, cours) %>% 
+  pivot_wider(names_from = cours, values_from = f)
+```
+
 Plus généralement, le recours à des outils numériques s’est généralisé dans l’ensemble de la population, bien que 40% des répondants disent ne pas en utiliser dans le cadre de leur pratique amateur. Ces outils sont utilisés pour produire/créer (38%), se former/apprendre (32%) et diffuser/faire connaître sa pratique (31%). 
 
 Utiliser des outils numériques dans le cadre de pratiques amateurs est davantage le fait des hommes, des cadres et professions intellectuelles supérieures et des plus diplômés, ce qui va dans le sens des constats opérés au sujet des autres pratiques culturelles et de l’équipement des Français.
@@ -694,7 +753,8 @@ Quand on pense aux plateformes culturelles, pourtant, ce sont les plateformes de
 
 Le livre est sans aucun doute le domaine qui échappe le plus à la numérisation des pratiques. Le format papier reste en effet le support privilégié et quasi-exclusif des lectures, et reste largement majoritaire y compris chez les lecteurs et lectrices cumulant différents supports, ce qui témoigne d'un attachement fort à l'objet-livre. Notons néanmoins des écarts marqués entre les individus : si la lecture numérique est rare dans tous les milieux, elle est néanmoins plus fréquente dans les classes supérieures et chez les plus diplômés. 
 
-> EG Pratiques amateures
+Du côté des pratiques amateurs, les cours en ligne (qui concernent une personne menant une pratique amateur sur douze) ne viennent pas remplacer les cours particuliers ou menés dans des institutions spécialisées (une personne sur cinq). On observe en revanche une tendance à la numérisation dans l'utilisation d'outils numériques dans le cadre de la pratique : presque deux tiers de la population déclarant une pratique en amateur utilise dans ce cadre des outils numériques, que ce soit pour produire et créer, se former et apprendre ou diffuser et/ou faire connaître leur pratique. A l'instar de ce qui a été observé dans la plupart des autres domaines, l'utilisation d'outils numériques concerne davantage les cadres, les plus diplômés, les jeunes et dans une moindre mesure les hommes.
+<!-- Emma : Pas certaine du 1/5, il faudrait vérifier en enlevant les cours en ligne -->
 
 La numérisation limitée des pratiques culturelles est liée non seulement à la résistance des terminaux analogiques, mais aussi à une adoption inégale des technologies numériques. Dans la grande majorité des domaines analysés dans cette enquête, les usagers du numérique sont plus jeunes et plus diplômés, et plus souvent issus des classes supérieures, que les non-usagers.
 
