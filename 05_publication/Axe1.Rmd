@@ -63,14 +63,25 @@ pc08w <- svydesign(ids = ~1, data = pc08, weights = ~ pc08$POND_INIT)
 
 ```
 
+# Executive summary ()
+adapté de l'introduction
+
+# So what Orange ()
+
+# Introduction ()
+
+Repartir de Donnat 2008: constate la numérisation des pratiques.
+Quel bilan en 2018? Quelle progression du numérique? Le numérique a-t-il colonisé tous les domaines de la culture? Dans cette analyse, nous montrons que:
+
+1. la numérisation est limitée et vient se superposer aux autres couches technologiques pltôt que de les remplacer;
+2. elle varie énormément selon les secteur, de la musique et des jeux vidéo, très numérisés, au livre;
+3. cette numérisation est très inégalement répartie dans la population: ce sont les plus favorisés qui en bénéficie (sauf moyennisation des réseaux sociaux);
 
 # Évolution de l’équipement numérique des Français
 
 - Pointer que l’équipement numérique des ménages s’est développé
 - Et qu’à mesure de cette évolution, (1) l’usage d’Internet a augmenté (obviously) et (2) les traditionnels écarts entre les individus quant à l’usage d’Internet ont diminué. Même si en fait on va montrer quand même de gros écarts dans la suite de l’analyse, mais ça peut être un bon point de départ, de pointer cette évolution pour ensuite montrer les écarts.
- 
 
- 
 ## Équipement (FG)
 
 <!-- * Questions de PC2008 sur équipement informatique (pas encore traités)
@@ -135,7 +146,10 @@ graph_qcm_all(Iconsole, "'Yes'")
 A mesure que l’équipement numérique des ménages s’est développé, l’usage d’internet a augmenté – on passe d’environ 1% en 1997, contre 56% des individus qui ont utilisé Internet (chercher chiffre + chercher période) en 2008 puis environ 84% en 2018 – et que les traditionnels écarts entre les individus quant à l’usage d’internet ont diminué. Nous verrons par la suite des différences plus précises lorsqu’on regarde en détail à quoi sont employées les technologies numériques selon les pratiques culturelles.
 <!-- Commentaire 1 : vérifier chiffre total et période sur laquelle on leur a demandé leur usage d’internet (12 mois ?) -->
 
-+ Insérer un graphique en histogramme qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, le niveau d’étude, des tranches d’âges) : trois colonnes par variable pour les 3 années.
+```{r}
+# + Insérer un graphique en histogramme qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, le niveau d’étude, des tranches d’âges) : trois colonnes par variable pour les 3 années.
+
+```
 
 La progression d’internet chez les Français est peu liée au genre : si l’on observait un léger écart (6 points) entre hommes et femmes en 2008, les usages d’internet selon le sexe se sont aujourd’hui effacés. 
 En termes d’âge, on assiste à un décalage de la courbe : en 2008, seuls les moins de 30 ont presque tous un accès à internet ; en 2018, les moins de 50 ans ont près de 100% d’accès. Chez les plus âgés, l’usage d’internet décline rapidement dans les deux enquêtes, malgré une évolution : on ne comptait que 10% d’accès pour les 75 ans en 2008 contre plus de 50% en 2018 : seules les personnes très âgées ont peu d’accès internet.
@@ -765,10 +779,10 @@ En outre, les différents secteurs culturels sont différemment concernés par c
 
 Quand on pense aux plateformes culturelles, pourtant, ce sont les plateformes de vidéo à la demande, à l'image de Netflix, qui dominent les discours. Elles sont pourtant moins utilisées que les plateformes audio, bien qu'elles soient employées par un peu plus d'un quart des personnes regardant des films, tout comme les séries. Dans ces deux cas, la diffusion télévisée domine encore largement, concernant 4 personnes sur 5. En outre, le visionnage de films et séries passe le plus souvent par le poste de télévision, y compris pour les plateformes de VOD, alors que l'usage, dans cet objectif, de l'ordinateur et des autres terminaux numériques est marginal.
 
-Le livre est sans aucun doute le domaine qui échappe le plus à la numérisation des pratiques. Le format papier reste en effet le support privilégié et quasi-exclusif des lectures, et reste largement majoritaire y compris chez les lecteurs et lectrices cumulant différents supports, ce qui témoigne d'un attachement fort à l'objet-livre. Notons néanmoins des écarts marqués entre les individus : si la lecture numérique est rare dans tous les milieux, elle est néanmoins plus fréquente dans les classes supérieures et chez les plus diplômés. 
-
 Du côté des pratiques amateurs, les cours en ligne (qui concernent une personne menant une pratique amateur sur douze) ne viennent pas remplacer les cours particuliers ou menés dans des institutions spécialisées (une personne sur cinq). On observe en revanche une tendance à la numérisation dans l'utilisation d'outils numériques dans le cadre de la pratique : presque deux tiers de la population déclarant une pratique en amateur utilise dans ce cadre des outils numériques, que ce soit pour produire et créer, se former et apprendre ou diffuser et/ou faire connaître leur pratique. A l'instar de ce qui a été observé dans la plupart des autres domaines, l'utilisation d'outils numériques concerne davantage les cadres, les plus diplômés, les jeunes et dans une moindre mesure les hommes.
 <!-- Emma : Pas certaine du 1/5, il faudrait vérifier en enlevant les cours en ligne -->
+
+Le livre est sans aucun doute le domaine qui échappe le plus à la numérisation des pratiques. Le format papier reste en effet le support privilégié et quasi-exclusif des lectures, et reste largement majoritaire y compris chez les lecteurs et lectrices cumulant différents supports, ce qui témoigne d'un attachement fort à l'objet-livre. Notons néanmoins des écarts marqués entre les individus : si la lecture numérique est rare dans tous les milieux, elle est néanmoins plus fréquente dans les classes supérieures et chez les plus diplômés. 
 
 La numérisation limitée des pratiques culturelles est liée non seulement à la résistance des terminaux analogiques, mais aussi à une adoption inégale des technologies numériques. Dans la grande majorité des domaines analysés dans cette enquête, les usagers du numérique sont plus jeunes et plus diplômés, et plus souvent issus des classes supérieures, que les non-usagers.
 
