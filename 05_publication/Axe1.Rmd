@@ -63,19 +63,21 @@ pc08w <- svydesign(ids = ~1, data = pc08, weights = ~ pc08$POND_INIT)
 
 ```
 
-# Executive summary ()
-adapté de l'introduction
+# Executive summary (SC)
+La numérisation attendue des pratiques culturelles et des loisirs a-t-elle eu lieu ? Le numérique a-t-il colonisé tous les domaines de la culture, et tous les publics ? Dans ce texte, nous analysons les résultats de l'enquête Pratiques culturelles 2018, en les mettant en série avec les enquêtes précédentes, pour faire le bilan sur cette numérisation. Nous avançons trois principaux résultats. D'abord, le processus de numérisation est limité. Les usages analogiques résistent fortement, et les technologies numériques viennent se superposer aux autres couches technologiques plutôt que de les remplacer. Ensuite, cette numérisation est très inégalement répartie entre secteurs. Alors que la massification de la pratiques des jeux vidéo semble témoigner d'une numérisation des loisirs, c'est, parmi les pratiques culturelles classiques, l'écoute de musique enregistrée qui est la plus fortement touchée par ce phénomène, la numérisation ayant permis une forte croissance des taux d'écoute quotidien. Les autres pratiques audiovisuelles voient se côtoyer des usages analogiques dominants, la télévision de flux demeurant le principal loisir de la population, avec des poches de pratiques numériques en croissance, mais encore minoritaires. L'image médiatique d'une domination sans faille des plateformes comme Netflix surestime ainsi les changements réels. Enfin, cette numérisation est très inégalement répartie dans la population: ce sont, globalement, les personnes les plus jeunes et celles qui sont les plus favorisés socialement qui ont adopté significativement les technologies numériques dans leurs loisirs.
 
 # So what Orange ()
 
-# Introduction ()
+# Introduction (SC)
 
-Repartir de Donnat 2008: constate la numérisation des pratiques.
-Quel bilan en 2018? Quelle progression du numérique? Le numérique a-t-il colonisé tous les domaines de la culture? Dans cette analyse, nous montrons que:
+En 2009, Olivier Donnat constatait dans le rapport de l'enquête Pratiques culturelles passée un an plus tôt la numérisation en cours des pratiques culturelles, incluant cette dimension dans le sous-titre de son ouvrage. Il notait notamment la déconnexion en cours entre contenus et terminaux, l'ordinateur devenant le support de nombreuses pratiques, et l'apparition d'une configuration de pratiques culturelles caractérisée par la présence massive des outils numériques, dont le public est concentré parmi les plus jeunes.
 
-1. la numérisation est limitée et vient se superposer aux autres couches technologiques pltôt que de les remplacer;
-2. elle varie énormément selon les secteur, de la musique et des jeux vidéo, très numérisés, au livre;
-3. cette numérisation est très inégalement répartie dans la population: ce sont les plus favorisés qui en bénéficie (sauf moyennisation des réseaux sociaux);
+Dix ans séparent cette enquête de la suivante. La numérisation alors démarrée a-t-elle eu lieu ? Le numérique a-t-il colonisé tous les domaines de la culture, et tous les publics ? Dans ce texte, nous analysons les résultats de l'enquête Pratiques culturelles 2018, en les mettant en série avec les enquêtes précédentes, pour faire le bilan sur cette numérisation. Nous avançons trois principaux résultats.
+
+D'abord, le processus de numérisation est limité. Les usages analogiques résistent fortement, et les technologies numériques viennent se superposer aux autres couches technologiques plutôt que de les remplacer. Ensuite, cette numérisation est très inégalement répartie entre secteurs. Alors que la massification de la pratiques des jeux vidéo semble témoigner d'une numérisation des loisirs, c'est, parmi les pratiques culturelles classiques, l'écoute de musique enregistrée qui est la plus fortement touchée par ce phénomène, la numérisation ayant permis une forte croissance des taux d'écoute quotidien. Les autres pratiques audiovisuelles voient se côtoyer des usages analogiques dominants, la télévision de flux demeurant le principal loisir de la population, avec des poches de pratiques numériques en croissance, mais encore minoritaires. L'image médiatique d'une domination sans faille des plateformes comme Netflix surestime ainsi les changements réels. Enfin, cette numérisation est très inégalement répartie dans la population: ce sont, globalement, les personnes les plus jeunes et celles qui sont les plus favorisés socialement qui ont adopté significativement les technologies numériques dans leurs loisirs.
+
+<!--AJOUTER UN PLAN-->
+<!--AJOUTER UNE PARTIE/ENCADRE METHODE (pour Orange)-->
 
 # Évolution de l’équipement numérique des Français
 
@@ -769,6 +771,9 @@ select(d, age_c, POND_INIT, A311:A314)%>%
 Les usages d'outils numériques sont fortement correlés à l'âge. Plus les individus sont âgés, moins ils les utilisent : 55% des personnes âgées de plus de 65 ans déclarent ne pas utiliser d'outils numériques contre 35% des 40-54 ans et 24% des 15-24 ans. 
 
 Si les hommes, les plus diplômés, les cadres et les plus jeunes utilisent davantage ces ressources, il est en revanche difficile  d'attribuer des usages précis de ces ressources (se former/apprendre, diffuser/faire connaître, produire/créer) à certains types d'individus. 
+
+# Une configuration numérique?
+
 
 
 # Conclusion
