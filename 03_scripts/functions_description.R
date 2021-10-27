@@ -1,5 +1,23 @@
 library(rlang)
 
+donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs){
+  indep <- c("SEXE", "pcs1")
+  select(.data, {{ .dep }}, !! enquo(indep), POND_INIT) %>%
+    pivot_longer({{ .dep }}, names_to = "dep", values_to = "depmod") %>% 
+    pivot_longer(!!enquo(indep), names_to = "indep", values_to = "indepmod") %>% 
+    count(indep, indepmod, dep, depmod, wt = POND_INIT) %>% 
+    filter(!is.na(depmod), !is.na(indepmod)) %>% 
+    group_by(indep, indepmod, dep) %>% 
+    mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
+    ungroup() %>% 
+    filter(depmod == .value) %>%
+    left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
+    select(indep, indepmod, lab, f) %>% 
+    pivot_wider(names_from = lab, values_from = f) %>% 
+    mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "NA", indep)) %>% 
+    kable()
+}
+
 graph_qcm <- function(.vars, .value = "'Yes'", .data=d, .labs=labs){
   select(.data, {{ .vars }}, POND_INIT) %>% 
     pivot_longer(-POND_INIT) %>% 
