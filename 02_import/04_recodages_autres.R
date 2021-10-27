@@ -1409,5 +1409,11 @@ pc08$Q51_console <- case_when(
 
 # (FG) Création d'une variable accès internet dans l'enquête 2008
 pc08$Q60_internet <- case_when(
-  pc08$EQMICRO2_M8 == "OUI" ~ "OUI",  
-  is.na(pc08$EQMICRO2_M8) == TRUE ~ "NON")
+  pc08$EQMICRO2_M8 == "OUI" ~ "OUI",
+  pc08$EQMICRO2_M8 == "NON" ~ "NON",
+  is.na(pc08$EQMICRO2_M8) ~ "NON")
+# Rq : dans l'enquête 2008, les questions sur l'accès internet sont tributaires 
+# de la possession d'un ordi.
+# C'est le cas de "EQMICRO2_M8", mais aussi de la question Q84 ("O24.- Pour accéder
+# à Internet, utilisez-vous un ordinateur ou un autre support (téléphone, téléviseur,...) ? ")
+# n'est visiblement pas posée aux personnes qui [Ne posséde pas ou n'utilise pas d'ordinateur]
