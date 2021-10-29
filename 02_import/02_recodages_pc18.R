@@ -59,6 +59,9 @@ d <- mutate(d,
 labs <- add_case(labs, variable = "pcs1", category = "recodage", varlabel = "PCS ego niveau 1")
 labs <- add_case(labs, variable = "support_musique_digital", category = "recodage", varlabel = "Support écoute de musique numérique")
 
+# Changer label de sexe
+d <- mutate(d, SEXE = fct_recode(SEXE, Hommes = "'Masculin'", Femmes = "'Féminin'"))
+
 # (FG) Recodage AGE en classes pour demandes PI_TV
 range(d$AGE)
 d$age_c <- cut(d$AGE, c(15, 24, 39, 54, 64, 97), include.lowest = TRUE, labels = c("15-24", "25-39", "40-54", "55-64","65+"))

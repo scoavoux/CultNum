@@ -1,37 +1,73 @@
 library(rlang)
 
-donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption = ""){
+donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption = "", .panel_wave = FALSE){
   indep <- c("SEXE", "pcs1", "dipl", "age_c")
-  total <- select(.data, {{ .dep }}, POND_INIT) %>% 
-    pivot_longer({{ .dep }}, names_to = "dep") %>% 
-    count(dep, value, wt = POND_INIT) %>% 
-    filter(!is.na(value)) %>% 
-    group_by(dep) %>% 
-    mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
-    ungroup() %>% 
-    filter(value == .value) %>% 
-    left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
-    mutate(indep = "Total") %>% 
-    select(indep, lab, f) %>% 
-    pivot_wider(names_from = lab, values_from = f)
+  
+  if(.panel_wave){
+    total <- select(.data, {{ .dep }}, POND_INIT, annee) %>% 
+      pivot_longer({{ .dep }}, names_to = "dep") %>% 
+      count(annee, dep, value, wt = POND_INIT) %>% 
+      filter(!is.na(value)) %>% 
+      group_by(annee, dep) %>% 
+      mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
+      ungroup() %>% 
+      filter(value == .value) %>% 
+      left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
+      mutate(indep = "Total",
+             lab = paste(annee, lab, sep = "_")) %>% 
+      select(indep, lab, f) %>% 
+      pivot_wider(names_from = lab, values_from = f)
     
     
+    select(.data, {{ .dep }}, !! enquo(indep), POND_INIT, annee) %>%
+      pivot_longer({{ .dep }}, names_to = "dep", values_to = "depmod") %>% 
+      pivot_longer(!!enquo(indep), names_to = "indep", values_to = "indepmod") %>% 
+      count(annee, indep, indepmod, dep, depmod, wt = POND_INIT) %>% 
+      filter(!is.na(depmod), !is.na(indepmod)) %>% 
+      group_by(annee, indep, indepmod, dep) %>% 
+      mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
+      ungroup() %>% 
+      filter(depmod == .value) %>%
+      left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
+      mutate(lab = paste(annee, lab, sep = "_")) %>% 
+      select(indep, indepmod, lab, f) %>% 
+      pivot_wider(names_from = lab, values_from = f) %>% 
+      mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "NA", indep)) %>% 
+      add_case(total, .before = 1L) %>% 
+      kable(caption = .caption)
+  } else {
+    total <- select(.data, {{ .dep }}, POND_INIT) %>% 
+      pivot_longer({{ .dep }}, names_to = "dep") %>% 
+      count(dep, value, wt = POND_INIT) %>% 
+      filter(!is.na(value)) %>% 
+      group_by(dep) %>% 
+      mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
+      ungroup() %>% 
+      filter(value == .value) %>% 
+      left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
+      mutate(indep = "Total") %>% 
+      select(indep, lab, f) %>% 
+      pivot_wider(names_from = lab, values_from = f)
     
-  select(.data, {{ .dep }}, !! enquo(indep), POND_INIT) %>%
-    pivot_longer({{ .dep }}, names_to = "dep", values_to = "depmod") %>% 
-    pivot_longer(!!enquo(indep), names_to = "indep", values_to = "indepmod") %>% 
-    count(indep, indepmod, dep, depmod, wt = POND_INIT) %>% 
-    filter(!is.na(depmod), !is.na(indepmod)) %>% 
-    group_by(indep, indepmod, dep) %>% 
-    mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
-    ungroup() %>% 
-    filter(depmod == .value) %>%
-    left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
-    select(indep, indepmod, lab, f) %>% 
-    pivot_wider(names_from = lab, values_from = f) %>% 
-    mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "NA", indep)) %>% 
-    add_case(total, .before = 1L) %>% 
-    kable(caption = .caption)
+    
+    select(.data, {{ .dep }}, !! enquo(indep), POND_INIT) %>%
+      pivot_longer({{ .dep }}, names_to = "dep", values_to = "depmod") %>% 
+      pivot_longer(!!enquo(indep), names_to = "indep", values_to = "indepmod") %>% 
+      count(indep, indepmod, dep, depmod, wt = POND_INIT) %>% 
+      filter(!is.na(depmod), !is.na(indepmod)) %>% 
+      group_by(indep, indepmod, dep) %>% 
+      mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
+      ungroup() %>% 
+      filter(depmod == .value) %>%
+      left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
+      select(indep, indepmod, lab, f) %>% 
+      pivot_wider(names_from = lab, values_from = f) %>% 
+      mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "NA", indep)) %>% 
+      add_case(total, .before = 1L) %>% 
+      kable(caption = .caption)
+  }
+  
+
 }
 
 graph_qcm <- function(.vars, .value = "'Yes'", .data=d, .labs=labs){
