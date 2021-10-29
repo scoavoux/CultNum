@@ -64,6 +64,7 @@ pc08w <- svydesign(ids = ~1, data = pc08, weights = ~ pc08$POND_INIT)
 ```
 
 # Executive summary (SC)
+
 La numérisation attendue des pratiques culturelles et des loisirs a-t-elle eu lieu ? Le numérique a-t-il colonisé tous les domaines de la culture, et tous les publics ? Dans ce texte, nous analysons les résultats de l'enquête Pratiques culturelles 2018, en les mettant en série avec les enquêtes précédentes, pour faire le bilan sur cette numérisation. Nous avançons trois principaux résultats. D'abord, le processus de numérisation est limité. Les usages analogiques résistent fortement, et les technologies numériques viennent se superposer aux autres couches technologiques plutôt que de les remplacer. Ensuite, cette numérisation est très inégalement répartie entre secteurs. Alors que la massification de la pratiques des jeux vidéo semble témoigner d'une numérisation des loisirs, c'est, parmi les pratiques culturelles classiques, l'écoute de musique enregistrée qui est la plus fortement touchée par ce phénomène, la numérisation ayant permis une forte croissance des taux d'écoute quotidien. Les autres pratiques audiovisuelles voient se côtoyer des usages analogiques dominants, la télévision de flux demeurant le principal loisir de la population, avec des poches de pratiques numériques en croissance, mais encore minoritaires. L'image médiatique d'une domination sans faille des plateformes comme Netflix surestime ainsi les changements réels. Enfin, cette numérisation est très inégalement répartie dans la population: ce sont, globalement, les personnes les plus jeunes et celles qui sont les plus favorisés socialement qui ont adopté significativement les technologies numériques dans leurs loisirs.
 
 # So what Orange ()
@@ -81,8 +82,9 @@ D'abord, le processus de numérisation est limité. Les usages analogiques rési
 
 # Évolution de l’équipement numérique des Français
 
+<!-- INTRODUCTION DE PARTIE
 - Pointer que l’équipement numérique des ménages s’est développé
-- Et qu’à mesure de cette évolution, (1) l’usage d’Internet a augmenté (obviously) et (2) les traditionnels écarts entre les individus quant à l’usage d’Internet ont diminué. Même si en fait on va montrer quand même de gros écarts dans la suite de l’analyse, mais ça peut être un bon point de départ, de pointer cette évolution pour ensuite montrer les écarts.
+- Et qu’à mesure de cette évolution, (1) l’usage d’Internet a augmenté (obviously) et (2) les traditionnels écarts entre les individus quant à l’usage d’Internet ont diminué. Même si en fait on va montrer quand même de gros écarts dans la suite de l’analyse, mais ça peut être un bon point de départ, de pointer cette évolution pour ensuite montrer les écarts. -->
 
 ## Équipement (FG)
 
@@ -127,11 +129,21 @@ t <- freq(t, total = TRUE)
 kable(t, digits = 0)
 ```
 
+```{r}
+donnat_table(Q51_O1:Q51_O18, .value = "OUI", .data = pc08, .labs = labs_pc08, .caption = "Équipements dans le foyer, PC2008")
+```
+
+
+```{r}
+donnat_table(I101:I113, .value = "'Yes'", .caption = "Équipements dans le foyer, PC2018")
+```
+
+
 En 2018, l'environnement matériel du foyer diffère peu entre les femmes et les hommes. Seul l'ordinateur fixe est un équipement plus répandu dans les foyers des hommes enquêtés (43% disposent d'un ordinateur fixe, contre 36% pour les femmes). 
 
-En revanche, les taux équipements présents dans le foyer diffèrent nettement selon l'âge de l'enquêté. En 2018, une part non négligeable des 65 ans et plus (19%) vit dans un foyer sans téléphone portable, alors que le taux d'équipement est généralisé parmi les autres classes d'âge (taux au delà de 94%). De même, la majorité des enquêtés de 65 ans et plus vit dans un foyer équipé d'un ordinateur, mais le taux d'équipement est nettement plus faible comparativement aux autres catégories d'âge. Ainsi si 9 individus sur 10 de 15 à 54 ans disposent d'un ordinateur à domicile, ils sont 8 sur 10 entre 55 et 64 ans et seulement 6 sur 10 au delà. Par ailleurs, si l'ordinateur portable est plus répandu que l'ordinateur fixe, quelle que soit la classe d'âge, la différence est particulièrement marquée parmi les moins de 40 ans (77% des 25-39 ans et 83% des 15-24 ans ont un ordinateur portable dans leur foyer, contre 33% et 36% pour l'ordinateur fixe). Les plus de 65 ans sont également moins souvent équipés de tablette (33% vivent dans un foyer qui en est équipé, contre de 51% à 63% dans les autres catégories d'âge). Un tiers des 65 ans et plus n'ont pas accès à Internet, contre 14% des 55-64 ans et 7% des 40-54 ans, 6% des 25-39 ans et des 15-24 ans. D'autre part, l'équipement en console de jeux se raréfie considérablement dans les foyers des enquêtés les plus âgés. Ainsi seul 7% des 65 ans et plus et 21% des 55-64 ans en sont équipés, contre 55% des 40-54 ans, 64% des 25-39 ans et 72% des 15-24 ans. S'agissant des appareils photo numériques, les taux d'équipement au foyer varient relativement peu selon l'âge de l'enquêté, de 56% au minimum parmi les 65 ans et plus à 73% au maximum parmi les 40-54 ans. En revanche, les 65 ans et plus sont les plus équipés en platine vinyle (40% le sont, contre 13% des 15-24 ans) et en poste de radio (90% le sont, contre 49% des 15-24 ans). S'agissant des lecteur de CD/DVD, c'est parmi les 40 64 ans que l'équipement est le plus répandu (82% en sont équipés, contre 73% parmi les 65 ans et plus et 70% parmi les 25-39 ans et 66% parmi les 15-24 ans). L'équipement en télévision est en revanche assez peu sensible à l'âge de l'interviewé, le taux d'équipement au foyer variant entre 91% parmi les 15-24 an à 98% parmi les 65 ans et plus.
+En revanche, les taux d'équipements présents dans le foyer diffèrent nettement selon l'âge de l'enquêté. En 2018, une part non négligeable des 65 ans et plus (19%) vit dans un foyer sans téléphone portable, alors que le taux d'équipement est généralisé parmi les autres classes d'âge (taux au delà de 94%). De même, la majorité des enquêtés de 65 ans et plus vit dans un foyer équipé d'un ordinateur, mais le taux d'équipement est nettement plus faible comparativement aux autres catégories d'âge. Ainsi si 9 individus sur 10 de 15 à 54 ans disposent d'un ordinateur à domicile, ils sont 8 sur 10 entre 55 et 64 ans et seulement 6 sur 10 au delà. Par ailleurs, si l'ordinateur portable est plus répandu que l'ordinateur fixe, quelle que soit la classe d'âge, la différence est particulièrement marquée parmi les moins de 40 ans (77% des 25-39 ans et 83% des 15-24 ans ont un ordinateur portable dans leur foyer, contre 33% et 36% pour l'ordinateur fixe). Les plus de 65 ans sont également moins souvent équipés de tablette (33% vivent dans un foyer qui en est équipé, contre de 51% à 63% dans les autres catégories d'âge). Un tiers des 65 ans et plus n'ont pas accès à Internet, contre 14% des 55-64 ans et 7% des 40-54 ans, 6% des 25-39 ans et des 15-24 ans. D'autre part, l'équipement en console de jeux se raréfie considérablement dans les foyers des enquêtés les plus âgés. Ainsi seul 7% des 65 ans et plus et 21% des 55-64 ans en sont équipés, contre 55% des 40-54 ans, 64% des 25-39 ans et 72% des 15-24 ans. S'agissant des appareils photo numériques, les taux d'équipement au foyer varient relativement peu selon l'âge de l'enquêté, de 56% au minimum parmi les 65 ans et plus à 73% au maximum parmi les 40-54 ans. En revanche, les 65 ans et plus sont les plus équipés en platine vinyle (40% le sont, contre 13% des 15-24 ans) et en poste de radio (90% le sont, contre 49% des 15-24 ans). S'agissant des lecteur de CD/DVD, c'est parmi les 40 64 ans que l'équipement est le plus répandu (82% en sont équipés, contre 73% parmi les 65 ans et plus et 70% parmi les 25-39 ans et 66% parmi les 15-24 ans). L'équipement en télévision est en revanche assez peu sensible à l'âge de l'interviewé, le taux d'équipement au foyer variant entre 91% parmi les 15-24 an à 98% parmi les 65 ans et plus.
 
-Contrairement au téléviseur qui équipe la quasi-totalité des foyers quel que soit leur niveau social (le minimum étant observé parmi les cadres et professions intellectuelles supérieures avec 92% d'équipés TV), l'ordinateur est encore absent de nombreux foyers d'ouvriers ou d'agriculteurs. Ainsi, si l'ordinateur est présent chez la quasi-totalité des cadres (93% équipés) et des professions intermédiaires enquêtés (88% équipés), la situation est beaucoup plus contrastée au sein des foyers des ouvriers (65% équipés) et des agriculteurs (53% équipés). L'accès à internet est également moins répandu parmi les agriculteurs (57%) et les ouvriers (73%), et quasi-généralisé chez les cadres (95%) et les professions intermédiaires (91%). Les appareils photo numériques, les tablettes, les lecteurs CD et/ ou DVD, les platines vinyles sont également davantage présents chez les cadres (et dans une moindre mesure chez les professions intermédiaires), moins présents chez les ouviers et les agriculteurs.
+Contrairement au téléviseur qui équipe la quasi-totalité des foyers quel que soit leur niveau social (le minimum étant observé parmi les cadres et professions intellectuelles supérieures avec 92% d'équipés TV), l'ordinateur est encore absent de nombreux foyers d'ouvriers ou d'agriculteurs. Ainsi, si l'ordinateur est présent chez la quasi-totalité des cadres (93% équipés) et des professions intermédiaires enquêtés (88% équipés), la situation est beaucoup plus contrastée au sein des foyers des ouvriers (65% équipés) et des agriculteurs (53% équipés). L'accès à internet est également moins répandu parmi les agriculteurs (57%) et les ouvriers (73%), et quasi-généralisé chez les cadres (95%) et les professions intermédiaires (91%). Les appareils photo numériques, les tablettes, les lecteurs CD et/ ou DVD, les platines vinyles sont également davantage présents chez les cadres (et dans une moindre mesure chez les professions intermédiaires), moins présents chez les ouvriers et les agriculteurs.
 
 En revanche, l'équipement en console de jeux suit une logique différente. Les taux d'équipements des foyers des ouvriers, employés et professions intermédiaires sont identiques (38% pour les ouvriers et employés, 39% pour les profesions intermédiaires), légèrement supérieur à celui des cadres et professions intellectuelles supérieurs (34%). Seuls les artisans, commerçants, chefs d'entreprise et surtout les agriculteurs exploitants en sont beaucoup moins équipés (respectivement 27% et 13% d'équipés). Le téléphone portable est présent dans la plupart des foyers, néanmoins 26% des agriculteurs et 13% des ouvriers vivent dans un foyer sans téléphone portable, contre seulement 3% des cadres. Le poste de radio est à l'inverse, le seul équipement plus répandu parmi les agriculteurs (90% équipés, les employés étant les moins équipés avec un taux d'équipement de 72%).
 
@@ -149,6 +161,9 @@ A mesure que l’équipement numérique des ménages s’est développé, l’us
 <!-- Commentaire 1 : vérifier chiffre total et période sur laquelle on leur a demandé leur usage d’internet (12 mois ?) -->
 
 ```{r}
+rename(panel, pcs1 = "cs_regroupee", SEXE = "sexn", dipl = "dipp", POND_INIT = poids) %>% 
+  select(prat_internet, tljp_internet, prat_reseaux, tljp_reseaux, pcs1, SEXE, dipl, age_c, POND_INIT, annee) %>% 
+  donnat_table(prat_internet:tljp_reseaux, .data=., .value = "Oui", .labs= labs_panel, .caption = "Pratique d'internet et des réseaux sociaux", .panel_wave = TRUE)
 # + Insérer un graphique en histogramme qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, le niveau d’étude, des tranches d’âges) : trois colonnes par variable pour les 3 années.
 
 ```
@@ -159,10 +174,15 @@ On observait lors des éditions précédentes des écarts entre les Français se
 
 Mais utiliser internet ne veut pas dire utiliser internet tous les jours. Un regard à la fréquence permet d’observer à la fois que pour un certain nombre de Français, il ne s’agit pas de pratiques intensives, et de constater des écarts plus marqués, notamment selon la classe sociale et le diplôme, et des écarts peu marqués selon l’âge (l’usage d’internet étant désormais répandu dans quasiment toutes les classes d’âges, à l’exception des plus de 65 ans qui ne sont plus qu’un sur deux à utiliser internet tous les jours). On n’observe pas d’écarts dans la fréquence d’usage d’internet selon le sexe.
 + Insérer un graphique en histogramme qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, le niveau d’étude, des tranches d’âges) : trois colonnes par variable pour les 3 années.
-<!-- Commentaire 2 : ou alors on fait un seul énorme graphique avec 6 histogrammes (usage97, fréquence97, usage2008, fréquence2008, usage2018, fréquence2018) par variable (sexe, CS, diplôme, âge), mais ça me semble beaucoup -->
 
 L’usage quotidien d’internet, répandu dans toutes les classes sociales, est en effet hégémonique chez les cadres (96%) mais concerne tout de même 80% des ouvriers et employés contre 30,4% en 2008, ce qui montre à la fois la diminution des écarts, et la progression des usages d’internet dans les classes populaires.
-<!-- Commentaire 3 : «Samuel, tu as noté dans le doc numérisation que « les usages quotidiens concernent concerne tout de même 80% des ouvriers et employés utilisant Internet. Cet écart s’est réduit depuis 2008 (75% vs. 30%). » on est sûr que les chiffres correspondent à ceux qui utilisent internet, et non pas tout le monde ? changer le texte si c’est bien ça -->
+
+```{r eval = FALSE}
+filter(panel, annee == 2018) %>% 
+  tabyl(prat_internet, tljp_internet)
+
+```
+
 
 L’écart se confirme également d’un point de vue du niveau d’études, indicateur qui mêle effet d’âge et de position sociale : 86,6% des Français ayant au moins leur bac ont un usage quotidien d’internet, contre 39,1% des non diplômés ou titulaires d’un certificat d’étude (population qu’on retrouve particulièrement chez les personnes âgées de classes populaires). 
 Suivant la logique d’une généralisation des usages d’internet, l’usage des réseaux sociaux a progressé significativement de 2008 à 2018, pour concerner environ un Français sur deux (un Français sur 8 en 2008). D’abord une pratique masculine (15, 4% des hommes en 2008 contre 10,2% des femmes), l’écart s’est inversé en faveur des femmes en 2018 (5 points d’écart). 
@@ -190,8 +210,7 @@ Interrogés sur les différents thèmes dont ils ont suivi l’actualité au cou
 Les femmes sont pratiquement aussi nombreuses que les hommes à se tenir informées de l'actualité quotidiennement (77% versus 82%). En revanche, la moitié des 15-24 ans (52%) le font de manière non quotidienne et avec l'avancée en âge, la pratique s'inscrit de plus en plus massivement dans le quotidien (de 68% des 25-39 ans à 92% des 65 ans et plus). Les différences sont relativement peu marquées selon les profils sociaux. Se tenir informer de l'actualité se fait généralement quotidiennement quels que soient la catégorie sociale ou le niveau de diplôme. Les ouvriers et les employés sont les moins nombreux à le faire quotidiennement (76% et 77%) et, inversement, les agriculteurs et les cadres et professions intellectuelles supérieurés sont les plus nombreux (91% et 88%). Les différences selon le niveau de diplôme sont encore moins marquées, le minimum étant observé pour les titulaires du bac (76% s'informent quotdiennement) et le maximum pour les diplômés du 2ème cycle (83%).
 
 ```{r, eval=FALSE}
-graph_qcm(D101:D115, "'Yes'")
-graph_qcm_all(D101:D115, "'Yes'")
+donnat_table(D101:D115, .value = "'Yes'", .caption = "")
 graph_univar_all(D2)
 ```
 
@@ -199,17 +218,15 @@ La télévision est de loin le moyen de se tenir informer le plus répandu. Ains
 
 Les types de médias utilisés pour s'informer ne diffèrent pas entre les hommes et les femmes (la plus forte différence est observée pour la presse numérique ou les sites web d'information qui sont cités par 32% des hommes contre 27% des femmes se tenant informer). En revanche, les différences sont nettement marquées selon l'âge. La télévision est certes une source d'information majoritairement mobilisée quel que soit l'âge, mais elle est largement concurrencée par les réseaux sociaux parmi les 15-24 ans, et dans une moindre mesure parmi les 25-39 ans. Ainsi, 65% des 15-24 ans et 70% des 25-39 ans utilisent la télévision pour se tenir informés, ils sont respectivement 69% et 45% à utiliser les réseaux sociaux. La presse numérique ou les sites web d'information sont également une source d'information pour une large part des 15-24 ans (43%) et des 25-39 ans (45%), puis décline avec l'avancée en âge (35% des 40-54 ans, 25% des 40-54 ans et 14% des 65 ans et plus). Inversement la presse papier accroit son inflence avec l'avancée en âge. Alors que seuls 15% des 15-24 ans utilisent la presse papier pour s'informer, ils sont 51% parmi les 65 ans et plus. La radio est également un média assez peu mobilisé par les 15-24 ans (29%), alors qu'il s'agit d'une source d'information privilégiée par la moitié, voire plus, des autres classes d'âges (% compris entre 49% des 25-39 ans et 62% des 40-54 ans).
 
-```{r, eval=FALSE}
-graph_qcm(D31:D37, "'Yes'")
-
-graph_qcm_all(D31:D37, "'Yes'")
+```{r donnat_information}
+donnat_table(D31:D37, .value = "'Yes'", .caption = "Mode d'accès à l'information")
 ```
 
 <!-- > (FG) Je n'ai pas commenté l'usage en mobilité. -->
 
 ## La télévision
 
-La télévision reste un loisir incontournable en France en 2018. Au delà de la généralisation de l'équipement TV au sein des foyers, regarder la télévision est une pratique à laquelle s'adonne la quasi-totalité de la population des 15 ans et plus. Seuls 6% déclarent ne jamais, ou pratiquement jamais, regarder la television, que ce soit chez eux ou ailleurs, chez leurs parents, des amis, au café, etc. La pratique reste quotidienne pour la très large majorité, mais elle est néanmoins en retrait par rapport à la précédente enquête. En 2018, 78% des 15 ans et plus déclarent regarder la télévision tous les jours ou presque, contre 87% en 2008, retrouvant ainsi un niveau comparable à celui enregistré en 1997.
+La télévision reste un loisir incontournable en France en 2018. Au delà de la généralisation de l'équipement TV au sein des foyers, regarder la télévision est une pratique à laquelle s'adonne la quasi-totalité de la population des 15 ans et plus. Seuls 6% déclarent ne jamais, ou pratiquement jamais, regarder la télevision, que ce soit chez eux ou ailleurs, chez leurs parents, des amis, au café, etc. La pratique reste quotidienne pour la très large majorité, mais elle est néanmoins en retrait par rapport à la précédente enquête. En 2018, 78% des 15 ans et plus déclarent regarder la télévision tous les jours ou presque, contre 87% en 2008, retrouvant ainsi un niveau comparable à celui enregistré en 1997.
 
 ```{r, eval=FALSE}
 t <- svytable(~ C1, dw)
@@ -270,26 +287,15 @@ kable(t, digits = 2)
 <!-- > Commenter les différences en termes d'âge et de génération. Avec l'âge en continu, on voit des choses un peu différentes. A discuter. -->
 
 ```{r}
-count(panel, tljp_tv, gen, agen, wt = poids) %>% 
-  filter(!is.na(tljp_tv)) %>% 
-  group_by(gen, agen) %>% 
-  mutate(f = n / sum(n)) %>% 
-  filter(tljp_tv == "Oui") %>% 
-  select(-n, -tljp_tv) %>% 
-  ungroup() %>% 
-  ggplot(aes(agen, f, color = factor(gen), group = factor(gen))) +
-    geom_smooth(se=FALSE) +  
-    labs(x = "Âge", y = "Fréquence", title = "Visionnage quotidien de la TV par âge") +
-    scale_y_continuous(limits = c(0, 1), labels = scales::percent)
 
-count(panel, tljp_tv, gen, agen_c, wt = poids) %>% 
+count(panel, tljp_tv, gen, age_c, wt = poids) %>% 
   filter(!is.na(tljp_tv)) %>% 
-  group_by(gen, agen_c) %>% 
+  group_by(gen, age_c) %>% 
   mutate(f = n / sum(n)) %>% 
   filter(tljp_tv == "Oui") %>% 
   select(-n, -tljp_tv) %>% 
   ungroup() %>% 
-  ggplot(aes(agen_c, f, color = factor(gen), group = factor(gen))) +
+  ggplot(aes(age_c, f, color = factor(gen), group = factor(gen))) +
   geom_line() +
     labs(x = "Âge", y = "Fréquence", title = "Visionnage quotidien de la TV par âge") +
     scale_y_continuous(limits = c(0, 1), labels = scales::percent)
@@ -304,10 +310,8 @@ Quels que soient le genre, l'âge, le niveau de diplôme ou la catégorie social
 
 <!-- > il faudrait peut-être que je crée une variable regarder TV uniquement sur écran de TV / écran TV + autre / autre uniquement -->
 
-```{r, fig.cap = "Supports d'écoute de la télévision (pond)", eval=FALSE}
-graph_qcm(C61:C65, "'Yes'")
-
-graph_qcm_all(C61:C65, "'Yes'")
+```{r donnat_television}
+donnat_table(C61:C65, .caption = "Supports d'écoute de la télévision")
 ```
 
 ## Films
@@ -339,9 +343,8 @@ graph_qcm_all(C211:C215, "'Yes'")
 Malgré les larges possibilités offertes par les nouveaux modes de diffusion des films, le visionnage en direct, sur des chaines gratuites ou payantes, reste de très loin le mode d'accès le plus communément utilisé pour regarder des films. Ainsi 85% des consommateurs regardent des films diffusés à la télévision. Les utilisations du replay, de la VOD (Netflix, Canal Play, myTFIvod...) ou du DVD/Blue ray sont certes relativement répandues, mais concernent une minorité des consommateurs (respectivement 35%, 28% et 26% des consommateurs de films). Regarder des films en streaming est plus confidentiel (17% des consommateurs de films), néanmoins la pratique est peut-être sous-évaluée dans la mesure où Netflix a été cité comme solution de VOD plutôt que de streaming. Regarder des films directement à partir de fichiers numériques est rare (8% des consommateurs de films). Une nouvelle fois, les différences entre les hommes et les femmes sont peu marquées concernant les supports de diffusion utilisés pour regarder des films. Si la diffusion à la télévision sur des chaînes gratuites ou payantes est le mode de diffusion le plus partagé au sein de la population quels que soient le genre, le niveau de diplôme, le niveau social ou l'âge, la diffusion en direct est fortement concurrencée par les autres modes de diffusion au sein de la population des 15-24 ans, et dans une moindre mesure parmi les 25-39 ans et les 40-54 ans. Ainsi, 68% des 15-24 ans consommateurs de films regardent des films diffusés en direct à la télévision, ils sont autant à le faire via la VOD, 57% à le faire en streaming, 44% en replay, 32% en DVD/Blu ray et 14% en fichiers numériques. Des différences, certes beaucoup moins marquées, sont également à noter en fonction du niveau social. Ainsi, c'est parmi les cadres et professions intellectuelles supérieures (suivi par les professions intermédiaires) que les différents modes de diffusion des films, en dehors de la diffusion sur les chaines TV, sont les plus utilisés. Inversement, les ouvriers utilisent moins les nouveaux modes de diffusion. 26% des ouvriers consommateurs de films regardent des films en replay (contre 41% des cadres ou des professions intermédiaires), 21% regardent des films en VOD (contre 34% des cadres), 22% regardent des films sur DVD/Blue ray (contre 35% des cadres), 5% regardent des films à partir de fichiers numériques (contre 13% des cadres). De même, si la diffusion à la télévision reste le mode de consommation de films le plus courant quel que soit le niveau de diplôme, l'utilisation des modes de diffusion alternatifs sont nettement moins répandus parmi les individus n'ayant pas le BAC. A titre d'exemple, seuls 19% des consommateurs de films titulaires d'un CAP-BEP mobilisent la VOD et 30% % le replay (contre respectivement 40% et 44% des diplômés du 2ème cycle de l'enseignement supérieur), 
 <!-- > il faudrait peut-être que je crée une variable regarder film uniquement diffuser à la TV / à la TV + autre / autre uniquement -->
 
-```{r, fig.cap = "Mode d'accès aux films (pond)", eval=FALSE}
-graph_qcm(C221:C226, "'Yes'")
-graph_qcm_all(C221:C226, "'Yes'")
+```{r donnat_films}
+donnat_table(C221:C226, .caption = "Modes d'accès aux films")
 
 ```
 <!-- > Est-ce que j'analyse la question "Au cours des 12 derniers mois, avez-vous regardé des films sur un équipement mobile en dehors de votre domicile ?" ? (même chose pour séries) -->
@@ -371,9 +374,8 @@ graph_qcm_all(C331:C335, "'Yes'")
 
 Toujours comme pour les films, la télévision de flux est le principal canal d'accès aux séries, loin devant le replay et la VOD. Ainsi 81% des consommateurs de séries regardent des séries diffusées à la télévision sur des chaînes gratuites ou payantes, 33% visionnent des séries en replay et 27% en VOD. Les autres modes de diffusion sont nettement plus confidentiels (15% regardent des séries en streaming, 10% le font sur DVD/Blue-ray, 6% sur fichiers numériques). Si la diffusion à la télévision reste de manière générale le mode de consommation de séries le plus partagé au sein de la population, force est de constater que pour les jeunes, la consommation de séries diffusées en direct à la télévision est dépassée par la consommation en VOD et pratiquement rattrapper par la consommation en streaming. Ainsi, 67% des consommateurs de séries âgés de 15 à 24 ans déclarent regarder des séries en VOD, contre 53% à la télévision et 49% en streaming. Comme pour les films, les nouveaux modes de diffusion des séries sont moins répandus parmi les ouvriers et les individus non titulaires du bac. Alors que 4 consommateurs de séries sur 10 titulaires au moisn du bac regardent des séries en replay et que presque autant en visionne en VOD, seuls 29% des titulaires d'un CAP-BEP mobilisent le replay et 17% la VOD (respectivement 20% et 16% pour les consommateurs de séries sans diplômes ou titulaires du seul BEPC).
 
-```{r, fig.cap = "Mode d'accès aux séries (pond)", eval=FALSE}
-graph_qcm(C341:C346, "'Yes'")
-graph_qcm_all(C341:C346, "'Yes'")
+```{r donnat_series}
+donnat_table(C341:C346, .caption = "Mode d'accès aux séries")
 ```
 
 <!-- on pourrait peut-être laisser tomber la partie usage en mobilité dans ce chapitre -->
@@ -409,8 +411,8 @@ d <- mutate(d, support_musique_digital2 = fct_collapse(support_musique_digital, 
 graph_univar_all(support_musique_digital2)
 ```
 
-```{r, eval=FALSE, fig.cap = "Support écoute de musique (pond)", fig.height=6}
-graph_qcm_all(E81:E87)
+```{r}
+donnat_table(E81:E87, .caption = "Supports d'écoute de musique")
 ```
 
 L'écoute en numérique est corrélée à l'intensité de la pratique. Plus de 75% des répondants utilisant des outils numériques écoutent de la musique tous les jours ou presque, contre un peu moins de 60% de ceux qui n'utilisent que des terminaux analogiques. En outre, les plateformes de streaming favorisent l'écoute mobile, notamment sur téléphone portable. La disponibilité continue de la musique, à son tour, renforce l'usage quotidien. On constate ainsi que 85% des répondants qui écoutent souvent de la musique "sur un équipement mobile en dehors de [leur] domicile" sont aussi des usagers quotidiens de musique enregistrée, contre 54% de ceux qui n'ont aucun usage mobile extérieur.
@@ -459,85 +461,16 @@ pivot_longer(res_hcpc$data.clust, -clust) %>%
 
 Dans la lignée de constats précédemment opérés au sujet de la lecture de livres, qui montrent que le numérique n'a ni remplacé le papier ni révolutionné les pratiques de lecture (Gaudric, Mauger, Zunigo, 2016 ; Guittet, 2020), on constate dans ce dernier volet de l'enquête menée par le Deps que le livre au format papier reste le support privilégié et quasi-exclusif des lecteurs et lectrices (98%), alors que la tablette (6%) et la liseuse (5%) peinent à trouver un public. Ceci fait de la France un cas particulier ; si le livre papier reste partout la norme, la liseuse a trouvé un marché plus vaste dans d’autres pays occidentaux, comme aux États-Unis où 28% des adultes avaient lu un livre numérique au cours des 12 derniers mois en 2016 (Pew Research Institute, 2016) et où plus de la moitié des adultes possèdent une liseuse (voir données dans les commentaires). 
 <!-- Emma : Je ne suis vraiment pas sûre de comprendre comme toi les données du Pew : j'ai l'impression que même s'ils ne sont pas rigoureux dans leur manière de le présenter, ça veut dire 28% des adultes ayant lu un livre -->
-<!-- Sam : Je suis étonné par l'absence du téléphone dans l'enquête PC18. Ne faudrait-il pas le mentionner? -->
-<!-- Emma : Ça doit être dans "Autre", je ne vois pas trop bien ce qui peut être dans cette catégorie à part ça d'ailleurs, et oui on peut leur mentionner -->
 
 ```{r}
-select(d, SEXE, POND_INIT, F121:F124) %>% 
-  rename(Papier = "F121",
-         Liseuse = "F122",
-         Tablette = "F123",
-         Autre = "F124") %>% 
-  pivot_longer(Papier:Autre) %>% 
-  count(SEXE, name, value, wt=POND_INIT) %>% 
-  filter(!is.na(value), !is.na(SEXE)) %>% 
-  group_by(SEXE, name) %>% 
-  mutate(freq = n / sum(n) * 100) %>% 
-  filter(value == "'Yes'") %>% 
-  ungroup() %>% 
-  select(SEXE, name, freq) %>% 
-  pivot_wider(names_from = name, values_from = freq)
+donnat_table(F121:F124, .caption = "Modes d'accès à la lecture")
 ```
-<!-- Emma : Je me demande s'il ne serait pas mieux de dire Hommes/Femmes plutôt que Masculin/Féminin (un détail, sans doute) -->
-<!-- Emma : Pas réussi à afficher le total dans les tableaux -->
-<!-- Emma : Par ailleurs, j'aurais bien aimé faire un tableau global avec verticalement le genre, puis le diplôme, la CS et les tranches d'âge, j'ai essayé mais n'ai pas réussi à le faire -->
 
 On n'observe pas de différence notable entre les hommes et les femmes concernant les supports privilégiés, malgré des pratiques de lecture plus fréquentes et intensives chez les femmes (et ce depuis les années 80) : 20% des femmes déclarent ne pas lire contre 35% des hommes, et 38% des lectrices déclarent lire tous les jours ou presque contre 25% des lecteurs.
 
-```{r}
-select(d, dipl, POND_INIT, F121:F124) %>% 
-  rename(Papier = "F121",
-         Liseuse = "F122",
-         Tablette = "F123",
-         Autre = "F124") %>% 
-  pivot_longer(Papier:Autre) %>% 
-  count(dipl, name, value, wt=POND_INIT) %>% 
-  filter(!is.na(value), !is.na(dipl)) %>% 
-  group_by(dipl, name) %>% 
-  mutate(freq = n / sum(n) * 100) %>% 
-  filter(value == "'Yes'") %>% 
-  ungroup() %>% 
-  select(dipl, name, freq) %>% 
-  pivot_wider(names_from = name, values_from = freq)
-```
-<!-- Emma : Je ne comprends pas trop pourquoi il reste des NA dans le tableau ci-dessus. -->
-
-```{r}
-select(d, pcs1, POND_INIT, F121:F124) %>% 
-  rename(Papier = "F121",
-         Liseuse = "F122",
-         Tablette = "F123",
-         Autre = "F124") %>% 
-  pivot_longer(Papier:Autre) %>% 
-  count(pcs1, name, value, wt=POND_INIT) %>% 
-  filter(!is.na(value), !is.na(pcs1)) %>% 
-  group_by(pcs1, name) %>% 
-  mutate(freq = n / sum(n) * 100) %>% 
-  filter(value == "'Yes'") %>% 
-  ungroup() %>% 
-  select(pcs1, name, freq) %>% 
-  pivot_wider(names_from = name, values_from = freq)
-```
 La lecture numérique, sur tablette comme sur liseuse, concerne davantage les plus diplômés : 12% des lecteurs et lectrices de niveau Bac+5 déclarent lire sur liseuse, contre 8% des diplômés d’une licence, 4% du bac ou 2% d’un CAP/BEP. Le même constat peut être fait vis-à-vis de la classe sociale : 11% des cadres et professions intellectuelles supérieures, 4% des employés, 2% des ouvriers, 01% des agriculteurs exploitants déclarent lire sur tablette. La lecture sur livres papier, à l'inverse, concerne l'ensemble de la population de façon égale, au regard du niveau d'étude ou de la classe sociale.
 
-```{r}
-select(d, age_c, POND_INIT, F121:F124) %>% 
-  rename(Papier = "F121",
-         Liseuse = "F122",
-         Tablette = "F123",
-         Autre = "F124") %>% 
-  pivot_longer(Papier:Autre) %>% 
-  count(age_c, name, value, wt=POND_INIT) %>% 
-  filter(!is.na(value), !is.na(age_c)) %>% 
-  group_by(age_c, name) %>% 
-  mutate(freq = n / sum(n) * 100) %>% 
-  filter(value == "'Yes'") %>% 
-  ungroup() %>% 
-  select(age_c, name, freq) %>% 
-  pivot_wider(names_from = name, values_from = freq)
-```
-
-Contrairement à ce qu’on observe pour d’autres pratiques culturelles, l’âge n’est pas une variable déterminante lorsqu’il s’agit de lire en numérique, mis à part pour les plus de 65 ans, moins concernés que les autres tranches d'âge par les pratiques de lecture numérique (à l'instar de ce qu'on observe pour l'ensemble des pratiques numériques).
+Contrairement à ce qu’on observe pour d’autres pratiques culturelles, l’âge n’est pas une variable déterminante lorsqu’il s’agit de lire en numérique, mis à part pour les plus de 65 ans, moins concernés que les autres tranches d'âge par les pratiques de lecture numérique (à l'instar de ce qu'on observe pour l'ensemble des pratiques numériques). Cependant, l'absence de modalités désignant spécifiquement le téléphone comme terminal de lecture conduit peut-être l'enquête à sous-estimer peut-être les lectures numériques des jeunes, en particulier les moins légitimes (comme les textes de fiction publiés exclusivement sur Internet).
 
 ```{r}
 graph_univar_all(F12BIS)
@@ -570,8 +503,9 @@ Au sein des pratiquants, les joueurs sont beaucoup plus susceptibles que les jou
 
 ## Pratiques amateurs (EG)
 
-L'enquête Pratiques Culturelles 2018 mesure un certain nombre de pratiques amateures : écriture, montage, pratique de la peinture, du théâtre, du dessin, de la danse, de la poterie, de la photographie, généalogie, activité scientifique. Certaines sont fortement numérisées, comme le montage audio ou video, ou la photographie. La plupart, cependant, se prêtent apparamment peu à la numérisation. Comment numériser la pratique de la peinture ou celle de la danse ? La littérature montre pourtant que les "mondes de loisir" s'appuient sur une infrastructure matérielle et organisationnelle (Fine, 2015). Le numérique vient équiper ces pratiques en facilitant des activités parfois pensées comme périphériques, mais qui sont essentielles, comme le montre Vinciane Zabban (2015) à propos de l'effet de la publicisation des productions de tricot sur les plateformes.
-<!-- Emma : Je suis pas hyper convaincue par la phrase "Comment numériser la pratique de la peinture ou celle de la danse ?" A vrai dire il y a énormément de contenus en ligne sur ces questions ; du coup, on part du principe que c'est quand même marginal ? -->
+L'enquête Pratiques Culturelles 2018 mesure un certain nombre de pratiques amateures : écriture, montage, pratique de la peinture, du théâtre, du dessin, de la danse, de la poterie, de la photographie, généalogie, activité scientifique. Certaines sont fortement numérisées, comme le montage audio ou video, ou la photographie. La plupart, cependant, se prêtent apparemment peu à la numérisation. Comment numériser la pratique de la peinture ou celle de la danse ? La littérature montre pourtant que les "mondes de loisir" s'appuient sur une infrastructure matérielle et organisationnelle (Fine, 2015). Le numérique vient équiper ces pratiques en facilitant des activités parfois pensées comme périphériques, mais qui sont essentielles, comme le montre Vinciane Zabban (2015) à propos de l'effet de la publicisation des productions de tricot sur les plateformes.
+<!--Emma : Je suis pas hyper convaincue par la phrase "Comment numériser la pratique de la peinture ou celle de la danse ?" A vrai dire il y a énormément de contenus en ligne sur ces questions ; du coup, on part du principe que c'est quand même marginal ?-->
+<!--On peut supprimer si tu veux c'était pour faire un effet de contraste justement: genre vous voyez pas comment c'est possible et en fait c'est possible.-->
 
 Dans l'enquête, l'activité périphérique qui est mesurée systématiquement sur les pratiques amateures est l'apprentissage : les répondants ont-ils pris des cours pour chaque activité déclarée ? Et si oui, était-ce un cours sur Internet ? Près de la moitié des répondants (46%) déclarent au moins une pratique amateure ; parmi eux, un sur cinq déclare avoir pris des cours, et un peu moins d'un sur dix (8%) des cours en ligne. Certaines pratiques amateurs font davantage l’objet de cours particulier (le cirque, la danse, la musique et le chant, la peinture et la sculpture, la poterie, les activités scientifiques et techniques et le théâtre) ou de cours au sein de structures spécialisées telles que les conservatoires et écoles de musique, de danse, d’art dramatique, d’art plastique et de cirque (le cirque, la danse, le théâtre et la poterie). En revanche, les pratiques du montage audio et vidéo, de la musique et du chant, et des activités scientifiques et techniques sont celles qui ont le plus fait l’objet de cours en ligne. Nous pouvons attribuer la part des cours en ligne de montage et d’activités scientifiques et techniques par la faible offre qui y est consacrée par ailleurs. La surreprésentation de la pratique de la musique et du chant s’explique par la prédominance de cette pratique au sein des pratiques amateurs : elles sont pratiquées par 34% des Français·es ce qui en fait la pratique amateur dominante. 
 
@@ -580,64 +514,7 @@ Dans l'enquête, l'activité périphérique qui est mesurée systématiquement s
 ```{r}
 crealabs <- tibble(variable = paste0(rep(paste0("A20_Loop_", 1:14), each=7), rep(paste0("_A2", c(1:3, 41:44)), times = 14)),
        varlabel = paste0(rep(c("musique_chant", "journal_intime", "poeme_roman", "peinture_sculpture", "montages", "cirque", "poterie", "theatre", "dessin", "danse", "photo", "genealogie", "scientifique"), each=7), "_", rep(c("12_derniers_mois", "age_fin", "cours", "cours_structure", "cours_particuliers", "cours_internet", "cours_autre"), times = 14)))
-mutate(d, 
-       A20_Loop_1_A241 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A241), 2, A20_Loop_1_A241),
-       A20_Loop_2_A241 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A241), 2, A20_Loop_2_A241),
-       A20_Loop_3_A241 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A241), 2, A20_Loop_3_A241),
-       A20_Loop_4_A241 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A241), 2, A20_Loop_4_A241),
-       A20_Loop_5_A241 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A241), 2, A20_Loop_5_A241),
-       A20_Loop_6_A241 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A241), 2, A20_Loop_6_A241),
-       A20_Loop_7_A241 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A241), 2, A20_Loop_7_A241),
-       A20_Loop_8_A241 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A241), 2, A20_Loop_8_A241),
-       A20_Loop_9_A241 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A241), 2, A20_Loop_9_A241),
-       A20_Loop_10_A241 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A241), 2, A20_Loop_10_A241),
-       A20_Loop_11_A241 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A241), 2, A20_Loop_11_A241),
-       A20_Loop_12_A241 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A241), 2, A20_Loop_12_A241),
-       A20_Loop_13_A241 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A241), 2, A20_Loop_13_A241),
-       A20_Loop_1_A242 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A242), 2, A20_Loop_1_A242),
-       A20_Loop_2_A242 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A242), 2, A20_Loop_2_A242),
-       A20_Loop_3_A242 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A242), 2, A20_Loop_3_A242),
-       A20_Loop_4_A242 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A242), 2, A20_Loop_4_A242),
-       A20_Loop_5_A242 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A242), 2, A20_Loop_5_A242),
-       A20_Loop_6_A242 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A242), 2, A20_Loop_6_A242),
-       A20_Loop_7_A242 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A242), 2, A20_Loop_7_A242),
-       A20_Loop_8_A242 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A242), 2, A20_Loop_8_A242),
-       A20_Loop_9_A242 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A242), 2, A20_Loop_9_A242),
-       A20_Loop_10_A242 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A242), 2, A20_Loop_10_A242),
-       A20_Loop_11_A242 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A242), 2, A20_Loop_11_A242),
-       A20_Loop_12_A242 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A242), 2, A20_Loop_12_A242),
-       A20_Loop_13_A242 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A242), 2, A20_Loop_13_A242),
-       A20_Loop_1_A243 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A243), 2, A20_Loop_1_A243),
-       A20_Loop_2_A243 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A243), 2, A20_Loop_2_A243),
-       A20_Loop_3_A243 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A243), 2, A20_Loop_3_A243),
-       A20_Loop_4_A243 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A243), 2, A20_Loop_4_A243),
-       A20_Loop_5_A243 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A243), 2, A20_Loop_5_A243),
-       A20_Loop_6_A243 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A243), 2, A20_Loop_6_A243),
-       A20_Loop_7_A243 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A243), 2, A20_Loop_7_A243),
-       A20_Loop_8_A243 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A243), 2, A20_Loop_8_A243),
-       A20_Loop_9_A243 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A243), 2, A20_Loop_9_A243),
-       A20_Loop_10_A243 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A243), 2, A20_Loop_10_A243),
-       A20_Loop_11_A243 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A243), 2, A20_Loop_11_A243),
-       A20_Loop_12_A243 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A243), 2, A20_Loop_12_A243),
-       A20_Loop_13_A243 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A243), 2, A20_Loop_13_A243)) %>% 
-  select(contains("_A241"), contains("_A242"), contains("_A243"), POND_INIT) %>% 
-  pivot_longer(-POND_INIT) %>% 
-  mutate(value = factor(value, levels = 1:2, labels = c("Oui", "Non"))) %>% 
-  filter(!is.na(value)) %>% 
-  group_by(name, value) %>% 
-  summarize(f = sum(POND_INIT)) %>% 
-  group_by(name) %>% 
-  mutate(f = f / sum(f)) %>% 
-  mutate(freq = f / sum(f) * 100) %>% 
-  rename(variable = "name") %>% 
-  left_join(crealabs) %>% 
-  filter(value == "Oui") %>% 
-  ungroup() %>% 
-  select(contains("_A241"), contains("_A242"), contains("_A243"), varlabel, freq)%>% 
-  pivot_wider(names_from = varlabel, values_from = freq)
-```
 
-```{r}
 mutate(d, 
        A20_Loop_1_A241 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A241), 2, A20_Loop_1_A241),
        A20_Loop_2_A241 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A241), 2, A20_Loop_2_A241),
@@ -699,80 +576,23 @@ Plus généralement, le recours à des outils numériques s’est généralisé 
 
 Utiliser des outils numériques dans le cadre de pratiques amateurs est davantage le fait des hommes, des cadres et professions intellectuelles supérieures et des plus diplômés, ce qui va dans le sens des constats opérés au sujet des autres pratiques culturelles et de l’équipement des Français.
 
-```{r}
-select(d, SEXE, POND_INIT, A311:A314)%>% 
-  rename(Se_former_apprendre = "A311",
-         Produire_créer = "A312",
-         Diffuser_faire_connaître = "A313",
-         Aucun_outil = "A314") %>% 
-  pivot_longer(Se_former_apprendre:Aucun_outil)%>% 
-  count(SEXE, name, value, wt=POND_INIT) %>% 
-  filter(!is.na(value), !is.na(SEXE)) %>% 
-  group_by(SEXE, name) %>% 
-  mutate(freq = n / sum(n) * 100) %>% 
-  filter(value == "1") %>% 
-  ungroup() %>% 
-  select(SEXE, name, freq) %>% 
-  pivot_wider(names_from = name, values_from = freq)
+```{r donnat_raisons_internet_amateur}
+donnat_table(A311:A314, .value = "1", .caption = "Raison de l'usage des outils numériques")
 ```
+
 45% des hommes utilisent en effet les outils numériques pour produire, créer (contre 32% des femmes), 38% pour se former, apprendre (contre 28% des femmes), et 34% pour diffuser et faire connaître leur pratique (contre 29% des femmes). Ces dernières sont 45% à déclarer ne pas utiliser d'outils nuémriques, contre 32% des hommes. 
 
-```{r}
-select(d, pcs1, POND_INIT, A311:A314)%>% 
-  rename(Se_former_apprendre = "A311",
-         Produire_créer = "A312",
-         Diffuser_faire_connaître = "A313",
-         Aucun_outil = "A314") %>% 
-  pivot_longer(Se_former_apprendre:Aucun_outil)%>% 
-  count(pcs1, name, value, wt=POND_INIT) %>% 
-  filter(!is.na(value), !is.na(pcs1)) %>% 
-  group_by(pcs1, name) %>% 
-  mutate(freq = n / sum(n) * 100) %>% 
-  filter(value == "1") %>% 
-  ungroup() %>% 
-  select(pcs1, name, freq) %>% 
-  pivot_wider(names_from = name, values_from = freq)
-```
-```{r}
-select(d, dipl, POND_INIT, A311:A314)%>% 
-  rename(Se_former_apprendre = "A311",
-         Produire_créer = "A312",
-         Diffuser_faire_connaître = "A313",
-         Aucun_outil = "A314") %>% 
-  pivot_longer(Se_former_apprendre:Aucun_outil)%>% 
-  count(dipl, name, value, wt=POND_INIT) %>% 
-  filter(!is.na(value), !is.na(dipl)) %>% 
-  group_by(dipl, name) %>% 
-  mutate(freq = n / sum(n) * 100) %>% 
-  filter(value == "1") %>% 
-  ungroup() %>% 
-  select(dipl, name, freq) %>% 
-  pivot_wider(names_from = name, values_from = freq)
-```
 Le même constat s'impose au regard de la classe sociale ou du niveau d'étude : 29% des diplômés d'un bac+5 déclarent ne pas utiliser d'outils numériques contre 36% des titulaires du baccalauréat et 54% des non diplômés ; 28% des cadres et prof. intellectuelles sup. déclarent ne pas utiliser ces outils contre 47% des employés et 51% des ouvriers. 
-
-```{r}
-select(d, age_c, POND_INIT, A311:A314)%>% 
-  rename(Se_former_apprendre = "A311",
-         Produire_créer = "A312",
-         Diffuser_faire_connaître = "A313",
-         Aucun_outil = "A314") %>% 
-  pivot_longer(Se_former_apprendre:Aucun_outil)%>% 
-  count(age_c, name, value, wt=POND_INIT) %>% 
-  filter(!is.na(value), !is.na(age_c)) %>% 
-  group_by(age_c, name) %>% 
-  mutate(freq = n / sum(n) * 100) %>% 
-  filter(value == "1") %>% 
-  ungroup() %>% 
-  select(age_c, name, freq) %>% 
-  pivot_wider(names_from = name, values_from = freq)
-```
 
 Les usages d'outils numériques sont fortement correlés à l'âge. Plus les individus sont âgés, moins ils les utilisent : 55% des personnes âgées de plus de 65 ans déclarent ne pas utiliser d'outils numériques contre 35% des 40-54 ans et 24% des 15-24 ans. 
 
 Si les hommes, les plus diplômés, les cadres et les plus jeunes utilisent davantage ces ressources, il est en revanche difficile  d'attribuer des usages précis de ces ressources (se former/apprendre, diffuser/faire connaître, produire/créer) à certains types d'individus. 
 
-# Une configuration numérique?
+<!-- 
+# Une configuration numérique? 
+
+Faire une typologie à partir des modes d'accès à tous les terminaux et regarder si on retrouve un pôle numérique.
+-->
 
 
 
