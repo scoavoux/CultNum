@@ -77,10 +77,10 @@ Quel bilan en 2018? Quelle progression du numérique? Le numérique a-t-il colon
 2. elle varie énormément selon les secteur, de la musique et des jeux vidéo, très numérisés, au livre;
 3. cette numérisation est très inégalement répartie dans la population: ce sont les plus favorisés qui en bénéficie (sauf moyennisation des réseaux sociaux);
 
-# Évolution de l’équipement numérique des Français
+<!--# Évolution de l’équipement numérique des Français
 
 - Pointer que l’équipement numérique des ménages s’est développé
-- Et qu’à mesure de cette évolution, (1) l’usage d’Internet a augmenté (obviously) et (2) les traditionnels écarts entre les individus quant à l’usage d’Internet ont diminué. Même si en fait on va montrer quand même de gros écarts dans la suite de l’analyse, mais ça peut être un bon point de départ, de pointer cette évolution pour ensuite montrer les écarts.
+- Et qu’à mesure de cette évolution, (1) l’usage d’Internet a augmenté (obviously) et (2) les traditionnels écarts entre les individus quant à l’usage d’Internet ont diminué. Même si en fait on va montrer quand même de gros écarts dans la suite de l’analyse, mais ça peut être un bon point de départ, de pointer cette évolution pour ensuite montrer les écarts. --> 
 
 ## Équipement (FG)
 
@@ -143,8 +143,7 @@ graph_qcm_all(Iconsole, "'Yes'")
 
 ## Fréquence des usages d’Internet et des réseaux sociaux (EG)
 
-A mesure que l’équipement numérique des ménages s’est développé, l’usage d’internet a augmenté – on passe d’environ 1% en 1997, contre 56% des individus qui ont utilisé Internet (chercher chiffre + chercher période) en 2008 puis environ 84% en 2018 – et que les traditionnels écarts entre les individus quant à l’usage d’internet ont diminué. Nous verrons par la suite des différences plus précises lorsqu’on regarde en détail à quoi sont employées les technologies numériques selon les pratiques culturelles.
-<!-- Commentaire 1 : vérifier chiffre total et période sur laquelle on leur a demandé leur usage d’internet (12 mois ?) -->
+A mesure que l’équipement numérique des ménages s’est développé, on constate l’usage d’internet a augmenté – environ 1% des individus ont utilisé internet en 1997, contre 57,7% en 2008 (chercher chiffre) puis 84,5% en 2018 – et que les traditionnels écarts entre les individus quant à l’usage d’internet ont diminué, ce qui est à nuancer au regard de ce à quoi sont employées les technologies numériques en matière de pratiques culturelles et de loisirs.
 
 ```{r}
 # + Insérer un graphique en histogramme qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, le niveau d’étude, des tranches d’âges) : trois colonnes par variable pour les 3 années.
@@ -157,25 +156,20 @@ On observait lors des éditions précédentes des écarts entre les Français se
 
 Mais utiliser internet ne veut pas dire utiliser internet tous les jours. Un regard à la fréquence permet d’observer à la fois que pour un certain nombre de Français, il ne s’agit pas de pratiques intensives, et de constater des écarts plus marqués, notamment selon la classe sociale et le diplôme, et des écarts peu marqués selon l’âge (l’usage d’internet étant désormais répandu dans quasiment toutes les classes d’âges, à l’exception des plus de 65 ans qui ne sont plus qu’un sur deux à utiliser internet tous les jours). On n’observe pas d’écarts dans la fréquence d’usage d’internet selon le sexe.
 + Insérer un graphique en histogramme qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, le niveau d’étude, des tranches d’âges) : trois colonnes par variable pour les 3 années.
-<!-- Commentaire 2 : ou alors on fait un seul énorme graphique avec 6 histogrammes (usage97, fréquence97, usage2008, fréquence2008, usage2018, fréquence2018) par variable (sexe, CS, diplôme, âge), mais ça me semble beaucoup -->
+<!-- Emma : ou alors on fait un seul énorme graphique avec 6 histogrammes (usage97, fréquence97, usage2008, fréquence2008, usage2018, fréquence2018) par variable (sexe, CS, diplôme, âge), mais ça me semble beaucoup -->
 
 L’usage quotidien d’internet, répandu dans toutes les classes sociales, est en effet hégémonique chez les cadres (96%) mais concerne tout de même 80% des ouvriers et employés contre 30,4% en 2008, ce qui montre à la fois la diminution des écarts, et la progression des usages d’internet dans les classes populaires.
-<!-- Commentaire 3 : «Samuel, tu as noté dans le doc numérisation que « les usages quotidiens concernent concerne tout de même 80% des ouvriers et employés utilisant Internet. Cet écart s’est réduit depuis 2008 (75% vs. 30%). » on est sûr que les chiffres correspondent à ceux qui utilisent internet, et non pas tout le monde ? changer le texte si c’est bien ça -->
+<!-- Emma : «Samuel, tu as noté dans le doc numérisation que « les usages quotidiens concernent concerne tout de même 80% des ouvriers et employés utilisant Internet. Cet écart s’est réduit depuis 2008 (75% vs. 30%). » on est sûr que les chiffres correspondent à ceux qui utilisent internet, et non pas tout le monde ? changer le texte si c’est bien ça -->
 
 L’écart se confirme également d’un point de vue du niveau d’études, indicateur qui mêle effet d’âge et de position sociale : 86,6% des Français ayant au moins leur bac ont un usage quotidien d’internet, contre 39,1% des non diplômés ou titulaires d’un certificat d’étude (population qu’on retrouve particulièrement chez les personnes âgées de classes populaires). 
 Suivant la logique d’une généralisation des usages d’internet, l’usage des réseaux sociaux a progressé significativement de 2008 à 2018, pour concerner environ un Français sur deux (un Français sur 8 en 2008). D’abord une pratique masculine (15, 4% des hommes en 2008 contre 10,2% des femmes), l’écart s’est inversé en faveur des femmes en 2018 (5 points d’écart). 
-<!-- Commentaire 4 : vérifier chiffre total -->
 
-+ A nouveau, je pense qu’un graphique en histogramme est mieux pour ces données : graphique qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, le niveau d’étude, des tranches d’âges) : trois colonnes par variable pour les 3 années.
+<!-- A nouveau, je pense qu’un graphique en histogramme est mieux pour ces données : graphique qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, le niveau d’étude, des tranches d’âges) : trois colonnes par variable pour les 3 années.  -->
 
 L’usage des réseaux sociaux concerne donc une grande partie de la population – on trouve notamment 50% d’usagers chez les cinquantenaires – mais concerne davantage, à l’instar de l’ensemble des pratiques numériques, les jeunes. 
-Les écarts concernant le milieu social se sont eux fortement résorbés. Alors que les réseaux sociaux étaient en 2008 un privilège des classes supérieures (27% des cadres contre 16% des professions intermédiaires et 9% des emploés et ouvriers), ils concernent désormais de façon similaire tous les milieux sociaux : 63% des cadres, 66,6% des professions intermédiaires, 64,1% des ouvriers et employés.
-<!-- Commentaire 5 : c’est notamment une des variables qui me faisait penser à une moyennisation, puisque pour d’autres pratiques (légitimes), les CS ne sont pas concernées de façon similaire (et qu’on peut faire le même constat pour une poignée d’autres pratiques « moyennes « ) -->
+Les écarts concernant le milieu social se sont eux fortement résorbés. Alors que les réseaux sociaux étaient en 2008 un privilège des classes supérieures (27% des cadres contre 16% des professions intermédiaires et 9% des emploés et ouvriers), ils concernent désormais de façon équivalente tous les milieux sociaux : 63% des cadres, 66,6% des professions intermédiaires, 64,1% des ouvriers et employés.
 
-A nouveau, le niveau d’étude suit les tendances observées du point de vue de la classe sociale : si les non diplômés et titulaires du certificat d’étude restent peu concernés par l’usage des réseaux sociaux (29,7%), plus de 53,9% des Français ayant au moins le bac les utilisent. A noter que contrairement à l’usage d’internet, celui des réseaux sociaux est davantage marqué chez les individus occupant une position intermédiaires. Si l’écart est faible au regard de la classe sociale (3 points d’écart entre les cadres et les professions intermédiaires), il s’accroit très légèrement entre les titulaires du bac (66,1%) et les individus ayant fait des études supérieures (61,3%), séparés de 5 points. Ceci tend à montrer qu’à mesure que les usages d’internet se sont répandus dans la population, et bien qu’on observe des usages plus marqués dans les classes supérieures notamment en ce qui concerne les pratiques culturelles les plus légitimes (comme nous ne verrons dans la suite de ce rapport), certaines pratiques plus « moyennes » socialement comme l’usage des réseaux sociaux ont pu se développer.
-<!-- Citer Hargittai sur la stratification sociale des réseaux sociaux, Potential biases in big data: Omitted voices on social media
-
-Peut-être présenter ça comme une hypothèse -->
+A nouveau, le niveau d’étude suit les tendances observées du point de vue de la classe sociale : si les non diplômés et titulaires du certificat d’étude restent peu concernés par l’usage des réseaux sociaux (29,7%), plus de 53,9% des Français ayant au moins le bac les utilisent. A noter que contrairement à l’usage d’internet, celui des réseaux sociaux est davantage marqué chez les individus occupant une position intermédiaires. Si l’écart est faible au regard de la classe sociale (3 points d’écart entre les cadres et les professions intermédiaires), il s’accroit très légèrement entre les titulaires du bac (66,1%) et les individus ayant fait des études supérieures (61,3%), séparés de 5 points. Cet écart, insuffisamment marqué pour en tirer des conclusions définitives, pointe malgré tout vers l'hypothèse d'une moyennification de l'usage des réseaux sociaux. A mesure que les usages d’internet se sont répandus dans la population, et bien qu’on observe des usages plus marqués dans les classes supérieures notamment en ce qui concerne les pratiques culturelles les plus légitimes, certaines pratiques plus « moyennes » socialement, comme l’usage des réseaux sociaux, auraient pu se développer davantage dans des milieux intermédiaires, ce qui n'empêche que des écarts dans les réseaux sociaux privilégiés aient pu être observés, que ce soit en fonction du niveau d'étude ou des compétences informatiques (Hargittai, 2018).
 
 # La numérisation des loisirs et des pratiques culturelles
 
