@@ -14,8 +14,9 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       filter(value == .value) %>% 
       left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
       mutate(indep = "Total",
+             indepmod = "",
              lab = paste(annee, lab, sep = "_")) %>% 
-      select(indep, lab, f) %>% 
+      select(indep, indepmod, lab, f) %>% 
       pivot_wider(names_from = lab, values_from = f)
     
     
@@ -32,7 +33,7 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       mutate(lab = paste(annee, lab, sep = "_")) %>% 
       select(indep, indepmod, lab, f) %>% 
       pivot_wider(names_from = lab, values_from = f) %>% 
-      mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "NA", indep)) %>% 
+      mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "", indep)) %>% 
       add_case(total, .before = 1L) %>% 
       kable(caption = .caption)
   } else {
@@ -45,8 +46,8 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       ungroup() %>% 
       filter(value == .value) %>% 
       left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
-      mutate(indep = "Total") %>% 
-      select(indep, lab, f) %>% 
+      mutate(indep = "Total", indepmod = "") %>% 
+      select(indep, indepmod, lab, f) %>% 
       pivot_wider(names_from = lab, values_from = f)
     
     
@@ -62,7 +63,7 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
       select(indep, indepmod, lab, f) %>% 
       pivot_wider(names_from = lab, values_from = f) %>% 
-      mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "NA", indep)) %>% 
+      mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "", indep)) %>% 
       add_case(total, .before = 1L) %>% 
       kable(caption = .caption)
   }

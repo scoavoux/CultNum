@@ -2,7 +2,9 @@
 title: "La numérisation des loisirs et des pratiques culturelles"
 author: "Samuel Coavoux, Fabienne Gire et Emmanuelle Guittet"
 date: "16/09/2021"
-output: html_document
+output: 
+  html_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
@@ -60,6 +62,9 @@ pc08 <- mutate(pc08, TYPMEN =
 
 # Ponderation
 pc08w <- svydesign(ids = ~1, data = pc08, weights = ~ pc08$POND_INIT)
+
+labs <- mutate(labs, varlabel = str_replace_all(varlabel, "\\s", " "))
+labs_pc08 <- mutate(labs_pc08, varlabel = str_replace_all(varlabel, "\\s", " "))
 
 ```
 
@@ -134,13 +139,11 @@ kable(t, digits = 0)
 donnat_table(Q51_O1:Q51_O18, .value = "OUI", .data = pc08, .labs = labs_pc08, .caption = "Équipements dans le foyer, PC2008")
 ```
 
+En 2018, l'environnement matériel du foyer diffère peu entre les femmes et les hommes. Seul l'ordinateur fixe est un équipement plus répandu dans les foyers des hommes enquêtés (43% disposent d'un ordinateur fixe, contre 36% pour les femmes). 
 
 ```{r}
 donnat_table(I101:I113, .value = "'Yes'", .caption = "Équipements dans le foyer, PC2018")
 ```
-
-
-En 2018, l'environnement matériel du foyer diffère peu entre les femmes et les hommes. Seul l'ordinateur fixe est un équipement plus répandu dans les foyers des hommes enquêtés (43% disposent d'un ordinateur fixe, contre 36% pour les femmes). 
 
 En revanche, les taux d'équipements présents dans le foyer diffèrent nettement selon l'âge de l'enquêté. En 2018, une part non négligeable des 65 ans et plus (19%) vit dans un foyer sans téléphone portable, alors que le taux d'équipement est généralisé parmi les autres classes d'âge (taux au delà de 94%). De même, la majorité des enquêtés de 65 ans et plus vit dans un foyer équipé d'un ordinateur, mais le taux d'équipement est nettement plus faible comparativement aux autres catégories d'âge. Ainsi si 9 individus sur 10 de 15 à 54 ans disposent d'un ordinateur à domicile, ils sont 8 sur 10 entre 55 et 64 ans et seulement 6 sur 10 au delà. Par ailleurs, si l'ordinateur portable est plus répandu que l'ordinateur fixe, quelle que soit la classe d'âge, la différence est particulièrement marquée parmi les moins de 40 ans (77% des 25-39 ans et 83% des 15-24 ans ont un ordinateur portable dans leur foyer, contre 33% et 36% pour l'ordinateur fixe). Les plus de 65 ans sont également moins souvent équipés de tablette (33% vivent dans un foyer qui en est équipé, contre de 51% à 63% dans les autres catégories d'âge). Un tiers des 65 ans et plus n'ont pas accès à Internet, contre 14% des 55-64 ans et 7% des 40-54 ans, 6% des 25-39 ans et des 15-24 ans. D'autre part, l'équipement en console de jeux se raréfie considérablement dans les foyers des enquêtés les plus âgés. Ainsi seul 7% des 65 ans et plus et 21% des 55-64 ans en sont équipés, contre 55% des 40-54 ans, 64% des 25-39 ans et 72% des 15-24 ans. S'agissant des appareils photo numériques, les taux d'équipement au foyer varient relativement peu selon l'âge de l'enquêté, de 56% au minimum parmi les 65 ans et plus à 73% au maximum parmi les 40-54 ans. En revanche, les 65 ans et plus sont les plus équipés en platine vinyle (40% le sont, contre 13% des 15-24 ans) et en poste de radio (90% le sont, contre 49% des 15-24 ans). S'agissant des lecteur de CD/DVD, c'est parmi les 40 64 ans que l'équipement est le plus répandu (82% en sont équipés, contre 73% parmi les 65 ans et plus et 70% parmi les 25-39 ans et 66% parmi les 15-24 ans). L'équipement en télévision est en revanche assez peu sensible à l'âge de l'interviewé, le taux d'équipement au foyer variant entre 91% parmi les 15-24 an à 98% parmi les 65 ans et plus.
 
@@ -467,7 +470,7 @@ La lecture numérique, sur tablette comme sur liseuse, concerne davantage les pl
 
 Contrairement à ce qu’on observe pour d’autres pratiques culturelles, l’âge n’est pas une variable déterminante lorsqu’il s’agit de lire en numérique, mis à part pour les plus de 65 ans, moins concernés que les autres tranches d'âge par les pratiques de lecture numérique (à l'instar de ce qu'on observe pour l'ensemble des pratiques numériques). Cependant, l'absence de modalités désignant spécifiquement le téléphone comme terminal de lecture conduit peut-être l'enquête à sous-estimer peut-être les lectures numériques des jeunes, en particulier les moins légitimes (comme les textes de fiction publiés exclusivement sur Internet).
 
-```{r}
+```{r, eval=FALSE}
 graph_univar_all(F12BIS)
 ```
 <!-- Emma : Je me suis pris la tête un certain moment pour faire des barplot sans succès. Je laisse de côté pour avancer sur le reste. -->
@@ -564,7 +567,8 @@ mutate(d,
   separate(varlabel, into = c("discipline", "cours"), sep = "cours") %>% 
   filter(value == "Oui") %>% 
   select(discipline, f, cours) %>% 
-  pivot_wider(names_from = cours, values_from = f)
+  pivot_wider(names_from = cours, values_from = f) %>% 
+  kable(caption = "Types de cours par discipline")
 ```
 
 Plus généralement, le recours à des outils numériques s’est généralisé dans l’ensemble de la population, bien que 40% des répondants disent ne pas en utiliser dans le cadre de leur pratique amateur. Ces outils sont utilisés pour produire/créer (38%), se former/apprendre (32%) et diffuser/faire connaître sa pratique (31%). 
