@@ -134,3 +134,11 @@ d$C35_r <- case_when(
   TRUE ~ d$C35
 )
 
+# (FG) équipements utilisés pour regarder la télé
+d$C6_r <- case_when(
+  d$C61 == "'Yes'" & d$C62 == "'No'" & d$C63 == "'No'" & d$C64 == "'No'" & d$C65 == "'No'" ~ "Ecran de TV uniquement",  
+  d$C61 == "'Yes'" & (d$C62 == "'Yes'" | d$C63 == "'Yes'" | d$C64 == "'Yes'" | d$C65 == "'Yes'") ~ "Ecran de TV + autre", 
+  d$C61 == "'No'" & (d$C62 == "'Yes'" | d$C63 == "'Yes'" | d$C64 == "'Yes'" | d$C65 == "'Yes'") ~ "Autre uniquement",
+  is.na(d$C61) == TRUE ~ "Ne regarde pas la TV",
+  TRUE ~ "nsp"
+)
