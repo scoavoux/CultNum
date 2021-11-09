@@ -1,0 +1,144 @@
+---
+title: "Activités de loisirs pratiquées"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(tidyverse)
+```
+
+## Pratiques de loisirs déclarées, selon les variables classiques
+
+```{r}
+select(d, SEXE, POND_INIT, A1001:A1010) %>% 
+  rename(TricotBroderieCouture = "A1001",
+         CartesJeuxSociété = "A1002",
+         JeuxArgent = "A1003",
+         Cuisine = "A1004",
+         BricolageDécoration = "A1005",
+         JardinPotager = "A1006",
+         JardinAgrément = "A1007",
+         PêcheChasse = "A1008",
+         Collection = "A1009",
+         Tuning = "A1010") %>% 
+  pivot_longer(TricotBroderieCouture:Tuning) %>% 
+  count(SEXE, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(SEXE)) %>% 
+  group_by(SEXE, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "'Yes'") %>% 
+  ungroup() %>% 
+  select(SEXE, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+
+```{r}
+select(d, dipl, POND_INIT, A1001:A1010) %>% 
+  rename(TricotBroderieCouture = "A1001",
+         CartesJeuxSociété = "A1002",
+         JeuxArgent = "A1003",
+         Cuisine = "A1004",
+         Bricolage_Décoration = "A1005",
+         JardinPotager = "A1006",
+         JardinAgrément = "A1007",
+         PêcheChasse = "A1008",
+         Collection = "A1009",
+         Tuning = "A1010") %>% 
+  pivot_longer(TricotBroderieCouture:Tuning) %>% 
+  count(dipl, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(dipl)) %>% 
+  group_by(dipl, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "'Yes'") %>% 
+  ungroup() %>% 
+  select(dipl, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+
+```{r}
+select(d, pcs1, POND_INIT, A1001:A1010) %>% 
+  rename(TricotBroderieCouture = "A1001",
+         CartesJeuxSociété = "A1002",
+         JeuxArgent = "A1003",
+         Cuisine = "A1004",
+         BricolageDécoration = "A1005",
+         JardinPotager = "A1006",
+         JardinAgrément = "A1007",
+         PêcheChasse = "A1008",
+         Collection = "A1009",
+         Tuning = "A1010") %>% 
+  pivot_longer(TricotBroderieCouture:Tuning) %>% 
+  count(pcs1, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(pcs1)) %>% 
+  group_by(pcs1, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "'Yes'") %>% 
+  ungroup() %>% 
+  select(pcs1, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+
+```{r}
+select(d, age_c, POND_INIT, A1001:A1010) %>% 
+  rename(TricotBroderie_Couture = "A1001",
+         CartesJeuxSociété = "A1002",
+         JeuxArgent = "A1003",
+         Cuisine = "A1004",
+         BricolageDécoration = "A1005",
+         JardinPotager = "A1006",
+         JardinAgrément = "A1007",
+         PêcheChasse = "A1008",
+         Collection = "A1009",
+         Tuning = "A1010") %>% 
+  pivot_longer(TricotBroderieCouture:Tuning) %>% 
+  count(age_c, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(age_c)) %>% 
+  group_by(age_c, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "'Yes'") %>% 
+  ungroup() %>% 
+  select(age_c, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+
+```{r}
+select(d, TUU2016, POND_INIT, A1001:A1010) %>% 
+  rename(TricotBroderieCouture = "A1001",
+         CartesJeuxSociété = "A1002",
+         JeuxArgent = "A1003",
+         Cuisine = "A1004",
+         BricolageDécoration = "A1005",
+         JardinPotager = "A1006",
+         JardinAgrément = "A1007",
+         PêcheChasse = "A1008",
+         Collection = "A1009",
+         Tuning = "A1010") %>% 
+  pivot_longer(TricotBroderieCouture:Tuning) %>% 
+  count(TUU2016, name, value, wt=POND_INIT) %>% 
+  filter(!is.na(value), !is.na(TUU2016)) %>% 
+  group_by(TUU2016, name) %>% 
+  mutate(freq = n / sum(n) * 100) %>% 
+  filter(value == "'Yes'") %>% 
+  ungroup() %>% 
+  select(TUU2016, name, freq) %>% 
+  pivot_wider(names_from = name, values_from = freq)
+```
+
+Légende pour les tranches d'unités urbaines :
+0 = Rurale
+1 = 2 000 à 4999 habitants
+2 = 5000 à 9999
+3 = 10 000 à 19 999
+4 = 20 000 à 49 999 habitants
+5 = 50 000 à 99 999
+6 = 100 000 à 199 999 habitants
+7 = 200 000 à 1 999 999 habitants
+8 = Commune appartenant à l’unité urbaine de Paris
+
