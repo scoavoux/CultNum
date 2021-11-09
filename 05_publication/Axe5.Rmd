@@ -1,5 +1,5 @@
 ---
-title: "Activités de loisirs pratiquées"
+title: "Loisirs et pratiques amateurs"
 output:
   html_document: default
   pdf_document: default
@@ -14,7 +14,7 @@ library(dplyr)
 library(tidyverse)
 ```
 
-## Pratiques de loisirs déclarées, selon les variables classiques
+## Pratiques de loisirs déclarées
 
 ```{r}
 select(d, SEXE, POND_INIT, A1001:A1010) %>% 
@@ -141,4 +141,6 @@ Légende pour les tranches d'unités urbaines :
 6 = 100 000 à 199 999 habitants
 7 = 200 000 à 1 999 999 habitants
 8 = Commune appartenant à l’unité urbaine de Paris
+<!-- Comment changer le noms des données, quand il ne s'agit pas de la variable, comme TricotBroderieCouture = "A1001", mais d'une succession de chiffres comme au dessus ? -->
 
+## Pratiques amateurs
