@@ -394,6 +394,19 @@ select(panel, annee, poids, prat_musique, tljp_musique) %>%
     labs(x= "Année", y = "Fréquence", colour = "Écoute")
 ```
 
+Cette évolution est perceptible dans toutes les générations, même si elle est un peu moins prononcée pour les plus anciennes, dont les taux d'écoute quotidienne demeurent modestes: environ 15% pour ceux nés avant 1933, ainsi que pour les plus récentes, qui montraient déjà une pratique très importante dans les enquêtes précédentes (3/4 des personnes nées entre 1984 et 1993 écoutent de la musique tous les jours ou presque, en hausse de 5 points de pourcentage depuis l'étude de 2008). Les générations intermédiaires, les personnes nées entre 1944 et 1983, connaissent quand à elles des bonds de vingt points de pourcentages, ou plus, entre les deux enquêtes. En somme, il ne s'agit pas d'un simple remplacement générationnel, des cohortes à la consommation intensives remplaçant démographiquement celles qui sont les plus éloignées de la musique, mais bien d'un changement de fond.
+
+```{r, fig.lab = "Écoute quotidienne de musique par génération"}
+count(panel, annee, tljp_musique, gen) %>% 
+  group_by(annee, gen) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_musique == "Oui") %>% 
+  ggplot(aes(annee, f, color = gen)) +
+    geom_point() +
+    geom_line() +
+    labs(x = "Année", y = "Fréquence", color = "Génération")
+```
+
 Il paraît raisonnable d'attribuer cette évolution au moins en partie à la numérisation de l'écoute de musique. Entre 2008 et 2018, les plateformes de streaming, dédiées à la musique (Spotify, Deezer) ou non (YouTube) se sont développées et ont attiré de nombreux utilisateurs. Elles constituent la source de revenus numériques la plus importante pour l'industrie de la musique. Un quart des auditeurs de musique utilisent des plateformes dédiées, et 13% d'autres plateformes. En outre, un quart de ces auditeurs emploient des fichiers numériques locaux, comme des mp3 issus du téléchargement. Ces usages peuvent se cumuler, de sorte que près de la moitié des auditeurs de musique (48%) utilisent au moins un dispositif numérique, plateforme de streaming ou fichiers locaux. L'usage d'au moins un outil numérique est légérement plus masculine -- elle concerne 52% des hommes et 46% des femmes -- mais dépend surtout de l'âge (elle concerne la quasi-totalité des moins de 20 ans, et la majorité des auditeurs de moins de 50 ans) et du milieu social (60% des cadres et professions intellectuelles supérieures contre 39% des ouvriers et 44% des employés). Les écarts sont particulièrement marqués pour les plateformes de streaming spécialisée.
 
 ```{r, eval=FALSE}

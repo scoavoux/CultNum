@@ -407,6 +407,18 @@ select(panel, annee, poids, prat_musique, tljp_musique) %>%
 ```
 
 
+```{r}
+count(panel, annee, tljp_musique, gen) %>% 
+  group_by(annee, gen) %>% 
+  mutate(f = n / sum(n)) %>% 
+  filter(tljp_musique == "Oui") %>% 
+  ggplot(aes(annee, f, color = gen)) +
+    geom_point() +
+    geom_line() +
+    labs(x = "Année", y = "Fréquence", color = "Génération")
+```
+
+
 
 
 # Enquête pratiques culturelles 2008
