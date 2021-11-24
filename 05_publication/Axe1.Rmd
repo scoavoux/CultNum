@@ -149,9 +149,7 @@ Contrairement au téléviseur qui équipe la quasi-totalité des foyers quel que
 graph_qcm_all(I101:I113, "'Yes'")
 graph_qcm_all(Iordi, "'Yes'")
 graph_qcm_all(Iconsole, "'Yes'")
-```
 
-```{r, fig.width=10}
 graph_univar_all(I3)
 ```
 
@@ -218,7 +216,7 @@ graph_qcm_all(D41:D42)
 
 La consultation, la lecture ou le visionnage des informations sur un équipement mobile en dehors du domicile concerne 45% des personnes déclarant se tenir informées. 24% le font souvent, 21% parfois. Les différences sont peu marquées entre les hommes et les femmes. En revanche, la pratique est fortement liée à l'âge. Alors que 79% des 15-24 ans, 75% des 25-39 ans et 65% des 40-54 ans le font, ils sont seulement 35% parmi les 55-64 ans et 15% parmi les 65 ans et plus. La pratique en mobilité se répand également avec l'augmentation du niveau social. Ainsi, 60% des cadres et professions intellectuelles supérieures et 51% des professions intermédiaires le font, contre 41% des employés et 32% des ouvriers. Les agriculteurs, catégorie sociale beaucoup plus âgée, sont seulement 15% à le faire.
 
-```{r}
+```{r, eval = FALSE}
 graph_univar_all(D5)
 ```
 

@@ -1147,3 +1147,27 @@ filter(d, !is.na(nb_dispositifs_information2)) %>%
   adorn_pct_formatting() %>% 
   kable(caption = "Nombre de dispositifs d'information par classe d'âge")
 ```
+
+# Configurations
+
+Score / clustering de pratiques numériques:
+
+Pratique internet
+Résaux sociaux
+Musique en numérique
+TV en numérique
+Films ou série en numérique
+Information en numérique
+Pratique amateure cours numérique
+
+ACM sur terminaux:
+
+musique
+tv
+films
+information
+
+```{r}
+
+```
+

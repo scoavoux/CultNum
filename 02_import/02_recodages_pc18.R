@@ -142,3 +142,17 @@ d$C6_r <- case_when(
   is.na(d$C61) == TRUE ~ "Ne regarde pas la TV",
   TRUE ~ "nsp"
 )
+
+# Unité urbaine
+
+d <- mutate(d, TUU2016 = factor(TUU2016, 
+                           levels = as.character(0:8),
+                           labels = c("Commune hors unité urbaine",
+                                      "Commune appartenant à une unité urbaine de 2 000 à 4 999 habitants",
+                                      "Commune appartenant à une unité urbaine de 5 000 à 9 999 habitants",
+                                      "Commune appartenant à une unité urbaine de 10 000 à 19 999 habitants",
+                                      "Commune appartenant à une unité urbaine de 20 000 à 49 999 habitants",
+                                      "Commune appartenant à une unité urbaine de 50 000 à 99 999 habitants",
+                                      "Commune appartenant à une unité urbaine de 100 000 à 199 999 habitants",
+                                      "Commune appartenant à une unité urbaine de 200 000 à 1 999 999 habitants",
+                                      "Commune appartenant à l'unité urbaine de Paris")))
