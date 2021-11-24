@@ -1,7 +1,11 @@
 library(rlang)
 
 donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption = "", .panel_wave = FALSE){
-  indep <- c("SEXE", "pcs1", "G_PCS_MENAGE_r", "dipl", "age_c", "TUU2016")
+  if(identical(.data, d)) {
+    indep <- c("SEXE", "pcs1", "G_PCS_MENAGE_r", "SITUA", "dipl", "age_c", "TUU2016")
+  } else {
+    indep <- c("SEXE", "pcs1", "dipl", "age_c")
+    }
   
   if(.panel_wave){
     total <- select(.data, {{ .dep }}, POND_INIT, annee) %>% 

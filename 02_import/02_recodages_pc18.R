@@ -156,3 +156,12 @@ d <- mutate(d, TUU2016 = factor(TUU2016,
                                       "Commune appartenant à une unité urbaine de 100 000 à 199 999 habitants",
                                       "Commune appartenant à une unité urbaine de 200 000 à 1 999 999 habitants",
                                       "Commune appartenant à l'unité urbaine de Paris")))
+
+d <- mutate(d, SITUA = factor(SITUA, 
+                                levels = 1:8,
+                                labels = c("'Occupe un emploi'", "'Apprenti(e) sous contrat ou stagiaire rémunéré'", 
+                                           "'Etudiant(e), élève, en formation ou stagiaire non rémunéré'", 
+                                           "'Chômeur (inscrit(e) ou non au Pôle Emploi)'", "'Retraité(e) ou retiré(e) des affaires ou en préretraite'", 
+                                           "'Femme ou homme au foyer'", "'Inactif(ve) pour cause d’invalidité'", 
+                                           "'Autre situation d’inactivité'")))
+
