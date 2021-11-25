@@ -68,13 +68,15 @@ labs_pc08 <- mutate(labs_pc08, varlabel = str_replace_all(varlabel, "\\s", " "))
 
 ```
 
-# Executive summary (SC)
+# Executive summary
 
 La numérisation attendue des pratiques culturelles et des loisirs a-t-elle eu lieu ? Le numérique a-t-il colonisé tous les domaines de la culture, et tous les publics ? Dans ce texte, nous analysons les résultats de l'enquête Pratiques culturelles 2018, en les mettant en série avec les enquêtes précédentes, pour faire le bilan sur cette numérisation. Nous avançons trois principaux résultats. D'abord, le processus de numérisation est limité. Les usages analogiques résistent fortement, et les technologies numériques viennent se superposer aux autres couches technologiques plutôt que de les remplacer. Ensuite, cette numérisation est très inégalement répartie entre secteurs. Alors que la massification de la pratiques des jeux vidéo semble témoigner d'une numérisation des loisirs, c'est, parmi les pratiques culturelles classiques, l'écoute de musique enregistrée qui est la plus fortement touchée par ce phénomène, la numérisation ayant permis une forte croissance des taux d'écoute quotidien. Les autres pratiques audiovisuelles voient se côtoyer des usages analogiques dominants, la télévision de flux demeurant le principal loisir de la population, avec des poches de pratiques numériques en croissance, mais encore minoritaires. L'image médiatique d'une domination sans faille des plateformes comme Netflix surestime ainsi les changements réels. Enfin, cette numérisation est très inégalement répartie dans la population: ce sont, globalement, les personnes les plus jeunes et celles qui sont les plus favorisés socialement qui ont adopté significativement les technologies numériques dans leurs loisirs.
 
-# So what Orange ()
+<!-- 
+So what Orange 
+-->
 
-# Introduction (SC)
+# Introduction
 
 En 2009, Olivier Donnat constatait dans le rapport de l'enquête Pratiques culturelles passée un an plus tôt la numérisation en cours des pratiques culturelles, incluant cette dimension dans le sous-titre de son ouvrage. Il notait notamment la déconnexion en cours entre contenus et terminaux, l'ordinateur devenant le support de nombreuses pratiques, et l'apparition d'une configuration de pratiques culturelles caractérisée par la présence massive des outils numériques, dont le public est concentré parmi les plus jeunes.
 
@@ -85,22 +87,13 @@ D'abord, le processus de numérisation est limité. Les usages analogiques rési
 <!--AJOUTER UN PLAN-->
 <!--AJOUTER UNE PARTIE/ENCADRE METHODE (pour Orange)-->
 
-# Évolution de l’équipement numérique des Français
+Dans ce document, nous nous appuyons sur les données de l'enquête Pratiques culturelles 2018, ainsi que secondairement sur les données des précédents volets de cette enquête, notamment 1997 et 2008. L'enquête Pratiques culturelles est produite environ tous les dix ans depuis 1973 par le département des études et de la prospective du Ministère de la Culture. Il s'agit d'une enquête par questionnaire auprès d'un échantillon représentatif de personnes de plus de 15 ans vivant sur le territoire français. En 2018, ce sont 9200 personnes, sélectionnées aléatoirement dans une base de sondage des foyers, qui ont été interrogées en face-à-face.
 
-<!-- INTRODUCTION DE PARTIE
-- Pointer que l’équipement numérique des ménages s’est développé
+# Équipement et usages d'internet
 
-- Et qu’à mesure de cette évolution, (1) l’usage d’Internet a augmenté (obviously) et (2) les traditionnels écarts entre les individus quant à l’usage d’Internet ont diminué. Même si en fait on va montrer quand même de gros écarts dans la suite de l’analyse, mais ça peut être un bon point de départ, de pointer cette évolution pour ensuite montrer les écarts. -->
+Les vingt dernières années ont vu un équipement progressif des foyers en matériel numérique. Alors que celui-ci était très inégalement distribué dans la population à l'ère des débuts d'Internet, un phénomène qualifié de fracture numérique, l'équipement numérique est désormais largement massifié. Les inégalités sociales d'accès au numérique se sont, dès lors, fortement résorbées, même si, d'une part, elles n'ont pas disparu, et d'autre part, elles ne constituent pas l'ensemble des inégalités liées au numérique, car les inégalités d'usages et de compétences demeurent.
 
-## Équipement (FG)
-
-<!-- * Questions de PC2008 sur équipement informatique (pas encore traités)
-* PC2018: équipement informatique 
-* Noter la domination de la TV et du smartphone ; deux logiques opposées : idée que l’équipement mobile est généralisé mais n’est pas venu mettre en péril la domination de la tv
-* PC2018: mode d’abonnement internet
-* Tableau qui regroupe les données à ce sujet selon les 4 variables (Sexe, Âge en faisant des tranches ?, Diplôme, CS, + éventuellement type de ménage ?)
- --> 
-<!-- > (EG) Problème des questions sur l’équipement du ménage (finalement ça ne nous dit pas grand-chose, ou alors il faut les mettre en relation avec les questions sur les pratiques numériques en prenant la variable type de ménage et voir quel effet l’équipement (présumé) des autres membres du foyer peut avoir sur les pratiques (je sais pas si je suis très claire).  -->
+## La diffusion des équipements numériques et la subsistance d'inégalités d'accès
 
 Entre 2008 et 2018, la présence de l'ordinateur au sein des foyers se renforce. Ainsi, en 2018, 79% des individus de 15 ans et plus vivent dans un foyer équipé d'un ordinateur, contre 65% dix ans auparavant. Par ailleurs, alors que l'équipement en ordinateur fixe était le plus courant en 2008, la tendance s'est totalement inversée au profit de l'ordinateur portable. En 2018, 64% des individus disposent d'un ordinateur portable dans leur foyer et 39% d'un ordinateur fixe (en 2008, 56% vivaient dans un foyer équipé d'un ordinateur fixe et 27% dans un foyer équipé d'un ordinateur portable). L'accès internet, qui n'est plus conditionné à l'utilisation d'un ordinateur, a également fortement progressé sur la période. En 2018, 83% de la population de 15 ans et plus vit dans un foyer ayant accès à Internet, contre 56% en 2008. La connexion se fait par haut-débit de type ADSL (77% des connectés) ou par la  fibre (15%). Les connexions bas débit par une ligne téléphonique ont disparu (1%), tandis que les connexions mobile 4G/3G sans connexion haut-débit filaire dans le foyer sont extrêmement rares (4%). Le téléphone portable, équipement de plus en plus multifonction, tend à se généraliser. Alors que déjà 85% des 15 ans et plus vivaient dans un foyer où le téléphone portable était présent, ils sont 92% en 2018. La présence d'un appareil photo numérique (hors téléphone mobile) progresse légèrement, 66% de la population en est équipé dans son foyer en 2018 (contre 57% en 2008). De nouveaux écrans font également leur apparition entre les deux enquêtes, comme la tablette, présente dans la moitié des foyers des enquêtés en 2018.
 
@@ -153,7 +146,7 @@ graph_qcm_all(Iconsole, "'Yes'")
 graph_univar_all(I3)
 ```
 
-## Fréquence des usages d’Internet et des réseaux sociaux (EG)
+## Des usages d'Internet massifiés
 
 A mesure que l’équipement numérique des ménages s’est développé, on constate l’usage d’internet a augmenté – environ 1% des individus ont utilisé internet en 1997, contre 57,7% en 2008 (chercher chiffre) puis 84,5% en 2018 – et que les traditionnels écarts entre les individus quant à l’usage d’internet ont diminué, ce qui est à nuancer au regard de ce à quoi sont employées les technologies numériques en matière de pratiques culturelles et de loisirs.
 
@@ -187,9 +180,9 @@ Suivant la logique d’une généralisation des usages d’internet, l’usage d
 L’usage des réseaux sociaux concerne donc une grande partie de la population – on trouve notamment 50% d’usagers chez les cinquantenaires – mais concerne davantage, à l’instar de l’ensemble des pratiques numériques, les jeunes. 
 Les écarts concernant le milieu social se sont eux fortement résorbés. Alors que les réseaux sociaux étaient en 2008 un privilège des classes supérieures (27% des cadres contre 16% des professions intermédiaires et 9% des emploés et ouvriers), ils concernent désormais de façon équivalente tous les milieux sociaux : 63% des cadres, 66,6% des professions intermédiaires, 64,1% des ouvriers et employés.A noter que contrairement à l’usage d’internet, celui des réseaux sociaux est davantage marqué chez les individus occupant une position intermédiaires. Cet écart, insuffisamment marqué pour en tirer des conclusions définitives, pointe malgré tout vers l'hypothèse d'une moyennification de l'usage des réseaux sociaux. A mesure que les usages d’internet se sont répandus dans la population, et bien qu’on observe des usages plus marqués dans les classes supérieures notamment en ce qui concerne les pratiques culturelles les plus légitimes, certaines pratiques plus « moyennes » socialement, comme l’usage des réseaux sociaux, auraient pu se développer davantage dans des milieux intermédiaires, ce qui n'empêche que des écarts dans les réseaux sociaux privilégiés aient pu être observés, que ce soit en fonction du niveau d'étude ou des compétences informatiques (Hargittai, 2018).
 
-# La numérisation des loisirs et des pratiques culturelles
+# Des médias hybrides
 
-## Information (FG)
+## Accéder à l'information
 
 Interrogés sur les différents thèmes dont ils ont suivi l’actualité au cours des 12 mois précédant l'enquête, seuls 3% de la population âgée de 15 ans et plus déclare n'avoir suivi l'actualité d'aucun des 14 thèmes proposés (politique, économie, social/société, science, voyage, beauté, mode, enfant/éducation, mécanique, sports, culture et arts, cuisine, santé, médias). Pour la plupart des individus se tenant informer de l'actualité, quelle qu'elle soit, cela se fait quotidiennement. 79% d'entre eux déclarent se tenir informés de l’actualité tous les jours ou presque, 12% plusieurs fois par semaine, 6% environ 1 fois par semaine, 2% plus rarement et 1% presque jamais.
 
@@ -221,7 +214,7 @@ graph_univar_all(D5)
 ```
 
 
-## La télévision
+## L'hégémonie de la télévision de flux
 
 La télévision reste un loisir incontournable en France en 2018. Au delà de la généralisation de l'équipement TV au sein des foyers, regarder la télévision est une pratique à laquelle s'adonne la quasi-totalité de la population des 15 ans et plus. Seuls 6% déclarent ne jamais, ou pratiquement jamais, regarder la television, que ce soit chez eux ou ailleurs, chez leurs parents, des amis, au café, etc. La pratique reste quotidienne pour la très large majorité, mais elle est néanmoins en retrait par rapport à la précédente enquête. En 2018, 78% des 15 ans et plus déclarent regarder la télévision tous les jours ou presque, contre 88% en 2008, retrouvant ainsi un niveau comparable à celui enregistré en 1997.
 
@@ -307,7 +300,9 @@ t <- d %>% filter(C6_r != "Ne regarde pas la TV")
 graph_univar_all(C6_r, .data = t)
 ```
 
-## Films
+# La progression lente et sélective de la numérisation des divertissements audiovisuels
+
+## Le cinéma
 
 Regarder des films est une pratique de loisir partagée par l'ensemble de la population ou presque. Seuls 7% déclarent ne jamais, ou pratiquement jamais, regarder des films, que ce soit sur un écran de télévision ou sur tout autre support, chez eux ou ailleurs (parents, amis, transports, ...), à l’exception des films vus dans les cinémas. Pour beaucoup, la pratique est fréquente : 25% en regardent tous les jours, 47% toutes les semaines. Il n'y a pas d'écart entre les hommes et les femmes, mais la pratique est plus souvent très fréquente dans les milieux plus populaires et les plus faibles niveaux de diplômes, du fait sans doute d'usages plus fréquents de la télévision. Ainsi, seulement 17% des cadres et professions intellectuelles supérieurs déclarent regarder des films tous les jours ou presque contre 31% des employés et ouvriers. Les différences sont similaires si l'on considère le niveau de diplôme (30% des individus n'ayant pas de diplôme ou seulement le BEPC et 32% ayant un CAP ou BEP déclarent regarder quotidiennement des films, alors qu'ils ne dépassent pas les 20% parmi les diplômés du supérieur). Comme pour la télévision dans son ensemble, regarder des films quotidiennement est une pratique moins répandue parmi les jeunes (de 19% des 15-24 ans à 28% des 55-64 ans), mais si l'on y ajoute la pratique hebdomadaire, nettement plus courante quel que soit l'âge, les différences s'estompent. 
 
@@ -344,7 +339,7 @@ Contrairement à la consultation, lecture ou visionnage, d'information en mobili
 graph_univar_all(C23)
 ```
 
-## Séries
+## Les séries télévisées
 
 Les séries (feuilletons) ont un public moins large que celui des films, néanmoins elles constituent un objet de consommation massive : 77% des 15 et plus déclarent avoir regardé des séries, au cours des 12 mois précédant l'enquête (contre 93% pour les films). Si regarder des séries est majoritairement répandue quels que soit le genre, la catégorie sociale, le niveau de diplôme ou la tranche d'âge, la pratique décroit néanmoins avec l'âge. Ainsi 92% des 15-24 ans consomment des séries, contre 64%  des 65 ans et plus.
 
@@ -375,7 +370,7 @@ Comme pour les films, le visionnage de séries en mobilité est peu répandu, il
 graph_univar_all(C35)
 ```
 
-## Musique (SC)
+# Les mutations de l'écoute de musique enregistrée
 
 L'écoute de musique enregistrée est une pratique courante répandue depuis longtemps dans la population française. L'écoute au moins occasionnelle concerne au moins 70% de la population depuis les années 1980. Cependant, l'écoute quotidienne a elle beaucoup évoluée, connaissant une croissance linéaire entre 1973 et 2008, de moins de 10% à près de 35% de la population. L'enquête 2018 révèle que ce rythme s'est considérablement accéléré: en 10 ans seulement, l'écoute quotidienne est passée à 57% de la population, une croissance de plus de 20 points de pourcentages.
 
@@ -459,8 +454,28 @@ pivot_longer(res_hcpc$data.clust, -clust) %>%
 
 ```
 
+# Un loisir numérique massifié, les jeux vidéo
 
-## Livre (EG)
+La pratique des jeux vidéo est documentée dans l'enquête Pratiques culturelles depuis 1997. Elle s'est considérablement répandue dans la population depuis lors. Alors qu'un quart environ des répondants déclaraient une pratique en 1997, ils sont 36% en 2008 et 44% en 2018. La proportion de pratique fréquente, tous les jours ou presque, double entre 2008 et 2018, passant de 6% à 15% (la question n'est pas posée en 1997). Notons cependant que, de 1997 à 2018, ce que l'on appelle jeux vidéo a considérablement changé. Alors que ceux-ci existent presque exclusivement sur des consoles dédiées ou sur des ordinateurs en 1997, l'arrivée des jeux en ligne, puis des smartphones et tablettes a radicalement reconfiguré les opportunités de pratiquer des jeux électroniques.
+
+```{r, eval=FALSE}
+count(panel, annee, prat_jv, wt = poids) %>% 
+        group_by(annee) %>% 
+        mutate(f = n/sum(n))
+```
+
+```{r, eval=FALSE}
+count(panel, annee, tljp_jv, wt = poids) %>% 
+        group_by(annee) %>% 
+        mutate(f = n/sum(n))
+```
+
+Les taux de pratique varient principalement avec l'âge. En 1997, on trouve une proportion importante de joueurs chez les moins de 25 ans, un plateau autour de 30% entre 25 et 50 ans, puis des pratiques assez marginales après 50 ans. les deux vagues suivantes voient le niveau global de pratique monter à tous les âges et la courbe du déclin de la pratique avec l'âge devenir linéairement décroissante. Ce sont toujours les plus jeunes qui jouent le plus, en particulier les moins de 25 ans -- la pratique concerne alors au moins les deux tiers des répondants -- mais on trouve encore des taux de pratiques importants aux âges plus avancés, y compris après 75 ans. Les hommes jouent plus que les femmes, et plus souvent qu'elles, dans les trois vagues de l'enquête, mais s'il s'accroît entre 1997 et 2008, il tend ensuite à décroître, de sorte que la différence dans les taux de pratiques tous les jours ou presque est aujourd'hui faible. Les jeux vidéo ont ceci de caractéristique, en outre, que si l'on analyse uniquement le fait de jouer ou de ne pas jouer, on constate peu de différences entre milieux sociaux, contrairement à la plupart des autres pratiques. 
+
+Au sein des pratiquants, les joueurs sont beaucoup plus susceptibles que les joueuses de jouer en ligne (50% contre 30%) mais cette pratique dépend elle aussi peu du milieu social. Les écarts entre pratiques masculines et féminines sont également conséquents en matière de contenus. En 2008 comme en 2018, les hommes sont fortement surreprésentés parmi les pratiquants de jeux d'action, de tir, de sport, de combat, tandis ce que les joueuses sont plus nombreuses à pratiquer des jeux d'adresse, des puzzles, des jeux de réflexion, et des jeux de société, de cartes, d'échec.
+
+
+# La résistance du livre à la numérisation
 
 Dans la lignée de constats précédemment opérés au sujet de la lecture de livres, qui montrent que le numérique n'a ni remplacé le papier ni révolutionné les pratiques de lecture (Gaudric, Mauger, Zunigo, 2016 ; Guittet, 2020), on constate dans ce dernier volet de l'enquête menée par le Deps que le livre au format papier reste le support privilégié et quasi-exclusif des lecteurs et lectrices (98%), alors que la tablette (6%) et la liseuse (5%) peinent à trouver un public. Ceci fait de la France un cas particulier ; si le livre papier reste partout la norme, la liseuse a trouvé un marché plus vaste dans d’autres pays occidentaux, comme aux États-Unis où 28% des adultes avaient lu un livre numérique au cours des 12 derniers mois en 2016 (Pew Research Institute, 2016) et où plus de la moitié des adultes possèdent une liseuse (voir données dans les commentaires). 
 <!-- Emma : Je ne suis vraiment pas sûre de comprendre comme toi les données du Pew : j'ai l'impression que même s'ils ne sont pas rigoureux dans leur manière de le présenter, ça veut dire 28% des adultes ayant lu un livre -->
@@ -482,29 +497,7 @@ graph_univar_all(F12BIS)
 
 Pour les trois quarts de la population, y compris lorsque les lecteurs et lectrices lisent sur différents supports, la lecture sur livre papier prévaut, quel que soit leur sexe. Un regard à l’appartenance sociale montre que c’est dans les classes moyennes que l’on privilégie le moins le papier : 64% des employés privilégient le papier, contre 75% des ouvriers, 74% des cadres, 84% des artisans, commerçants et chefs d’entreprises.
 
-
-## Jeux vidéo (SC)
-
-La pratique des jeux vidéo est documentée dans l'enquête Pratiques culturelles depuis 1997. Elle s'est considérablement répandue dans la population depuis lors. Alors qu'un quart environ des répondants déclaraient une pratique en 1997, ils sont 36% en 2008 et 44% en 2018. La proportion de pratique fréquente, tous les jours ou presque, double entre 2008 et 2018, passant de 6% à 15% (la question n'est pas posée en 1997). Notons cependant que, de 1997 à 2018, ce que l'on appelle jeux vidéo a considérablement changé. Alors que ceux-ci existent presque exclusivement sur des consoles dédiées ou sur des ordinateurs en 1997, l'arrivée des jeux en ligne, puis des smartphones et tablettes a radicalement reconfiguré les opportunités de pratiquer des jeux électroniques.
-
-```{r, eval=FALSE}
-count(panel, annee, prat_jv, wt = poids) %>% 
-        group_by(annee) %>% 
-        mutate(f = n/sum(n))
-```
-
-```{r, eval=FALSE}
-count(panel, annee, tljp_jv, wt = poids) %>% 
-        group_by(annee) %>% 
-        mutate(f = n/sum(n))
-```
-
-Les taux de pratique varient principalement avec l'âge. En 1997, on trouve une proportion importante de joueurs chez les moins de 25 ans, un plateau autour de 30% entre 25 et 50 ans, puis des pratiques assez marginales après 50 ans. les deux vagues suivantes voient le niveau global de pratique monter à tous les âges et la courbe du déclin de la pratique avec l'âge devenir linéairement décroissante. Ce sont toujours les plus jeunes qui jouent le plus, en particulier les moins de 25 ans -- la pratique concerne alors au moins les deux tiers des répondants -- mais on trouve encore des taux de pratiques importants aux âges plus avancés, y compris après 75 ans. Les hommes jouent plus que les femmes, et plus souvent qu'elles, dans les trois vagues de l'enquête, mais s'il s'accroît entre 1997 et 2008, il tend ensuite à décroître, de sorte que la différence dans les taux de pratiques tous les jours ou presque est aujourd'hui faible. Les jeux vidéo ont ceci de caractéristique, en outre, que si l'on analyse uniquement le fait de jouer ou de ne pas jouer, on constate peu de différences entre milieux sociaux, contrairement à la plupart des autres pratiques. 
-
-Au sein des pratiquants, les joueurs sont beaucoup plus susceptibles que les joueuses de jouer en ligne (50% contre 30%) mais cette pratique dépend elle aussi peu du milieu social. Les écarts entre pratiques masculines et féminines sont également conséquents en matière de contenus. En 2008 comme en 2018, les hommes sont fortement surreprésentés parmi les pratiquants de jeux d'action, de tir, de sport, de combat, tandis ce que les joueuses sont plus nombreuses à pratiquer des jeux d'adresse, des puzzles, des jeux de réflexion, et des jeux de société, de cartes, d'échec.
-
-
-## Pratiques amateurs (EG)
+# Les pratiques artistiques amateures et les apprentissages sur Internet
 
 L'enquête Pratiques Culturelles 2018 mesure un certain nombre de pratiques amateures : écriture, montage, pratique de la peinture, du théâtre, du dessin, de la danse, de la poterie, de la photographie, généalogie, activité scientifique. Certaines sont fortement numérisées, comme le montage audio ou video, ou la photographie. La plupart, cependant, se prêtent apparemment peu à la numérisation. Comment numériser la pratique de la peinture ou celle de la danse ? La littérature montre pourtant que les "mondes de loisir" s'appuient sur une infrastructure matérielle et organisationnelle (Fine, 2015). Le numérique vient équiper ces pratiques en facilitant des activités parfois pensées comme périphériques, mais qui sont essentielles, comme le montre Vinciane Zabban (2015) à propos de l'effet de la publicisation des productions de tricot sur les plateformes.
 <!--Emma : Je suis pas hyper convaincue par la phrase "Comment numériser la pratique de la peinture ou celle de la danse ?" A vrai dire il y a énormément de contenus en ligne sur ces questions ; du coup, on part du principe que c'est quand même marginal ?-->
