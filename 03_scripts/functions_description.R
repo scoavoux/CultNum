@@ -13,7 +13,7 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       count(annee, dep, value, wt = POND_INIT) %>% 
       filter(!is.na(value)) %>% 
       group_by(annee, dep) %>% 
-      mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
+      mutate(f = round(n / sum(n) * 100) %>% paste0(., "%")) %>% 
       ungroup() %>% 
       filter(value == .value) %>% 
       left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
@@ -30,7 +30,7 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       count(annee, indep, indepmod, dep, depmod, wt = POND_INIT) %>% 
       filter(!is.na(depmod), !is.na(indepmod)) %>% 
       group_by(annee, indep, indepmod, dep) %>% 
-      mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
+      mutate(f = round(n / sum(n) * 100) %>% paste0(., "%")) %>% 
       ungroup() %>% 
       filter(depmod == .value) %>%
       left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
@@ -46,7 +46,7 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       count(dep, value, wt = POND_INIT) %>% 
       filter(!is.na(value)) %>% 
       group_by(dep) %>% 
-      mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
+      mutate(f = round(n / sum(n) * 100) %>% paste0(., "%")) %>% 
       ungroup() %>% 
       filter(value == .value) %>% 
       left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
@@ -61,7 +61,7 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       count(indep, indepmod, dep, depmod, wt = POND_INIT) %>% 
       filter(!is.na(depmod), !is.na(indepmod)) %>% 
       group_by(indep, indepmod, dep) %>% 
-      mutate(f = round(n / sum(n) * 100, 1) %>% paste0(., "%")) %>% 
+      mutate(f = round(n / sum(n) * 100) %>% paste0(., "%")) %>% 
       ungroup() %>% 
       filter(depmod == .value) %>%
       left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
