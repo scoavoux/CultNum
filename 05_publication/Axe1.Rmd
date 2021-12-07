@@ -2,6 +2,7 @@
 title: "La numérisation des loisirs et des pratiques culturelles"
 author: "Samuel Coavoux, Fabienne Gire et Emmanuelle Guittet"
 date: "16/09/2021"
+lang: "fr-FR"
 output: 
   html_document:
     toc: true
@@ -163,7 +164,6 @@ En termes d’âge, on assiste à un décalage de la courbe : en 2008, seuls le
 On observait lors des éditions précédentes des écarts entre les Français selon leur position sociale : en 1997, 9,2% des cadres utilisait internet contre 2,9% des professions intermédiaires et 0,4% des ouvriers et employés ; puis en 2008, 93,2% des cadres utilisaient internet contre 88,5% des professions intermédiaires et 57,3% des ouvriers et employés. En 2018, ces écarts se sont presque complètement résorbés, même si les cadres et les professions intermédiaires restent les plus grands utilisateurs d’internet (autour de 99%, contre 93,7% des ouvriers et employés), mais l’ensemble des classes sociales ont un taux d’usage à plus de 90%, ce qui montre la généralisation de la pratique d’internet. 
 
 Mais utiliser internet ne veut pas dire utiliser internet tous les jours. Un regard à la fréquence permet d’observer à la fois que pour un certain nombre de Français, il ne s’agit pas de pratiques intensives, et de constater des écarts plus marqués, notamment selon la classe sociale et le diplôme, et des écarts peu marqués selon l’âge (l’usage d’internet étant désormais répandu dans quasiment toutes les classes d’âges, à l’exception des plus de 65 ans qui ne sont plus qu’un sur deux à utiliser internet tous les jours). On n’observe pas d’écarts dans la fréquence d’usage d’internet selon le sexe.
-+ Insérer un graphique en histogramme qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, des tranches d’âges) : trois colonnes par variable pour les 3 années.
 
 L’usage quotidien d’internet, répandu dans toutes les classes sociales, est en effet hégémonique chez les cadres (96%) mais concerne tout de même 80% des ouvriers et employés contre 30,4% en 2008, ce qui montre à la fois la diminution des écarts, et la progression des usages d’internet dans les classes populaires.
 

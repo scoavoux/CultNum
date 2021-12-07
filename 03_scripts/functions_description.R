@@ -2,10 +2,14 @@ library(rlang)
 
 donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption = "", .panel_wave = FALSE){
   if(identical(.data, d)) {
-    indep <- c("SEXE", "pcs1", "G_PCS_MENAGE_r", "SITUA", "dipl", "age_c", "TUU2016")
+    indep <- c("SEXE", "pcs1", "G_PCS_MENAGE_r", "dipl", "age_c")
   } else {
     indep <- c("SEXE", "pcs1", "dipl", "age_c")
-    }
+  }
+  
+  lev <- select(.data, {{ indep }}) %>% map(levels) %>% unlist() %>% 
+    tibble(indepmod = .,
+           order = seq(1, length(.)))
   
   if(.panel_wave){
     total <- select(.data, {{ .dep }}, POND_INIT, annee) %>% 
@@ -37,6 +41,9 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       mutate(lab = paste(annee, lab, sep = "_")) %>% 
       select(indep, indepmod, lab, f) %>% 
       pivot_wider(names_from = lab, values_from = f) %>% 
+      left_join(lev) %>% 
+      arrange(order) %>% 
+      select(-order) %>% 
       mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "", indep)) %>% 
       add_case(total, .before = 1L) %>% 
       kable(caption = .caption)
@@ -67,6 +74,9 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       left_join(select(.labs, dep = "variable", lab = "varlabel")) %>% 
       select(indep, indepmod, lab, f) %>% 
       pivot_wider(names_from = lab, values_from = f) %>% 
+      left_join(lev) %>% 
+      arrange(order) %>% 
+      select(-order) %>% 
       mutate(indep = ifelse(indep == dplyr::lag(indep) & row_number() != 1, "", indep)) %>% 
       add_case(total, .before = 1L) %>% 
       kable(caption = .caption)
