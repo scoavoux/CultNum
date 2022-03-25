@@ -165,3 +165,61 @@ d <- mutate(d, SITUA = factor(SITUA,
                                            "'Femme ou homme au foyer'", "'Inactif(ve) pour cause d’invalidité'", 
                                            "'Autre situation d’inactivité'")))
 
+# Engagement numérique
+d <- mutate(d, 
+            A20_Loop_1_A243 = ifelse(A20_Loop_1_A23 == 2 & is.na(A20_Loop_1_A243), 2, A20_Loop_1_A243),
+            A20_Loop_2_A243 = ifelse(A20_Loop_2_A23 == 2 & is.na(A20_Loop_2_A243), 2, A20_Loop_2_A243),
+            A20_Loop_3_A243 = ifelse(A20_Loop_3_A23 == 2 & is.na(A20_Loop_3_A243), 2, A20_Loop_3_A243),
+            A20_Loop_4_A243 = ifelse(A20_Loop_4_A23 == 2 & is.na(A20_Loop_4_A243), 2, A20_Loop_4_A243),
+            A20_Loop_5_A243 = ifelse(A20_Loop_5_A23 == 2 & is.na(A20_Loop_5_A243), 2, A20_Loop_5_A243),
+            A20_Loop_6_A243 = ifelse(A20_Loop_6_A23 == 2 & is.na(A20_Loop_6_A243), 2, A20_Loop_6_A243),
+            A20_Loop_7_A243 = ifelse(A20_Loop_7_A23 == 2 & is.na(A20_Loop_7_A243), 2, A20_Loop_7_A243),
+            A20_Loop_8_A243 = ifelse(A20_Loop_8_A23 == 2 & is.na(A20_Loop_8_A243), 2, A20_Loop_8_A243),
+            A20_Loop_9_A243 = ifelse(A20_Loop_9_A23 == 2 & is.na(A20_Loop_9_A243), 2, A20_Loop_9_A243),
+            A20_Loop_10_A243 = ifelse(A20_Loop_10_A23 == 2 & is.na(A20_Loop_10_A243), 2, A20_Loop_10_A243),
+            A20_Loop_11_A243 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A243), 2, A20_Loop_11_A243),
+            A20_Loop_12_A243 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A243), 2, A20_Loop_12_A243),
+            A20_Loop_13_A243 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A243), 2, A20_Loop_13_A243)) %>% 
+  select(contains("_A243"), IDENT18) %>% 
+  pivot_longer(-IDENT18) %>% 
+  mutate(value = ifelse(is.na(value), 0, value)) %>% 
+  group_by(IDENT18) %>% 
+  summarise(numerique_amateur = any(value == 1)) %>% 
+  right_join(d)
+
+# filter(labs, variable %in% c("I4", "I5", 
+#                              paste0("E", 81:87),
+#                              paste0("C", 61:65),
+#                              paste0("C", 211:215),
+#                              paste0("C", 331:335),
+#                              paste0("D", 31:37))) %>% 
+#   print(n=100)
+
+d <- mutate(d, 
+            numerique_musique = E83 == "'Yes'" | E84 == "'Yes'" | E84 == "'Yes'",
+            numerique_tele = C62 == "'Yes'" | C63 == "'Yes'" | C64 == "'Yes'",
+            numerique_film_series = C212 == "'Yes'" | C213 == "'Yes'" | C214 == "'Yes'" | C332 == "'Yes'" | C333 == "'Yes'" | C334 == "'Yes'",
+            numerique_info = D34 == "'Yes'" | D35 == "'Yes'" | D36 == "'Yes'" | D37 == "'Yes'",
+            numerique_internet = I4 %in% c("'Tous les jours ou presque'", "'Plusieurs fois par semaine'", "'Environ 1 fois par semaine'", "'Plus rarement'"),
+            numerique_reseaux = I5 == "'Oui'",
+            numerique_livre = F122 == "'Yes'" | F123 == "'Yes'"
+) %>% 
+  mutate(across(starts_with("numerique"), ~ifelse(is.na(.x), FALSE, .x)))
+
+d <- mutate(d, 
+            nb_culture_numerique = numerique_musique + 
+              numerique_tele + numerique_film_series + numerique_livre,
+            nb_numerique = numerique_amateur + numerique_musique + 
+              numerique_tele + numerique_film_series + numerique_info + 
+              numerique_internet + numerique_reseaux + numerique_livre)
+
+labs <- bind_rows(labs, 
+                  tribble(~variable, ~varlabel,
+                          "numerique_livre", "Lecture de livre numériques",
+                          "numerique_amateur", "Pratiques amateures numériques",
+                          "numerique_musique", "Musique numérique",
+                          "numerique_tele", "Television numérique",
+                          "numerique_film_series", "Films et séries numérique",
+                          "numerique_info", "Information numérique",
+                          "numerique_internet", "Usage internet",
+                          "numerique_reseaux", "Usage réseaux sociaux"))
