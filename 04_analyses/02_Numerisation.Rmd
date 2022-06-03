@@ -45,7 +45,7 @@ source(here("03_scripts", "functions_description.R"), encoding = "utf8")
 source(here("02_import", "02_recodages_pc18.R"), encoding = "utf8")
 source(here("02_import", "04_recodages_autres.R"), encoding = "utf8")
 
-pc08 <- rename(pc08, POND_INIT = "POIDS",
+pc08 <- rename(pc08, POND = "POIDS",
                SEXE = "Q28",
                AGE = "Q29", # Q30 pour l'âge en classes
                dipl = "DIP2",
@@ -554,12 +554,12 @@ crealabs <- tibble(variable = paste0(rep(paste0("A20_Loop_", 1:14), each=7), rep
 
 
 ```{r}
-select(d, contains("_A21"), -RECODE_A21, POND_INIT) %>% 
-  pivot_longer(-POND_INIT) %>% 
+select(d, contains("_A21"), -RECODE_A21, POND) %>% 
+  pivot_longer(-POND) %>% 
   mutate(value = factor(value, levels = 1:2, labels = c("Oui", "Non")) %>% 
            fct_explicit_na("Jamais")) %>% 
   group_by(name, value) %>% 
-  summarize(f = sum(POND_INIT)) %>% 
+  summarize(f = sum(POND)) %>% 
   group_by(name) %>% 
   mutate(f = f / sum(f)) %>% 
   rename(variable = "name") %>% 
@@ -570,12 +570,12 @@ select(d, contains("_A21"), -RECODE_A21, POND_INIT) %>%
 ```
 
 ```{r}
-select(d, contains("_A23"), POND_INIT) %>% 
-  pivot_longer(-POND_INIT) %>% 
+select(d, contains("_A23"), POND) %>% 
+  pivot_longer(-POND) %>% 
   mutate(value = factor(value, levels = 1:2, labels = c("Oui", "Non"))) %>% 
   filter(!is.na(value)) %>% 
   group_by(name, value) %>% 
-  summarize(f = sum(POND_INIT)) %>% 
+  summarize(f = sum(POND)) %>% 
   group_by(name) %>% 
   mutate(f = f / sum(f)) %>% 
   rename(variable = "name") %>% 
@@ -594,7 +594,7 @@ select(d, contains("_A23"), IDENT18) %>%
   summarise(cours = any(value == 1),
             activiteamateure = any(value > 0)) %>% 
   right_join(d) %>% 
-  count(cours, activiteamateure, wt = POND_INIT) %>% 
+  count(cours, activiteamateure, wt = POND) %>% 
   mutate(freq = n / sum(n) * 100,
          Cours = case_when(cours & activiteamateure ~ "Au moins une activité amateure et au moins un cours",
                            !cours & activiteamateure ~ "Au moins une activité amateure, pas de cours",
@@ -622,12 +622,12 @@ mutate(d,
        A20_Loop_11_A241 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A241), 2, A20_Loop_11_A241),
        A20_Loop_12_A241 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A241), 2, A20_Loop_12_A241),
        A20_Loop_13_A241 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A241), 2, A20_Loop_13_A241)) %>% 
-  select(contains("_A241"), POND_INIT) %>% 
-  pivot_longer(-POND_INIT) %>% 
+  select(contains("_A241"), POND) %>% 
+  pivot_longer(-POND) %>% 
   mutate(value = factor(value, levels = 1:2, labels = c("Oui", "Non"))) %>% 
   filter(!is.na(value)) %>% 
   group_by(name, value) %>% 
-  summarize(f = sum(POND_INIT)) %>% 
+  summarize(f = sum(POND)) %>% 
   group_by(name) %>% 
   mutate(f = f / sum(f)) %>% 
   rename(variable = "name") %>% 
@@ -654,12 +654,12 @@ mutate(d,
        A20_Loop_11_A242 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A242), 2, A20_Loop_11_A242),
        A20_Loop_12_A242 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A242), 2, A20_Loop_12_A242),
        A20_Loop_13_A242 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A242), 2, A20_Loop_13_A242)) %>% 
-  select(contains("_A242"), POND_INIT) %>% 
-  pivot_longer(-POND_INIT) %>% 
+  select(contains("_A242"), POND) %>% 
+  pivot_longer(-POND) %>% 
   mutate(value = factor(value, levels = 1:2, labels = c("Oui", "Non"))) %>% 
   filter(!is.na(value)) %>% 
   group_by(name, value) %>% 
-  summarize(f = sum(POND_INIT)) %>% 
+  summarize(f = sum(POND)) %>% 
   group_by(name) %>% 
   mutate(f = f / sum(f)) %>% 
   rename(variable = "name") %>% 
@@ -686,12 +686,12 @@ mutate(d,
        A20_Loop_11_A243 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A243), 2, A20_Loop_11_A243),
        A20_Loop_12_A243 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A243), 2, A20_Loop_12_A243),
        A20_Loop_13_A243 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A243), 2, A20_Loop_13_A243)) %>% 
-  select(contains("_A243"), POND_INIT) %>% 
-  pivot_longer(-POND_INIT) %>% 
+  select(contains("_A243"), POND) %>% 
+  pivot_longer(-POND) %>% 
   mutate(value = factor(value, levels = 1:2, labels = c("Oui", "Non"))) %>% 
   filter(!is.na(value)) %>% 
   group_by(name, value) %>% 
-  summarize(f = sum(POND_INIT)) %>% 
+  summarize(f = sum(POND)) %>% 
   group_by(name) %>% 
   mutate(f = f / sum(f)) %>% 
   rename(variable = "name") %>% 
@@ -723,7 +723,7 @@ mutate(d,
   summarise(cours = any(value == 1),
             activiteamateure = any(value > 0)) %>% 
   right_join(d) %>% 
-  count(cours, activiteamateure, wt = POND_INIT) %>% 
+  count(cours, activiteamateure, wt = POND) %>% 
   mutate(freq = n / sum(n) * 100,
          Cours = case_when(cours & activiteamateure ~ "Au moins une activité amateure et au moins un cours en ligne",
                            !cours & activiteamateure ~ "Au moins une activité amateure, pas de cours",

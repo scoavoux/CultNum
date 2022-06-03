@@ -1,0 +1,207 @@
+---
+title: "Mesurer la numérisation"
+author: "Samuel Coavoux"
+date: "25/03/2022"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+library(here)
+library(conflicted)
+library(FactoMineR)
+library(factoextra)
+library(GGally)
+library(janitor)
+library(ggtern)
+
+options("digits" = 2)
+
+conflict_prefer("here", "here")
+conflict_prefer("filter", "dplyr")
+conflict_prefer("aes", "ggplot2")
+
+theme_set(theme_bw(base_size = 9))
+
+opts_chunk$set(echo    = FALSE, 
+               error   = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.height="50%")
+```
+
+```{r}
+# data
+load(here("01_data", "pc2018.RData"))
+load(here("01_data", "dictionary.RData"))
+
+# Fonctions d'analyse
+source(here("03_scripts", "functions_description.R"), encoding = "utf8")
+
+# Recodages
+source(here("02_import", "02_recodages_pc18.R"), encoding = "utf8")
+```
+
+# Enjeu
+
+Produire un indicateur de numérisation des pratiques:
+
++ score numérique?
++ clusters?
+
+# Variables
+
+On dichotomise par domaine: utilise au moins un dispositif numerique/n'utilise pas.
+Fait sur:
+
++ pratiques amateures (video en ligne)
++ musique: streaming payant, gratuit, telechargement
++ tv
++ films et series
++ information
+
+Plus deux variables sur reseaux sociaux et usage d'internet
+
+# Tris à plat
+
+Pratique numérique vs. pratique non numérique ou absence de pratique.
+
+```{r}
+donnat_table(.dep = starts_with("numerique_"), .value = TRUE)
+```
+
+```{r}
+mutate(d, across(starts_with("pratnum_"), ~ifelse(.x == "Non pratique", NA, .x))) %>% 
+  donnat_table(.dep = starts_with("pratnum_"), .value = "Pratique numérique", .data = .)
+```
+
+
+```{r}
+ggplot(d, aes(nb_numerique)) +
+  geom_bar(aes(y = ..prop..))
+```
+
+```{r}
+ggplot(d, aes(nb_culture_numerique)) +
+  geom_bar(aes(y = ..prop..))
+```
+
+
+```{r}
+d <- select(d, starts_with("pratnum_"), IDENT18) %>% 
+  pivot_longer(-IDENT18) %>% 
+  count(IDENT18, value) %>% 
+  mutate(value = ifelse(value == "Pratique numérique", 
+                        "nbs_numerique",
+                        ifelse(value == "Pratique non numérique", 
+                               "nbs_nonnumerique",
+                               "nbs_nonpratique"))) %>% 
+  pivot_wider(names_from = value, values_from = n) %>% 
+  right_join(d)
+```
+
+```{r}
+select(d, starts_with("nbs_"), SEXE) %>% 
+  pivot_longer(-SEXE) %>% 
+  mutate(value = ifelse(is.na(value), 0, value)) %>% 
+  group_by(SEXE, name) %>% 
+  summarize(m = mean(value)) %>% 
+  pivot_wider(names_from = SEXE, values_from = m)
+```
+
+```{r}
+select(d, starts_with("nbs_"), pcs1) %>% 
+  pivot_longer(-pcs1) %>% 
+  mutate(value = ifelse(is.na(value), 0, value)) %>% 
+  group_by(pcs1, name) %>% 
+  summarize(m = mean(value)) %>% 
+  pivot_wider(names_from = pcs1, values_from = m)
+```
+
+
+# Analyse factorielles
+
+Les ACMs produisent toujours:
+
++ un axe principal avec une mesure d'intensité
++ un axe secondaire ou l'on retrouve les pratiques traditionnelle, livre et ou pratique amateure
+
+```{r}
+all_MCA <- select(d, starts_with("pratnum_")) %>% 
+  MCA(graph = FALSE)
+```
+
+```{r}
+fviz_eig(all_MCA)
+```
+
+```{r}
+fviz_mca_var(all_MCA)
+```
+
+```{r}
+fviz_mca_ind(all_MCA, geom.ind = "point")
+```
+
+```{r}
+cult_PCA <- select(d, numerique_livre, numerique_musique, 
+              numerique_tele, numerique_film_series) %>% 
+  mutate(across(everything(), as.numeric)) %>% 
+  PCA(graph = FALSE)
+```
+
+```{r}
+fviz_eig(cult_PCA)
+```
+
+```{r}
+fviz_pca_var(cult_PCA)
+```
+
+```{r}
+fviz_pca_ind(cult_PCA)
+```
+
+# Scores: Nombre de dispositifs numériques
+
+```{r, fig.cap = "Nombre de domaines numérisés par age"}
+ggplot(d, aes(age_c, nb_numerique)) +
+  geom_boxplot()
+```
+
+
+```{r, fig.cap = "Nombre de domaines numérisés par sexe"}
+ggplot(d, aes(SEXE, nb_numerique)) +
+  geom_boxplot()
+
+```
+
+```{r, fig.cap = "Nombre de domaines numérisés par pcs"}
+ggplot(d, aes(G_PCS_MENAGE_r, nb_numerique)) +
+  geom_boxplot() +
+  coord_flip()
+
+```
+
+```{r, fig.cap = "Nombre de domaines culturels numérisés par age"}
+ggplot(d, aes(age_c, nb_culture_numerique)) +
+  geom_boxplot()
+```
+
+
+```{r, fig.cap = "Nombre de domaines culturels numérisés par sexe"}
+ggplot(d, aes(SEXE, nb_culture_numerique)) +
+  geom_boxplot()
+
+```
+
+```{r, fig.cap = "Nombre de domaines culturels numérisés par pcs"}
+ggplot(d, aes(G_PCS_MENAGE_r, nb_culture_numerique)) +
+  geom_boxplot() +
+  coord_flip()
+
+```

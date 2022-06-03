@@ -213,6 +213,26 @@ d <- mutate(d,
               numerique_tele + numerique_film_series + numerique_info + 
               numerique_internet + numerique_reseaux + numerique_livre)
 
+d <- mutate(d, 
+            pratique_musique = ! is.na(E83),
+            pratique_tele = ! is.na(C62),
+            pratique_film_series = ! (is.na(C212) & is.na(C332)) ,
+            pratique_info = ! is.na(D34),
+            pratique_livre = ! is.na(F122))
+# 
+tricho <- function(x, y){
+  case_when(x & y   ~"Pratique numérique",
+            !x & y  ~"Pratique non numérique",
+            !x & !y ~"Non pratique")
+}
+# Trichotomiser
+d <- mutate(d, 
+            pratnum_musique = tricho(numerique_musique, pratique_musique), 
+            pratnum_tele = tricho(numerique_tele, pratique_tele), 
+            pratnum_film_series = tricho(numerique_film_series, pratique_film_series), 
+            pratnum_info = tricho(numerique_info, pratique_info), 
+            pratnum_livre = tricho(numerique_livre, pratique_livre))
+
 labs <- bind_rows(labs, 
                   tribble(~variable, ~varlabel,
                           "numerique_livre", "Lecture de livre numériques",
@@ -222,7 +242,22 @@ labs <- bind_rows(labs,
                           "numerique_film_series", "Films et séries numérique",
                           "numerique_info", "Information numérique",
                           "numerique_internet", "Usage internet",
-                          "numerique_reseaux", "Usage réseaux sociaux"))
+                          "numerique_reseaux", "Usage réseaux sociaux",
+                          
+                          "pratique_livre", "Lecture de livre",
+                          "pratique_amateur", "Pratiques amateures",
+                          "pratique_musique", "Musique",
+                          "pratique_tele", "Television",
+                          "pratique_film_series", "Films et séries",
+                          "pratique_info", "Information",
+
+                          "pratnum_livre", "Lecture de livre numériques, trois cats",
+                          "pratnum_amateur", "Pratiques amateures numériques, trois cats",
+                          "pratnum_musique", "Musique numérique, trois cats",
+                          "pratnum_tele", "Television numérique, trois cats",
+                          "pratnum_film_series", "Films et séries numérique, trois cats",
+                          "pratnum_info", "Information numérique, trois cats"))
+
 
 ## Pondération
 d <- mutate(d, POND = POND / (sum(POND)/nrow(d)))
