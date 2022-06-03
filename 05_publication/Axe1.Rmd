@@ -45,10 +45,10 @@ source(here("02_import", "02_recodages_pc18.R"), encoding = "utf8")
 source(here("02_import", "04_recodages_autres.R"), encoding = "utf8")
 
 # Ponderation
-dw <- svydesign(ids = ~1, data = d, weights = ~ d$POND_INIT)
+dw <- svydesign(ids = ~1, data = d, weights = ~ d$POND)
 
 
-pc08 <- rename(pc08, POND_INIT = "POIDS",
+pc08 <- rename(pc08, POND = "POIDS",
                SEXE = "Q28",
                AGE = "Q29", # Q30 pour l'âge en classes
                dipl = "DIP2",
@@ -62,7 +62,7 @@ pc08 <- mutate(pc08, TYPMEN =
                            TRUE ~ "'Ménage complexe'"))
 
 # Ponderation
-pc08w <- svydesign(ids = ~1, data = pc08, weights = ~ pc08$POND_INIT)
+pc08w <- svydesign(ids = ~1, data = pc08, weights = ~ pc08$POND)
 
 labs <- mutate(labs, varlabel = str_replace_all(varlabel, "\\s", " "))
 labs_pc08 <- mutate(labs_pc08, varlabel = str_replace_all(varlabel, "\\s", " "))
@@ -152,8 +152,8 @@ graph_univar_all(I3)
 A mesure que l’équipement numérique des ménages s’est développé, on constate l’usage d’internet a augmenté – environ 1% des individus ont utilisé internet en 1997, contre 57,7% en 2008 (chercher chiffre) puis 84,5% en 2018 – et que les traditionnels écarts entre les individus quant à l’usage d’internet ont diminué, ce qui est à nuancer au regard de ce à quoi sont employées les technologies numériques en matière de pratiques culturelles et de loisirs.
 
 ```{r}
-rename(panel, pcs1 = "cs_regroupee", SEXE = "sexn", dipl = "dipp", POND_INIT = poids) %>% 
-  select(prat_internet, tljp_internet, prat_reseaux, tljp_reseaux, pcs1, SEXE, dipl, age_c, POND_INIT, annee) %>% 
+rename(panel, pcs1 = "cs_regroupee", SEXE = "sexn", dipl = "dipp", POND = poids) %>% 
+  select(prat_internet, tljp_internet, prat_reseaux, tljp_reseaux, pcs1, SEXE, dipl, age_c, POND, annee) %>% 
   donnat_table(prat_internet:tljp_reseaux, .data=., .value = "Oui", .labs= labs_panel, .caption = "Pratique d'internet et des réseaux sociaux", .panel_wave = TRUE)
 # + Insérer un graphique en histogramme qui regroupe l’ensemble des données (ordonnées le total, le sexe, la CS, le niveau d’étude, des tranches d’âges) : trois colonnes par variable pour les 3 années.
 
@@ -556,12 +556,12 @@ mutate(d,
        A20_Loop_11_A243 = ifelse(A20_Loop_11_A23 == 2 & is.na(A20_Loop_11_A243), 2, A20_Loop_11_A243),
        A20_Loop_12_A243 = ifelse(A20_Loop_12_A23 == 2 & is.na(A20_Loop_12_A243), 2, A20_Loop_12_A243),
        A20_Loop_13_A243 = ifelse(A20_Loop_13_A23 == 2 & is.na(A20_Loop_13_A243), 2, A20_Loop_13_A243)) %>% 
-  select(contains("_A241"), contains("_A242"), contains("_A243"), POND_INIT) %>% 
-  pivot_longer(-POND_INIT) %>% 
+  select(contains("_A241"), contains("_A242"), contains("_A243"), POND) %>% 
+  pivot_longer(-POND) %>% 
   mutate(value = factor(value, levels = 1:2, labels = c("Oui", "Non"))) %>% 
   filter(!is.na(value)) %>% 
   group_by(name, value) %>% 
-  summarize(f = sum(POND_INIT)) %>% 
+  summarize(f = sum(POND)) %>% 
   group_by(name) %>% 
   mutate(f = paste0(round(f / sum(f) * 100, 1), "%")) %>% 
   ungroup() %>% 

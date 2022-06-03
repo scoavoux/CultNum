@@ -223,3 +223,6 @@ labs <- bind_rows(labs,
                           "numerique_info", "Information numérique",
                           "numerique_internet", "Usage internet",
                           "numerique_reseaux", "Usage réseaux sociaux"))
+
+## Pondération
+d <- mutate(d, POND = POND / (sum(POND)/nrow(d)))

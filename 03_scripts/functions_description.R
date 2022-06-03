@@ -12,9 +12,9 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
            order = seq(1, length(.)))
   
   if(.panel_wave){
-    total <- select(.data, {{ .dep }}, POND_INIT, annee) %>% 
+    total <- select(.data, {{ .dep }}, POND, annee) %>% 
       pivot_longer({{ .dep }}, names_to = "dep") %>% 
-      count(annee, dep, value, wt = POND_INIT) %>% 
+      count(annee, dep, value, wt = POND) %>% 
       filter(!is.na(value)) %>% 
       group_by(annee, dep) %>% 
       mutate(f = round(n / sum(n) * 100) %>% paste0(., "%")) %>% 
@@ -28,10 +28,10 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       pivot_wider(names_from = lab, values_from = f)
     
     
-    select(.data, {{ .dep }}, !! enquo(indep), POND_INIT, annee) %>%
+    select(.data, {{ .dep }}, !! enquo(indep), POND, annee) %>%
       pivot_longer({{ .dep }}, names_to = "dep", values_to = "depmod") %>% 
       pivot_longer(!!enquo(indep), names_to = "indep", values_to = "indepmod") %>% 
-      count(annee, indep, indepmod, dep, depmod, wt = POND_INIT) %>% 
+      count(annee, indep, indepmod, dep, depmod, wt = POND) %>% 
       filter(!is.na(depmod), !is.na(indepmod)) %>% 
       group_by(annee, indep, indepmod, dep) %>% 
       mutate(f = round(n / sum(n) * 100) %>% paste0(., "%")) %>% 
@@ -48,9 +48,9 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       add_case(total, .before = 1L) %>% 
       kable(caption = .caption)
   } else {
-    total <- select(.data, {{ .dep }}, POND_INIT) %>% 
+    total <- select(.data, {{ .dep }}, POND) %>% 
       pivot_longer({{ .dep }}, names_to = "dep") %>% 
-      count(dep, value, wt = POND_INIT) %>% 
+      count(dep, value, wt = POND) %>% 
       filter(!is.na(value)) %>% 
       group_by(dep) %>% 
       mutate(f = round(n / sum(n) * 100) %>% paste0(., "%")) %>% 
@@ -62,10 +62,10 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
       pivot_wider(names_from = lab, values_from = f)
     
     
-    select(.data, {{ .dep }}, !! enquo(indep), POND_INIT) %>%
+    select(.data, {{ .dep }}, !! enquo(indep), POND) %>%
       pivot_longer({{ .dep }}, names_to = "dep", values_to = "depmod") %>% 
       pivot_longer(!!enquo(indep), names_to = "indep", values_to = "indepmod") %>% 
-      count(indep, indepmod, dep, depmod, wt = POND_INIT) %>% 
+      count(indep, indepmod, dep, depmod, wt = POND) %>% 
       filter(!is.na(depmod), !is.na(indepmod)) %>% 
       group_by(indep, indepmod, dep) %>% 
       mutate(f = round(n / sum(n) * 100) %>% paste0(., "%")) %>% 
@@ -86,9 +86,9 @@ donnat_table <- function(.dep, .value = "'Yes'", .data=d, .labs=labs, .caption =
 }
 
 graph_qcm <- function(.vars, .value = "'Yes'", .data=d, .labs=labs){
-  select(.data, {{ .vars }}, POND_INIT) %>% 
-    pivot_longer(-POND_INIT) %>% 
-    count(name, value, wt = POND_INIT) %>% 
+  select(.data, {{ .vars }}, POND) %>% 
+    pivot_longer(-POND) %>% 
+    count(name, value, wt = POND) %>% 
     filter(!is.na(value)) %>%
     group_by(name) %>% 
     mutate(f = n / sum(n)) %>% 
@@ -104,9 +104,9 @@ graph_qcm <- function(.vars, .value = "'Yes'", .data=d, .labs=labs){
 
 graph_qcm_indep <- function(.dep, .indep, .value = "'Yes'", .data=d, .labs=labs){
   
-  x <- select(.data, {{ .dep }}, {{ .indep }}, POND_INIT) %>%
+  x <- select(.data, {{ .dep }}, {{ .indep }}, POND) %>%
     pivot_longer({{ .dep }}) %>% 
-    count(!! enquo(.indep), name, value, wt = POND_INIT) %>%
+    count(!! enquo(.indep), name, value, wt = POND) %>%
     filter(!is.na(value)) %>% 
     group_by(!! enquo(.indep), name) %>% 
     mutate(f = n / sum(n)) %>% 
@@ -151,7 +151,7 @@ graph_qcm_all <- function(.dep, .value = "'Yes'", .data=d, .labs=labs){
 table_univar <- function(.var, .labs = labs, .data = d){
   cpt <- filter(.labs, variable == as_name(enquo(.var))) %>% pull(varlabel)
 
-  count(.data, !! enquo(.var), wt = POND_INIT) %>%
+  count(.data, !! enquo(.var), wt = POND) %>%
     filter(!is.na(!! enquo(.var)),
            !! enquo(.var) != "'(NSP)'",
            !! enquo(.var) != "'(REF)'") %>% 
@@ -166,7 +166,7 @@ graph_univar_indep <- function(.dep, .indep, .data = d, .labs = labs) {
   cpt <- filter(.labs, variable == as_name(enquo(.dep))) %>% pull(varlabel)
   xlab <- filter(.labs, variable == as_name(enquo(.indep))) %>% pull(varlabel)
   
-  x <- select(.data, {{ .dep }}, {{ .indep }}, POND_INIT) %>% 
+  x <- select(.data, {{ .dep }}, {{ .indep }}, POND) %>% 
     count(!! enquo(.dep), !! enquo(.indep)) %>% 
     filter(!is.na(!! enquo(.dep)),
            !! enquo(.dep) != "'(NSP)'",
